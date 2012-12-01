@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.eventivities.eventivities.R;
+import com.eventivities.android.R;
 
 import domain.Producto;
 

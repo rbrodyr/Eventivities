@@ -1,4 +1,4 @@
-package com.eventivities.eventivities;
+package com.eventivities.android;
 
 import handlers.ProductoHandler;
 

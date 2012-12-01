@@ -1,6 +1,6 @@
-package com.eventivities.eventivities;
+package com.eventivities.android;
 
-import com.eventivities.eventivities.R;
+import com.eventivities.android.R;
 
 import android.os.Bundle;
 import android.app.Activity;
