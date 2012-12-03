@@ -28,7 +28,10 @@ public class ProductoCache extends EventivitiesDAOBase<Producto, Integer> {
 		productoDAO.create(producto);
 	}
 	
-	
+	public void removeAll() {
+		RuntimeExceptionDao<Producto, Integer> productoDAO = getDAO();
+		productoDAO.delete(productoDAO.queryForAll());
+	}
 	
 	public List<Producto> getProductos(){
 		RuntimeExceptionDao<Producto, Integer> productoDAO = getDAO();
