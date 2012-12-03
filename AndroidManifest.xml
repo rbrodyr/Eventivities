@@ -21,13 +21,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ProductosActivity"
+            android:name=".ListaProductosActivity"
             android:label="@string/title_activity_productos" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity
+            android:name=".EjemploActivity"
+            android:label="@string/title_activity_ejemplo" >
+        </activity>
+        <activity
+            android:name=".DetalleProductoActivity"
+            android:label="@string/title_activity_detalle_producto" >
         </activity>
     </application>
 

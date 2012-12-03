@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
         b.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				Intent i = new Intent(MainActivity.this, ProductosActivity.class);
+				Intent i = new Intent(MainActivity.this, EjemploActivity.class);
 				startActivity(i);				
 			}
 		});

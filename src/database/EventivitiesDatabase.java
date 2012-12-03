@@ -46,7 +46,7 @@ public class EventivitiesDatabase extends OrmLiteSqliteOpenHelper {
 	 * ...BUT in development you HAVE TO delete the database file manually, not increase the version number.
 	 * To remove database db files go to DDMS.
 	 * Go to the tab called "File Explorer" from the device you want to clean.
-	 * Go to /data/data and in our case ./com.servinow.android/databases
+	 * Go to /data/data and in our case ./com.eventivities.android/databases
 	 * Then delete the databases files: select one file per delete and press the "remove" button from up-right (a red minus icon).
 	 */
 	@Override

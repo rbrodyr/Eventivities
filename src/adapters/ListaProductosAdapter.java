@@ -14,11 +14,11 @@ import com.eventivities.android.R;
 
 import domain.Producto;
 
-public class ProductoAdapter extends ArrayAdapter<Producto> {
+public class ListaProductosAdapter extends ArrayAdapter<Producto> {
 	
 	private int layoutResourceId;
 
-	public ProductoAdapter(Context context, int layoutResourceId, List<Producto> objects/*Producto[] objects*/) {
+	public ListaProductosAdapter(Context context, int layoutResourceId, List<Producto> objects) {
 		super(context, layoutResourceId, objects);
 		this.layoutResourceId = layoutResourceId;
 	}
@@ -34,8 +34,7 @@ public class ProductoAdapter extends ArrayAdapter<Producto> {
 
 		Producto producto = this.getItem(position);
 
-		if (producto != null) {
-			
+		if (producto != null) {			
 			TextView textViewNombre = (TextView)view.findViewById(R.id.textViewNombre);
 			if (textViewNombre != null)
 				textViewNombre.setText(producto.getNombre());
