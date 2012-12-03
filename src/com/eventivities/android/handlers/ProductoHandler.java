@@ -1,12 +1,13 @@
-package handlers;
+package com.eventivities.android.handlers;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.eventivities.android.dao.ProductoCache;
+import com.eventivities.android.domain.Producto;
+
 import android.content.Context;
-import dao.ProductoCache;
-import domain.Producto;
 
 public class ProductoHandler {
 

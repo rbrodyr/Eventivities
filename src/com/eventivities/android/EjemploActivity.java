@@ -1,6 +1,7 @@
 package com.eventivities.android;
 
-import handlers.ProductoHandler;
+import com.eventivities.android.handlers.ProductoHandler;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ public class EjemploActivity extends Activity {
 			
 			public void onClick(View v) {
 				new ProductoHandler(EjemploActivity.this).insertarEjemplos();
-				Toast.makeText(EjemploActivity.this, R.string.ejemplo_insertados_productos, Toast.LENGTH_SHORT).show();
+				Toast.makeText(EjemploActivity.this, R.string.ejemplo_msg_insertados_productos, Toast.LENGTH_SHORT).show();
 			}
 		});
         
@@ -39,7 +40,7 @@ public class EjemploActivity extends Activity {
 			
 			public void onClick(View v) {
 				new ProductoHandler(EjemploActivity.this).borrarTodos();
-				Toast.makeText(EjemploActivity.this, R.string.ejemplo_eliminados_productos, Toast.LENGTH_SHORT).show();
+				Toast.makeText(EjemploActivity.this, R.string.ejemplo_msg_eliminados_productos, Toast.LENGTH_SHORT).show();
 			}
 		});
     }

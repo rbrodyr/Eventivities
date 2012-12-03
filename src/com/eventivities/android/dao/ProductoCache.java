@@ -1,13 +1,13 @@
-package dao;
+package com.eventivities.android.dao;
 
 import java.util.Collection;
 import java.util.List;
 
 import android.content.Context;
 
+import com.eventivities.android.domain.Producto;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
-import domain.Producto;
 
 public class ProductoCache extends EventivitiesDAOBase<Producto, Integer> {
 

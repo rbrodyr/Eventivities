@@ -1,4 +1,4 @@
-package adapters;
+package com.eventivities.android.adapters;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.eventivities.android.R;
+import com.eventivities.android.domain.Producto;
 
-import domain.Producto;
 
 public class ListaProductosAdapter extends ArrayAdapter<Producto> {
 	

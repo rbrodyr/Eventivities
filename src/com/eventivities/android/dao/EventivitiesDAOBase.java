@@ -1,10 +1,10 @@
-package dao;
+package com.eventivities.android.dao;
 
 import android.content.Context;
 
+import com.eventivities.android.database.EventivitiesDatabase;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
-import database.EventivitiesDatabase;
 
 public abstract class EventivitiesDAOBase<MainClass, ID> {
 

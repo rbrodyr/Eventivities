@@ -1,15 +1,15 @@
-package database;
+package com.eventivities.android.database;
 
 import java.sql.SQLException;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.eventivities.android.domain.Producto;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
-import domain.Producto;
 
 /*
  * Code based from example: http://ormlite.com/android/examples/

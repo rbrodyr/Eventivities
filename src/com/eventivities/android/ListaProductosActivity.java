@@ -1,10 +1,12 @@
 package com.eventivities.android;
 
-import handlers.ProductoHandler;
 
 import java.util.List;
 
-import adapters.ListaProductosAdapter;
+import com.eventivities.android.adapters.ListaProductosAdapter;
+import com.eventivities.android.domain.Producto;
+import com.eventivities.android.handlers.ProductoHandler;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +14,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import domain.Producto;
 
 public class ListaProductosActivity extends ListActivity {
 	

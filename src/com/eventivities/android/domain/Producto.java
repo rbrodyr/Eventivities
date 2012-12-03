@@ -1,4 +1,4 @@
-package domain;
+package com.eventivities.android.domain;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
