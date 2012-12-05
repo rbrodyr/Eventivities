@@ -53,6 +53,26 @@
             android:name="com.eventivities.android.Registrarse"
             android:label="@string/title_activity_registrarse" >
         </activity>
+        <activity
+            android:name="com.eventivities.android.PuedoVerEn"
+            android:label="@string/title_activity_puedo_ver_en" >
+        </activity>
+        <activity
+            android:name="com.eventivities.android.Votar"
+            android:label="@string/title_activity_votar" >
+        </activity>
+        <activity
+            android:name="com.eventivities.android.DondeEsta"
+            android:label="@string/title_activity_donde_esta" >
+        </activity>
+        <activity
+            android:name="com.eventivities.android.VewrFotosDe"
+            android:label="@string/title_activity_vewr_fotos_de" >
+        </activity>
+        <activity
+            android:name="com.eventivities.android.CompartirCon"
+            android:label="@string/title_activity_compartir_con" >
+        </activity>
     </application>
 
 </manifest>
