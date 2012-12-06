@@ -1,6 +1,7 @@
 package com.eventivities.android;
 
 import com.eventivities.android.R;
+import com.eventivities.android.util.TnUtil;
 
 
 import android.os.Bundle;
