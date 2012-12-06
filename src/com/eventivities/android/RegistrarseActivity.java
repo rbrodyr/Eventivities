@@ -4,19 +4,21 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class Votar extends Activity {
+public class RegistrarseActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_votar);
+		setContentView(R.layout.activity_registrarse);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_votar, menu);
+		getMenuInflater().inflate(R.menu.activity_registrarse, menu);
 		return true;
 	}
-
+	private void paraBorrar(){
+		// si no no me deja hacer commit
+	}
 }

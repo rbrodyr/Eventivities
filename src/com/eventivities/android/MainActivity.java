@@ -43,14 +43,14 @@ public class MainActivity extends Activity {
     	 *  es eso de pasar parametros a las activities
     	 * 
     	 * */
-    	startActivity(new Intent(MainActivity.this, TodosLocales.class));
+    	startActivity(new Intent(MainActivity.this, TodosLocalesActivity.class));
     	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
     }
     
 
     public void accion3(View v){
     	TnUtil.vibrar(this);
-    	startActivity(new Intent(MainActivity.this, QueTengoCerca.class));
+    	startActivity(new Intent(MainActivity.this, QueTengoCercaActivity.class));
     	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
     }
 
@@ -85,13 +85,13 @@ public class MainActivity extends Activity {
   	    	Toast.makeText(this,"opcion para probar",Toast.LENGTH_SHORT).show();
          case R.id.opcion_menu_miPerfil:
         	TnUtil.vibrar(this);
-        	startActivity(new Intent(MainActivity.this, MiPerfil.class));
+        	startActivity(new Intent(MainActivity.this, MiPerfilActivity.class));
          case R.id.opcion_menu_misFavoritos:
         	TnUtil.vibrar(this);
         	Toast.makeText(this,"Actividad No Añadida",Toast.LENGTH_SHORT).show();
          case R.id.opcion_menu_registro:
         	TnUtil.vibrar(this);
-        	startActivity(new Intent(MainActivity.this, Registrarse.class));
+        	startActivity(new Intent(MainActivity.this, RegistrarseActivity.class));
          case R.id.opcion_menu_otraMas:
         	TnUtil.vibrar(this);
         	Toast.makeText(this,"NO HAY NADA",Toast.LENGTH_SHORT).show();
@@ -100,5 +100,9 @@ public class MainActivity extends Activity {
    	 }
 	return false;       
     }
+    
+	private void paraBorrar(){
+		// si no no me deja hacer commit
+	}
     
 }

@@ -21,7 +21,7 @@ public class TnUtil {
 			Vibrator v = (Vibrator) c.getSystemService(c.VIBRATOR_SERVICE);
 			v.vibrate(30);
 		}catch ( Exception e){
-			escribe("Error al intentar vibrar "+e.toString());
+			escribeLog("VIBRAR","Error al intentar vibrar "+e.toString());
 		}
 	}
 	
@@ -47,12 +47,16 @@ public class TnUtil {
 		}
 	}
 	
-   public static void escribe(String txt){
-	   Log.d("Eventities",txt);
+   public static void escribeLog(String Que,String txt){
+	   
+	   Log.d(Que,txt);
+   }
+   
+   public static void escribeLog(String txt){
+	   
+	   escribeLog("Activities",txt);
    }
 	
-   private void test(){
-	   
-   }
+
 }
 

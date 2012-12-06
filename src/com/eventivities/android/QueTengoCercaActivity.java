@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class QueTengoCerca extends Activity {
+public class QueTengoCercaActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,5 +27,7 @@ public class QueTengoCerca extends Activity {
     	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
 	}
 
-	
+	private void paraBorrar(){
+		// si no no me deja hacer commit
+	}
 }

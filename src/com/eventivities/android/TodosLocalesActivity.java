@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class TodosLocales extends Activity {
+public class TodosLocalesActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,5 +26,7 @@ public class TodosLocales extends Activity {
 		// ANIMACION DE SALIDA
     	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
 	}
-	
+	private void paraBorrar(){
+		// si no no me deja hacer commit
+	}
 }
