@@ -18,7 +18,5 @@ public class VotarActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_votar, menu);
 		return true;
 	}
-	private void paraBorrar(){
-		// si no no me deja hacer commit
-	}
+
 }

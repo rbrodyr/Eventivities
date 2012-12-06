@@ -26,7 +26,5 @@ public class TodosLocalesActivity extends Activity {
 		// ANIMACION DE SALIDA
     	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
 	}
-	private void paraBorrar(){
-		// si no no me deja hacer commit
-	}
+
 }

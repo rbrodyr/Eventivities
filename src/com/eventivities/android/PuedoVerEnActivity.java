@@ -18,7 +18,5 @@ public class PuedoVerEnActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_puedo_ver_en, menu);
 		return true;
 	}
-	private void paraBorrar(){
-		// si no no me deja hacer commit
-	}
+
 }

@@ -18,7 +18,5 @@ public class MiPerfilActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_mi_perfil, menu);
 		return true;
 	}
-	private void paraBorrar(){
-		// si no no me deja hacer commit
-	}
+
 }

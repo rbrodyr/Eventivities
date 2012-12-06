@@ -27,7 +27,5 @@ public class QueTengoCercaActivity extends Activity {
     	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
 	}
 
-	private void paraBorrar(){
-		// si no no me deja hacer commit
-	}
+
 }

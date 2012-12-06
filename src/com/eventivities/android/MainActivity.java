@@ -100,9 +100,6 @@ public class MainActivity extends Activity {
    	 }
 	return false;       
     }
-    
-	private void paraBorrar(){
-		// si no no me deja hacer commit
-	}
+
     
 }

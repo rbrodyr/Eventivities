@@ -19,8 +19,6 @@ public class CompartirConActivity extends Activity {
 		return true;
 	}
 
-	private void paraBorrar(){
-		// si no no me deja hacer commit
-	}
+
 
 }

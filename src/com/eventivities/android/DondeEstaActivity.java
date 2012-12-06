@@ -18,7 +18,5 @@ public class DondeEstaActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_donde_esta, menu);
 		return true;
 	}
-	private void paraBorrar(){
-		// si no no me deja hacer commit
-	}
+
 }

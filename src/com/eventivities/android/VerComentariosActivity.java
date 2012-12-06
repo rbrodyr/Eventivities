@@ -18,7 +18,5 @@ public class VerComentariosActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_ver_comentarios, menu);
 		return true;
 	}
-	private void paraBorrar(){
-		// si no no me deja hacer commit
-	}
+
 }

@@ -18,7 +18,5 @@ public class RegistrarseActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_registrarse, menu);
 		return true;
 	}
-	private void paraBorrar(){
-		// si no no me deja hacer commit
-	}
+
 }
