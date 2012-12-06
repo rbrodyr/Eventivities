@@ -77,14 +77,25 @@ public class MainActivity extends Activity {
         	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
         	break;
          case R.id.opcion_menu_prueba1:
- 	    	try{
- 	    	  TnUtil.vibrar(this);
-  	      	  finish();
-  	      	}catch (Exception e){
-  	      		TnUtil.escribe("EXCEPCION :"+e.toString());
-  	      	}
- 	    	//showDialog(2);
-        	//return super.onOptionsItemSelected(item);
+ 	       	TnUtil.vibrar(this);
+ 	    	Toast.makeText(this,"opcion para probar",Toast.LENGTH_SHORT).show();
+         case R.id.opcion_menu_prueba2:
+  	       	TnUtil.vibrar(this);
+  	    	Toast.makeText(this,"opcion para probar",Toast.LENGTH_SHORT).show();
+         case R.id.opcion_menu_miPerfil:
+        	TnUtil.vibrar(this);
+        	startActivity(new Intent(MainActivity.this, MiPerfil.class));
+         case R.id.opcion_menu_misFavoritos:
+        	TnUtil.vibrar(this);
+        	Toast.makeText(this,"Actividad No Añadida",Toast.LENGTH_SHORT).show();
+         case R.id.opcion_menu_registro:
+        	TnUtil.vibrar(this);
+        	startActivity(new Intent(MainActivity.this, Registrarse.class));
+         case R.id.opcion_menu_otraMas:
+        	TnUtil.vibrar(this);
+        	Toast.makeText(this,"NO HAY NADA",Toast.LENGTH_SHORT).show();
+   	         
+
    	 }
 	return false;       
     }
