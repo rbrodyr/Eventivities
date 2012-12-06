@@ -2,10 +2,13 @@ package com.eventivities.android;
 
 import com.eventivities.android.R;
 
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,6 +19,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        /*
         final Button b=(Button) findViewById(R.id.buttonProductos);
         b.setOnClickListener(new View.OnClickListener() {
 			
@@ -24,6 +28,7 @@ public class MainActivity extends Activity {
 				startActivity(i);				
 			}
 		});
+        */
     }
 
     @Override
@@ -31,4 +36,28 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+   	 switch (item.getItemId()){
+         case R.id.opcion_menu_ejemplo:
+        	 	//startActivity(new Intent(MainActivity.this,Creditos.class));
+        	 	//overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
+        	TnUtil.vibrar(this);
+        	startActivity(new Intent(MainActivity.this, EjemploActivity.class));
+        	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
+        	break;
+         case R.id.opcion_menu_prueba1:
+ 	    	try{
+ 	    	  TnUtil.vibrar(this);
+  	      	  finish();
+  	      	}catch (Exception e){
+  	      		TnUtil.escribe("EXCEPCION :"+e.toString());
+  	      	}
+ 	    	//showDialog(2);
+        	//return super.onOptionsItemSelected(item);
+   	 }
+	return false;       
+    }
+    
 }

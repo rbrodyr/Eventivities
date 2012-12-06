@@ -1,6 +1,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_settings"
-        android:title="@string/menu_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never" />
+    <item android:id="@+id/opcion_menu_ejemplo"
+         android:menuCategory="container" 
+         android:title="ejemplo"
+          >
+         
+    </item>
+    <item android:id="@+id/opcion_menu_prueba1" 
+        android:menuCategory="container" 
+        android:title="prueba1"
+                >
+    </item>
+    
+    
+    <item android:id="@+id/opcion_menu_prueba2" 
+        android:menuCategory="container" 
+        android:title="prueba2"
+                >
+    </item>
+    
 </menu>
