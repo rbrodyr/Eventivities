@@ -18,5 +18,4 @@ public class TodosLocalesActivity extends SherlockActivity {
 		// ANIMACION DE SALIDA
     	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
 	}
-
 }
