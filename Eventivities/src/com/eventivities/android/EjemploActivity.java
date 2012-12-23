@@ -1,16 +1,15 @@
 package com.eventivities.android;
 
-import com.eventivities.android.handlers.ProductoHandler;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class EjemploActivity extends Activity {
+import com.actionbarsherlock.app.SherlockActivity;
+import com.eventivities.android.handlers.ProductoHandler;
+
+public class EjemploActivity extends SherlockActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,11 +42,5 @@ public class EjemploActivity extends Activity {
 				Toast.makeText(EjemploActivity.this, R.string.ejemplo_msg_eliminados_productos, Toast.LENGTH_SHORT).show();
 			}
 		});
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_ejemplo, menu);
-        return true;
     }
 }
