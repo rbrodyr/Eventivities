@@ -1,0 +1,43 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/opcion_menu_ejemplo"
+         android:menuCategory="container" 
+         android:title="ejemplo"
+          >
+         
+    </item>
+
+    <item android:id="@+id/opcion_menu_miPerfil" 
+        android:menuCategory="container" 
+        android:title="mi Perfil"
+                >
+    </item>
+
+    <item android:id="@+id/opcion_menu_misFavoritos" 
+        android:menuCategory="container" 
+        android:title="mis Favoritos"
+                >
+    </item>    
+    <item android:id="@+id/opcion_menu_registro" 
+        android:menuCategory="container" 
+        android:title="registrarse"
+                >
+    </item>    
+    <item android:id="@+id/opcion_menu_prueba1" 
+        android:menuCategory="container" 
+        android:title="prueba1"
+                >
+    </item>
+    
+    
+    <item android:id="@+id/opcion_menu_prueba2" 
+        android:menuCategory="container" 
+        android:title="prueba2"
+                >
+    </item>
+    
+    <item android:id="@+id/opcion_menu_otraMas" 
+        android:menuCategory="container" 
+        android:title="otra mas"
+                >
+    </item>    
+</menu>
