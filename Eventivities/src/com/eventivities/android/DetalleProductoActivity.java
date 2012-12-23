@@ -1,16 +1,15 @@
 package com.eventivities.android;
 
-import com.eventivities.android.domain.Producto;
-import com.eventivities.android.handlers.ProductoHandler;
-
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class DetalleProductoActivity extends Activity {
+import com.actionbarsherlock.app.SherlockActivity;
+import com.eventivities.android.domain.Producto;
+import com.eventivities.android.handlers.ProductoHandler;
+
+public class DetalleProductoActivity extends SherlockActivity {
 	
 	private int productoId;
 
@@ -50,11 +49,5 @@ public class DetalleProductoActivity extends Activity {
 			}
         	
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_detalle_producto, menu);
-        return true;
     }
 }
