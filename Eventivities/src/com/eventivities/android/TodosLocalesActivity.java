@@ -1,8 +1,14 @@
 package com.eventivities.android;
 
+import java.util.List;
+
 import android.os.Bundle;
+import android.widget.GridView;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.eventivities.android.adapters.LocalesAdapter;
+import com.eventivities.android.domain.Producto;
+import com.eventivities.android.handlers.ProductoHandler;
 
 public class TodosLocalesActivity extends SherlockActivity {
 
@@ -10,6 +16,14 @@ public class TodosLocalesActivity extends SherlockActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_todos_locales);
+        
+        ProductoHandler productoHandler = new ProductoHandler(this);        
+        List<Producto> productos = productoHandler.obtenerTodos();
+		
+		GridView gridView = (GridView) findViewById(R.id.GridViewLocales);
+		LocalesAdapter adapter = new LocalesAdapter(this, R.layout.item_local, productos);
+		gridView.setAdapter(adapter);
+		//gridView.setOnClickListener(itemClickListener);
 	}
 	
 	@Override
