@@ -2,6 +2,7 @@ package com.eventivities.android;
 
 import com.eventivities.android.R;
 import com.eventivities.android.util.MapsActivity;
+import com.eventivities.android.util.RutaActivity;
 import com.eventivities.android.util.TnUtil;
 
 
@@ -61,9 +62,15 @@ public class MainActivity extends Activity {
     }
     
     
-    public void accion5(View v){
+    /*public void accion5(View v){
     	
     	startActivity(new Intent(MainActivity.this, MapsActivity.class));
+    	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
+    }*/
+    
+    public void accion6(View v){
+    	
+    	startActivity(new Intent(MainActivity.this, RutaActivity.class));
     	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
     }
     

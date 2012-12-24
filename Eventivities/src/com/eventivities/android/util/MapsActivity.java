@@ -1,6 +1,7 @@
 package com.eventivities.android.util;
 
 import java.util.List;
+
 import java.util.Locale;
 
 
@@ -8,15 +9,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
- 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.eventivities.android.R;
 import com.google.android.maps.GeoPoint;
@@ -25,6 +23,15 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+
+/**
+ * Clase que se encarga de  crear el mapa, conectar con el gps, obtener la coordenadas, formatearlas
+ * y dibujar en el mapa la posición
+ *  
+ * 
+ *  @author vimopre
+ * 
+ */
 
 public class MapsActivity extends MapActivity {
 	
@@ -38,6 +45,8 @@ public class MapsActivity extends MapActivity {
     	
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.mapa); 
+        
+        //control del proveedor GPS
     	
     	 LocationManager milocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
     	 
@@ -87,7 +96,21 @@ public class MapsActivity extends MapActivity {
 		return false;
 	}
 	
+	
+	/**
+	 * Clase que se encarga hacer la conexion con el gps y escucha las actualizciones de poscición
+	 * 
+	 *  @author vimopre
+	 */
+	
 	private class MiLocationListener implements LocationListener{
+		
+		/**
+		 * método que escucha el GPS
+		 * 
+		 *  @author vimopre
+		 *  @param loc variable done la clase deja las coordenadas gps
+		 */
 		
         public void onLocationChanged(Location loc){
         	double lat = loc.getLatitude() * 1E6;
@@ -111,10 +134,10 @@ public class MapsActivity extends MapActivity {
 
         }
         public void onProviderDisabled(String provider){
-        	//Toast.makeText( getApplicationContext(),"Gps Desactivado",Toast.LENGTH_SHORT ).show();
+        
         }
         public void onProviderEnabled(String provider){
-        	//Toast.makeText( getApplicationContext(),"Gps Activo",Toast.LENGTH_SHORT ).show();
+
         }
         public void onStatusChanged(String provider, int status, Bundle extras){}
     }
