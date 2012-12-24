@@ -19,7 +19,7 @@ public class MiPerfilActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			Intent i = new Intent(MiPerfilActivity.this, TodosLocalesActivity.class);
+			Intent i = new Intent(MiPerfilActivity.this, LocalesActivity.class);
 			startActivity(i);
 		}
 		

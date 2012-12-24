@@ -19,7 +19,7 @@ public class RegistrarseActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			Intent i = new Intent(RegistrarseActivity.this, TodosLocalesActivity.class);
+			Intent i = new Intent(RegistrarseActivity.this, LocalesActivity.class);
 			startActivity(i);
 		}
 		

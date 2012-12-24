@@ -6,12 +6,12 @@ import android.os.Bundle;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
 
-public class PuedoVerEnActivity extends SherlockActivity {
+public class EventosActivity extends SherlockActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_puedo_ver_en);
+		setContentView(R.layout.activity_eventos);
 		getSupportActionBar().setHomeButtonEnabled(true);
 	}
 
@@ -19,7 +19,7 @@ public class PuedoVerEnActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			Intent i = new Intent(PuedoVerEnActivity.this, TodosLocalesActivity.class);
+			Intent i = new Intent(EventosActivity.this, LocalesActivity.class);
 			startActivity(i);
 		}
 		

@@ -38,8 +38,8 @@
             android:label="@string/title_activity_que_tengo_cerca" >
         </activity>
         <activity
-            android:name="com.eventivities.android.TodosLocalesActivity"
-            android:label="@string/title_activity_todos_locales" >
+            android:name=".LocalesActivity"
+            android:label="@string/title_activity_locales" >
         </activity>
         <activity
             android:name="com.eventivities.android.VerComentariosActivity"
@@ -54,8 +54,8 @@
             android:label="@string/title_activity_registrarse" >
         </activity>
         <activity
-            android:name="com.eventivities.android.PuedoVerEnActivity"
-            android:label="@string/title_activity_puedo_ver_en" >
+            android:name=".EventosActivity"
+            android:label="@string/title_activity_eventos" >
         </activity>
         <activity
             android:name="com.eventivities.android.VotarActivity"

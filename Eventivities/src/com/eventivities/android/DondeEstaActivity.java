@@ -19,7 +19,7 @@ public class DondeEstaActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			Intent i = new Intent(DondeEstaActivity.this, TodosLocalesActivity.class);
+			Intent i = new Intent(DondeEstaActivity.this, LocalesActivity.class);
 			startActivity(i);
 		}
 		

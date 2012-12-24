@@ -10,12 +10,12 @@ import com.eventivities.android.adapters.LocalesAdapter;
 import com.eventivities.android.domain.Producto;
 import com.eventivities.android.handlers.ProductoHandler;
 
-public class TodosLocalesActivity extends SherlockActivity {
+public class LocalesActivity extends SherlockActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_todos_locales);
+		setContentView(R.layout.activity_locales);
         
         ProductoHandler productoHandler = new ProductoHandler(this);        
         List<Producto> productos = productoHandler.obtenerTodos();

@@ -15,11 +15,11 @@
     <string name="ejemplo_msg_insertados_productos">New products inserted into database</string>
     <string name="ejemplo_msg_eliminados_productos">Products removed from database</string>
     <string name="title_activity_que_tengo_cerca">QueTengoCerca</string>
-    <string name="title_activity_todos_locales">TodosLocales</string>
+    <string name="title_activity_locales">Locales</string>
     <string name="title_activity_ver_comentarios">VerComentarios</string>
     <string name="title_activity_mi_perfil">MiPerfil</string>
     <string name="title_activity_registrarse">Registrarse</string>
-    <string name="title_activity_puedo_ver_en">PuedoVerEn</string>
+    <string name="title_activity_eventos">Eventos</string>
     <string name="title_activity_votar">Votar</string>
     <string name="title_activity_donde_esta">DondeEsta</string>
     <string name="title_activity_vewr_fotos_de">VewrFotosDe</string>

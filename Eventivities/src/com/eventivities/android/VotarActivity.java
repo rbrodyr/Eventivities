@@ -19,7 +19,7 @@ public class VotarActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			Intent i = new Intent(VotarActivity.this, TodosLocalesActivity.class);
+			Intent i = new Intent(VotarActivity.this, LocalesActivity.class);
 			startActivity(i);
 		}
 		
