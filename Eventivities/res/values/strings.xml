@@ -24,5 +24,15 @@
     <string name="title_activity_donde_esta">DondeEsta</string>
     <string name="title_activity_vewr_fotos_de">VewrFotosDe</string>
     <string name="title_activity_compartir_con">CompartirCon</string>
+    <string name="title_activity_maps">Mapas</string>
+    <string name="title_activity_rutas">Rutas</string>
+    
+    
+    <!-- Strings para la clase GPS diálogo -->
+	 <string name="gps_signal_not_found">Señal Gps no encontrada</string>	
+     <string name="Titulo_dialogo_gps">Señal Gps no encontrada</string>
+     <string name="mensaje_dialogo_gps">¿Ir a las opciones del Gps?</string>
+     <string name="mensaje_dialogo_gps_btn_cancelar">Cancelar</string>
+     <string name="mensaje_dialogo_gps_btn_aceptar">Aceptar</string>
 
 </resources>

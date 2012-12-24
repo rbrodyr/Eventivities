@@ -7,6 +7,11 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="15" />
+    
+    	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/><!-- GPS  satelital-->
+	    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/><!-- GPS por RED-->
+	    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/><!-- GPS para DEBUG-->
+		<uses-permission android:name="android.permission.INTERNET" /> <!-- Acceso a Internet -->
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -69,10 +74,22 @@
             android:name="com.eventivities.android.VerFotosDeActivity"
             android:label="@string/title_activity_vewr_fotos_de" >
         </activity>
-        <activity
-            android:name="com.eventivities.android.CompartirConActivity"
+       
+		 <activity
+            android:name="com.eventivities.u"
             android:label="@string/title_activity_compartir_con" >
         </activity>
+        
+		  <activity
+            android:name="com.eventivities.android.util.MapsActivity"
+            android:label="@string/title_activity_maps" >
+        </activity>
+         <activity
+            android:name="com.eventivities.android.util.RutaActivity"
+            android:label="@string/title_activity_rutas" >
+        </activity>    
+        <uses-library android:name="com.google.android.maps"/>
+		 
     </application>
 
 </manifest>
