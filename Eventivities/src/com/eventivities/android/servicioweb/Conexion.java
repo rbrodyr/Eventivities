@@ -16,52 +16,55 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.eventivities.android.clasesbase.Libro;
-import com.eventivities.android.clasesbase.ListaLibros;
+import com.eventivities.android.clasesbase.ListaObras;
+import com.eventivities.android.clasesbase.ListaTeatros;
 import com.eventivities.android.excepciones.ExcepcionAplicacion;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+/**
+ * Clase encargada de las conexiones al servicio Web 
+* 
+* @author marcos
+* 
+* @see         Conexion
+*/
 public class Conexion {
 	
-	public static ListaLibros obtenerObrasCiudad(String ciudad) throws ExcepcionAplicacion
+	private final static String url="http://10.0.2.2/www/";
+	
+	/**
+	 * Devuelve un listado de obras de un teatro
+	* <p>
+	* Si la búsqueda no produce ningún resultado, 
+	* 
+	*
+	* @author marcos
+	* @
+	* @param  idTeatro el identificador único del teatro 
+	* @return      la lista de obras
+	* @see         Conexion
+	*/
+	public static ListaObras obtenerObrasTeatro(String idTeatro) throws ExcepcionAplicacion
 	{
-		HttpClient client = new DefaultHttpClient();
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-		pairs.add(new BasicNameValuePair("ciudad", ciudad));	
-		ListaLibros respuesta = null;
-		try{
-			HttpPost request = new HttpPost("http://10.0.2.2/www/service.libros.php");
-			request.setHeader("Accept","application/json");	
-			request.setEntity(new UrlEncodedFormEntity(pairs));
-			HttpResponse response = client.execute(request);
-			HttpEntity entity = response.getEntity(); 
-			String responseString=null;			
-			
-			if (entity != null) { 
-			InputStream stream = entity.getContent(); 
-			BufferedReader reader = new BufferedReader( 
-			new InputStreamReader(stream)); 
-			StringBuilder sb = new StringBuilder();
-			String line = null; 
-			while ((line = reader.readLine()) != null) { 
-				sb.append(line + "\n"); 
-			}		 
-			stream.close(); 
-			responseString = sb.toString();
-			GsonBuilder gsonBuilder = new GsonBuilder();
-			Gson gson = gsonBuilder.create();
-			JSONObject json = new JSONObject(responseString);
-			respuesta = gson.fromJson(json.toString(), ListaLibros.class);			  			
-			}			
-		}
-		catch (ClientProtocolException c)
+		pairs.add(new BasicNameValuePair("idteatro", idTeatro));	
+		JSONObject json;
+		ListaObras respuesta = null;
+		try {
+			json = obtenerJsonDelServicio(pairs,"service.obtenerobrasciudad.php");
+			if(json!=null)
+			{			
+				GsonBuilder gsonBuilder = new GsonBuilder();
+				Gson gson = gsonBuilder.create();
+				respuesta = gson.fromJson(json.toString(), ListaObras.class);
+			}	
+		} catch (ClientProtocolException c)
 		{
 			throw new ExcepcionAplicacion(c.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
 		} catch (JSONException e) {
@@ -80,50 +83,96 @@ public class Conexion {
 		}
 		return respuesta;
 	}
-
 	
-	public static void enviarAmigo(String name, String friendname) throws ExcepcionAplicacion
-	{		
-		HttpClient client = new DefaultHttpClient();
-		//HttpPost request = new HttpPost("http://localhost/www/service.libro.add.php"); 
-		HttpPost request = new HttpPost("http://10.0.2.2/www/service.libro.add.php");
+	/**
+	 * Devuelve un objeto JSON de un servicio web
+	* <p>
+	* Si la búsqueda no produce ningún resultado, Json será null
+	* <p> 
+	* 
+	*
+	* @author marcos
+	* @exception En caso de problemas de conexión con el servicio Web lanzará una excepción
+	* @param  pairs pares de valores para enviar a través de Post
+	* @return      Devuelve un Objeto Json con los datos solicitados 
+	* @see         Conexion
+	*/
+	
+	private static JSONObject obtenerJsonDelServicio(List<NameValuePair> pairs, String servicio) throws ClientProtocolException, IOException, JSONException {
+		HttpClient client = new DefaultHttpClient();		
+		JSONObject json=null;		
 		
-		List<NameValuePair> pairs = new ArrayList<NameValuePair>(); 
-		try{
-			pairs.add(new BasicNameValuePair("libro", "libro7")); 
-			pairs.add(new BasicNameValuePair("isbn", "isbn7"));			
-			request.setEntity(new UrlEncodedFormEntity(pairs));
-			client.execute(request);
-			//HttpResponse response = client.execute(request);
-		}
-		catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
-		}
+		HttpPost request = new HttpPost(url+servicio);
+		request.setHeader("Accept","application/json");	
+		request.setEntity(new UrlEncodedFormEntity(pairs));
+		HttpResponse response = client.execute(request);
+		HttpEntity entity = response.getEntity(); 
+		String responseString=null;			
+		
+		if (entity != null) { 
+			InputStream stream = entity.getContent(); 
+			BufferedReader reader = new BufferedReader( 
+			new InputStreamReader(stream)); 
+			StringBuilder sb = new StringBuilder();
+			String line = null; 
+			while ((line = reader.readLine()) != null) { 
+				sb.append(line + "\n"); 
+			}		 
+			stream.close(); 
+			responseString = sb.toString();								
+			json = new JSONObject(responseString);						
+		}			
+		return json;
+	
 	}
 	
-	public static void registrarPuntuacion(String usuario, String puntuacion) throws ExcepcionAplicacion
+	/**
+	 * Devuelve un listado de teatros de una ciudad
+	* <p>
+	* Si la búsqueda no produce ningún resultado, 
+	* 
+	*
+	* @author marcos
+	* @
+	* @param  idCiudad el identificador único de la ciudad 
+	* @return      la lista de Teatros
+	* @see         Conexion
+	*/
+	
+
+	public static ListaTeatros obtenerTeatrosCiudad(String idCiudad) throws ExcepcionAplicacion
 	{
-		HttpClient client = new DefaultHttpClient();
-		HttpPut request = new HttpPut("http://soletaken.disca.upv.es:8080/WWTBAM/rest/highscores"); 
-		List<NameValuePair> pairs = new ArrayList<NameValuePair>(); 
-		pairs.add(new BasicNameValuePair("name",usuario ));
-		pairs.add(new BasicNameValuePair("scoring", puntuacion)); 
+		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+		pairs.add(new BasicNameValuePair("idciudad", idCiudad));	
+		JSONObject json;
+		ListaTeatros respuesta = null;
 		try {
-			request.setEntity(new UrlEncodedFormEntity(pairs));			
-			client.execute(request);
-		}  catch (ClientProtocolException e) {
+			json = obtenerJsonDelServicio(pairs,"service.obtenerTeatrosciudad.php");
+			if(json!=null)
+			{			
+				GsonBuilder gsonBuilder = new GsonBuilder();
+				Gson gson = gsonBuilder.create();
+				respuesta = gson.fromJson(json.toString(), ListaTeatros.class);
+			}	
+		} catch (ClientProtocolException c)
+		{
+			throw new ExcepcionAplicacion(c.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IllegalStateException e) {
 			e.printStackTrace();
 			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
 		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		return respuesta;
 	}
+	
+
 }
