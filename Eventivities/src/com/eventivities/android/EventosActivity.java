@@ -34,7 +34,7 @@ public class EventosActivity extends SherlockListActivity {
 		EventoHandler eventoHandler = new EventoHandler(this);
 		eventos = eventoHandler.obtenerTodos();
 
-		ListaProductosAdapter adapter = new ListaProductosAdapter(this, R.layout.item_producto, eventos);
+		ListaProductosAdapter adapter = new ListaProductosAdapter(this, R.layout.item_evento, eventos);
 		setListAdapter(adapter);
 	}
 
