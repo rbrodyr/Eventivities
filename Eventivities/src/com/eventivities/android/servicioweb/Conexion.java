@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +14,13 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.eventivities.android.clasesbase.ListaObras;
-import com.eventivities.android.clasesbase.ListaTeatros;
+import com.eventivities.android.domain.ListaObras;
+import com.eventivities.android.domain.ListaTeatros;
 import com.eventivities.android.excepciones.ExcepcionAplicacion;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
