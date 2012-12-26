@@ -29,7 +29,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewFecha"
@@ -53,6 +54,7 @@
         android:id="@+id/textViewPuntEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="★★★☆☆" />
+        android:text="★★★☆☆"
+        android:textColor="#FFD700" />
 
 </LinearLayout>
