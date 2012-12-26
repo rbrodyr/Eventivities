@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.eventivities.android.adapters.ListaProductosAdapter;
 import com.eventivities.android.domain.Producto;
@@ -37,13 +39,23 @@ public class EventosActivity extends SherlockListActivity {
 		ListaProductosAdapter adapter = new ListaProductosAdapter(this, R.layout.item_evento, eventos);
 		setListAdapter(adapter);
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater menuInflater = getSupportMenuInflater();
+		menuInflater.inflate(R.menu.general, menu);
+		return true;
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			Intent i = new Intent(EventosActivity.this, LocalesActivity.class);
-			startActivity(i);
+			startActivity(new Intent(EventosActivity.this, LocalesActivity.class));
+			break;
+		case R.id.menu_login:
+			startActivity(new Intent(EventosActivity.this, MiPerfilActivity.class));
+			break;
 		}
 		
 		return super.onOptionsItemSelected(item);

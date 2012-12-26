@@ -10,6 +10,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.eventivities.android.adapters.LocalesAdapter;
 import com.eventivities.android.domain.Producto;
 import com.eventivities.android.handlers.LocalHandler;
@@ -47,6 +50,27 @@ public class LocalesActivity extends SherlockActivity {
 		}
 	};
 	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater menuInflater = getSupportMenuInflater();
+		menuInflater.inflate(R.menu.activity_locales, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_login:
+			startActivity(new Intent(LocalesActivity.this, MiPerfilActivity.class));
+			break;
+		case R.id.menu_tmp_main:
+			startActivity(new Intent(LocalesActivity.this, MainActivity.class));
+			break;
+		}
+		
+		return super.onOptionsItemSelected(item);
+	}
+
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
