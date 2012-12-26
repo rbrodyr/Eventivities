@@ -13,13 +13,17 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.eventivities.android.MainActivity"
-            android:label="@string/title_activity_main" >
-            <intent-filter>
+            android:name="com.eventivities.android.LocalesActivity"
+            android:label="@string/title_activity_locales" >
+            <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.eventivities.android.MainActivity"
+            android:label="@string/title_activity_main" >
         </activity>
         <activity
             android:name="com.eventivities.android.ListaProductosActivity"
@@ -38,10 +42,6 @@
             android:label="@string/title_activity_que_tengo_cerca" >
         </activity>
         <activity
-            android:name=".LocalesActivity"
-            android:label="@string/title_activity_locales" >
-        </activity>
-        <activity
             android:name="com.eventivities.android.VerComentariosActivity"
             android:label="@string/title_activity_ver_comentarios" >
         </activity>
@@ -54,7 +54,7 @@
             android:label="@string/title_activity_registrarse" >
         </activity>
         <activity
-            android:name=".EventosActivity"
+            android:name="com.eventivities.android.EventosActivity"
             android:label="@string/title_activity_eventos" >
         </activity>
         <activity
@@ -72,6 +72,10 @@
         <activity
             android:name="com.eventivities.android.CompartirConActivity"
             android:label="@string/title_activity_compartir_con" >
+        </activity>
+        <activity
+            android:name="com.eventivities.android.DetalleEventoActivity"
+            android:label="@string/title_activity_detalle_evento" >
         </activity>
     </application>
 

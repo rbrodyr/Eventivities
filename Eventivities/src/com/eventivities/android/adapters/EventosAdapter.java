@@ -13,11 +13,11 @@ import android.widget.TextView;
 import com.eventivities.android.R;
 import com.eventivities.android.domain.Producto;
 
-public class LocalesAdapter extends ArrayAdapter<Producto> {
+public class EventosAdapter extends ArrayAdapter<Producto> {
 	
 	private int layoutResourceId;
 
-	public LocalesAdapter(Context context, int layoutResourceId, List<Producto> objects) {
+	public EventosAdapter(Context context, int layoutResourceId, List<Producto> objects) {
 		super(context, layoutResourceId, objects);
 		this.layoutResourceId = layoutResourceId;
 	}
@@ -31,12 +31,12 @@ public class LocalesAdapter extends ArrayAdapter<Producto> {
 	        view = inflater.inflate(layoutResourceId, parent, false);
 		}	
 
-		Producto local = this.getItem(position);
+		Producto evento = this.getItem(position);
 
-		if (local != null) {			
-			TextView textViewNombre = (TextView)view.findViewById(R.id.textViewNombreLocal);
+		if (evento != null) {			
+			TextView textViewNombre = (TextView)view.findViewById(R.id.textViewNombre);
 			if (textViewNombre != null)
-				textViewNombre.setText(local.getNombre());
+				textViewNombre.setText(evento.getNombre());
 		}
 		
 		return view;

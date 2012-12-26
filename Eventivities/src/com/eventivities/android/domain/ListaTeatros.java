@@ -1,4 +1,4 @@
-package com.eventivities.android.clasesbase;
+package com.eventivities.android.domain;
 
 import java.util.List;
 
