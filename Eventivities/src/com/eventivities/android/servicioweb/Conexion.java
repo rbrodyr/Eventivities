@@ -19,8 +19,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.eventivities.android.domain.ListaObras;
-import com.eventivities.android.domain.ListaTeatros;
+import com.eventivities.android.domain.ListaEventos;
+import com.eventivities.android.domain.ListaPuntuaciones;
 import com.eventivities.android.excepciones.ExcepcionAplicacion;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,34 +34,56 @@ import com.google.gson.GsonBuilder;
 */
 public class Conexion {
 	
-	private final static String url="http://10.0.2.2/www/";
+	
+	private final static String url="http://www.eventivitiesadm.eshost.es/servicioweb/";
+	//private final static String url="http://10.0.2.2/www/";	
 	
 	/**
-	 * Devuelve un listado de obras de un teatro
+	 * Devuelve un listado de eventos de un local
 	* <p>
-	* Si la búsqueda no produce ningún resultado, 
+	* Si la búsqueda no produce ningún resultado, se devuelve una lista vacía  
 	* 
 	*
 	* @author marcos
 	* @
-	* @param  idTeatro el identificador único del teatro 
-	* @return      la lista de obras
+	* @param  idLocal el identificador único del local 
+	* @return      la lista eventos
 	* @see         Conexion
 	*/
-	public static ListaObras obtenerObrasTeatro(String idTeatro) throws ExcepcionAplicacion
+	public static ListaEventos obtenerEventosLocal(String idLocal) throws ExcepcionAplicacion
 	{
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-		pairs.add(new BasicNameValuePair("idteatro", idTeatro));	
+		pairs.add(new BasicNameValuePair("idLocal", idLocal));	
 		JSONObject json;
-		ListaObras respuesta = null;
+		ListaEventos respuesta = null;
 		try {
-			json = obtenerJsonDelServicio(pairs,"service.obtenerobrasciudad.php");
+			json = obtenerJsonDelServicio(pairs,"service.obtenereventoslocal.php");
+			int exito=1;
 			if(json!=null)
 			{			
-				GsonBuilder gsonBuilder = new GsonBuilder();
-				Gson gson = gsonBuilder.create();
-				respuesta = gson.fromJson(json.toString(), ListaObras.class);
+				if (json.has("exito"))
+				{
+					if(json.getString("exito").equalsIgnoreCase("1"))
+					{
+						GsonBuilder gsonBuilder = new GsonBuilder();
+						gsonBuilder.setDateFormat("yyyy-MM-dd");
+						Gson gson = gsonBuilder.create();				
+						respuesta = gson.fromJson(json.toString(), ListaEventos.class);
+					}
+					else
+					{
+						exito=0;
+					}
+				}
+				else
+				{
+					exito=0;
+				}
+				if (exito==0)
+					throw new ExcepcionAplicacion("El servicio web no ha respondido con éxito",ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+				
 			}	
+				
 		} catch (ClientProtocolException c)
 		{
 			throw new ExcepcionAplicacion(c.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
@@ -83,24 +105,76 @@ public class Conexion {
 	}
 	
 	/**
-	 * Devuelve un objeto JSON de un servicio web
+	 * Devuelve un listado de puntuaciones de un evento
 	* <p>
-	* Si la búsqueda no produce ningún resultado, Json será null
-	* <p> 
+	* Si la búsqueda no produce ningún resultado, se devuelve una lista vacía  
 	* 
 	*
 	* @author marcos
-	* @exception En caso de problemas de conexión con el servicio Web lanzará una excepción
-	* @param  pairs pares de valores para enviar a través de Post
-	* @return      Devuelve un Objeto Json con los datos solicitados 
+	* @
+	* @param  idEvento el identificador único del Evento 
+	* @return      la lista de puntuaciones
 	* @see         Conexion
-	*/
+	*/	
+	public static ListaPuntuaciones obtenerPuntuacionesEvento(String idEvento) throws ExcepcionAplicacion
+	{
+		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+		pairs.add(new BasicNameValuePair("idEvento", idEvento));	
+		JSONObject json;
+		ListaPuntuaciones respuesta = null;
+		try {
+			json = obtenerJsonDelServicio(pairs,"service.obtenerpuntuacionesevento.php");
+			int exito=1;
+			if(json!=null)
+			{			
+				if (json.has("exito"))
+				{
+					if(json.getString("exito").equalsIgnoreCase("1"))
+					{
+						GsonBuilder gsonBuilder = new GsonBuilder();						
+						Gson gson = gsonBuilder.create();				
+						respuesta = gson.fromJson(json.toString(), ListaPuntuaciones.class);
+					}
+					else
+					{
+						exito=0;
+					}
+				}
+				else
+				{
+					exito=0;
+				}
+				if (exito==0)
+					throw new ExcepcionAplicacion("El servicio web no ha respondido con exito",ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+				
+			}	
+				
+		} catch (ClientProtocolException c)
+		{
+			throw new ExcepcionAplicacion(c.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		return respuesta;
+	}	
+
 	
 	private static JSONObject obtenerJsonDelServicio(List<NameValuePair> pairs, String servicio) throws ClientProtocolException, IOException, JSONException {
 		HttpClient client = new DefaultHttpClient();		
 		JSONObject json=null;		
-		
-		HttpPost request = new HttpPost(url+servicio);
+				
+		HttpPost request = new HttpPost(url+servicio);		
 		request.setHeader("Accept","application/json");	
 		request.setEntity(new UrlEncodedFormEntity(pairs));
 		HttpResponse response = client.execute(request);
@@ -122,55 +196,6 @@ public class Conexion {
 		}			
 		return json;
 	
-	}
+	}	
 	
-	/**
-	 * Devuelve un listado de teatros de una ciudad
-	* <p>
-	* Si la búsqueda no produce ningún resultado, 
-	* 
-	*
-	* @author marcos
-	* @
-	* @param  idCiudad el identificador único de la ciudad 
-	* @return      la lista de Teatros
-	* @see         Conexion
-	*/
-	
-
-	public static ListaTeatros obtenerTeatrosCiudad(String idCiudad) throws ExcepcionAplicacion
-	{
-		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-		pairs.add(new BasicNameValuePair("idciudad", idCiudad));	
-		JSONObject json;
-		ListaTeatros respuesta = null;
-		try {
-			json = obtenerJsonDelServicio(pairs,"service.obtenerTeatrosciudad.php");
-			if(json!=null)
-			{			
-				GsonBuilder gsonBuilder = new GsonBuilder();
-				Gson gson = gsonBuilder.create();
-				respuesta = gson.fromJson(json.toString(), ListaTeatros.class);
-			}	
-		} catch (ClientProtocolException c)
-		{
-			throw new ExcepcionAplicacion(c.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
-		} catch (JSONException e) {
-			e.printStackTrace();
-			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
-		}
-		return respuesta;
-	}
-	
-
 }
