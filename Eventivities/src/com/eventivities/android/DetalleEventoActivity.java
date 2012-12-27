@@ -2,15 +2,18 @@ package com.eventivities.android;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.eventivities.android.domain.Producto;
 import com.eventivities.android.handlers.EventoHandler;
+import com.eventivities.android.handlers.ProductoHandler;
 
 public class DetalleEventoActivity extends SherlockActivity {
 	
@@ -20,9 +23,6 @@ public class DetalleEventoActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_evento);
-		ActionBar actionBar = getSupportActionBar();
-		actionBar.setHomeButtonEnabled(true);
-		actionBar.setDisplayHomeAsUpEnabled(true);
         
         Bundle extras = getIntent().getExtras();
 		if(extras != null)
