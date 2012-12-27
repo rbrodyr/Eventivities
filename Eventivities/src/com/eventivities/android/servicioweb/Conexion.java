@@ -19,8 +19,11 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.eventivities.android.domain.ListaComentarios;
 import com.eventivities.android.domain.ListaEventos;
+import com.eventivities.android.domain.ListaLocales;
 import com.eventivities.android.domain.ListaPuntuaciones;
+import com.eventivities.android.domain.ListaPuntuacionesLocal;
 import com.eventivities.android.excepciones.ExcepcionAplicacion;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,6 +38,13 @@ import com.google.gson.GsonBuilder;
 public class Conexion {
 	
 	
+	
+	/*obtenerlocalesciudad
+	 * obtenerpuntuacioneslocal
+	 * obtenerlocalescercanos
+	 * registrarpuntuacionlocal
+	 * registrarpuntuacionevento
+	 * registrarUsuario*/
 	private final static String url="http://www.eventivitiesadm.eshost.es/servicioweb/";
 	//private final static String url="http://10.0.2.2/www/";	
 	
@@ -169,6 +179,204 @@ public class Conexion {
 		return respuesta;
 	}	
 
+	/**
+	 * Devuelve un listado de puntuaciones de un evento
+	* <p>
+	* Si la búsqueda no produce ningún resultado, se devuelve una lista vacía  
+	* 
+	*
+	* @author marcos
+	* @
+	* @param  idEvento el identificador único del Evento 
+	* @return      la lista de puntuaciones
+	* @see         Conexion
+	*/	
+	public static ListaLocales obtenerLocalesCiudad(String ciudad) throws ExcepcionAplicacion
+	{	
+		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+		pairs.add(new BasicNameValuePair("ciudad", ciudad));	
+		JSONObject json;
+		ListaLocales respuesta = null;
+		try {
+			json = obtenerJsonDelServicio(pairs,"service.obtenercomentariosevento.php");
+			int exito=1;
+			if(json!=null)
+			{			
+				if (json.has("exito"))
+				{
+					if(json.getString("exito").equalsIgnoreCase("1"))
+					{
+						GsonBuilder gsonBuilder = new GsonBuilder();						
+						Gson gson = gsonBuilder.create();				
+						respuesta = gson.fromJson(json.toString(), ListaLocales.class);
+					}
+					else
+					{
+						exito=0;
+					}
+				}
+				else
+				{
+					exito=0;
+				}
+				if (exito==0)
+					throw new ExcepcionAplicacion("El servicio web no ha respondido con exito",ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+				
+			}	
+				
+		} catch (ClientProtocolException c)
+		{
+			throw new ExcepcionAplicacion(c.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		return respuesta;
+	}
+	
+	/**
+	 * Devuelve un listado de obras de un teatro
+	* <p>
+	* Si la búsqueda no produce ningún resultado, 
+	* 
+	*
+	* @author marcos
+	* @
+	* @param  idTeatro el identificador único del teatro 
+	* @return      la lista de obras
+	* @see         Conexion
+	*/
+	public static ListaPuntuacionesLocal obtenerPuntuacionesLocal(String idLocal) throws ExcepcionAplicacion
+	{	
+		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+		pairs.add(new BasicNameValuePair("idLocal", idLocal));	
+		JSONObject json;
+		ListaPuntuacionesLocal respuesta = null;
+		try {
+			json = obtenerJsonDelServicio(pairs,"service.obtenercomentariosevento.php");
+			int exito=1;
+			if(json!=null)
+			{			
+				if (json.has("exito"))
+				{
+					if(json.getString("exito").equalsIgnoreCase("1"))
+					{
+						GsonBuilder gsonBuilder = new GsonBuilder();						
+						Gson gson = gsonBuilder.create();				
+						respuesta = gson.fromJson(json.toString(), ListaPuntuacionesLocal.class);
+					}
+					else
+					{
+						exito=0;
+					}
+				}
+				else
+				{
+					exito=0;
+				}
+				if (exito==0)
+					throw new ExcepcionAplicacion("El servicio web no ha respondido con exito",ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+				
+			}	
+				
+		} catch (ClientProtocolException c)
+		{
+			throw new ExcepcionAplicacion(c.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		return respuesta;
+	}
+	
+	/**
+	 * Devuelve un listado de obras de un teatro
+	* <p>
+	* Si la búsqueda no produce ningún resultado, 
+	* 
+	*
+	* @author marcos
+	* @
+	* @param  idTeatro el identificador único del teatro 
+	* @return      la lista de obras
+	* @see         Conexion
+	*/
+	public static ListaComentarios obtenerComentariosEvento(String idEvento) throws ExcepcionAplicacion
+	{	
+		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+		pairs.add(new BasicNameValuePair("idEvento", idEvento));	
+		JSONObject json;
+		ListaComentarios respuesta = null;
+		try {
+			json = obtenerJsonDelServicio(pairs,"service.obtenercomentariosevento.php");
+			int exito=1;
+			if(json!=null)
+			{			
+				if (json.has("exito"))
+				{
+					if(json.getString("exito").equalsIgnoreCase("1"))
+					{
+						GsonBuilder gsonBuilder = new GsonBuilder();						
+						Gson gson = gsonBuilder.create();				
+						respuesta = gson.fromJson(json.toString(), ListaComentarios.class);
+					}
+					else
+					{
+						exito=0;
+					}
+				}
+				else
+				{
+					exito=0;
+				}
+				if (exito==0)
+					throw new ExcepcionAplicacion("El servicio web no ha respondido con exito",ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+				
+			}	
+				
+		} catch (ClientProtocolException c)
+		{
+			throw new ExcepcionAplicacion(c.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		return respuesta;
+	}
+	
+	
+	
+	
 	
 	private static JSONObject obtenerJsonDelServicio(List<NameValuePair> pairs, String servicio) throws ClientProtocolException, IOException, JSONException {
 		HttpClient client = new DefaultHttpClient();		
