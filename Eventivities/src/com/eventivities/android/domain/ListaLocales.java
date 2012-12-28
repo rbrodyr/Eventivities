@@ -6,11 +6,11 @@ public class ListaLocales {
 
 	private List<Local> locales;
 	
-	public List<Local> getEventos() {
+	public List<Local> getLocales() {
 		return locales;
 	}
 	
-	public void setEventos(List<Local> locales) {
+	public void setLocales(List<Local> locales) {
 		this.locales = locales;
 	}
 
