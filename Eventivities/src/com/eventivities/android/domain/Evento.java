@@ -2,6 +2,22 @@ package com.eventivities.android.domain;
 
 import java.util.Date;
 
+/*Tabla: Evento
+
+Columna 	Tipo 	Nulo Predeterminado 
+idEvento 	int(11) No 		
+Nombre 		text 	No 		
+Descripcion text 	No 		
+FechaInicio date 	No 		
+FechaFin 	date 	No 		
+idLocal 	int(11)	No 		
+idTipoEventoint(11)	No 		
+Precio 		double 	No 	0 	
+Director 	text 	No 		
+Interpretes text 	Sí 	NULL
+El campo media es la media de las puntuaciones para ese evento
+*/
+
 
 public class Evento {
 	private int idEvento=0;
@@ -10,7 +26,42 @@ public class Evento {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private int idLocal=0;
+	private int idTipoEvento=0;
+	private double precio=0;
+	private String director="";
+	private String interpretes="";
+	private double media=0; 
 	
+	public double getMedia() {
+		return media;
+	}
+	public void setMedia(double media) {
+		this.media = media;
+	}
+	public int getIdTipoEvento() {
+		return idTipoEvento;
+	}
+	public void setIdTipoEvento(int idTipoEvento) {
+		this.idTipoEvento = idTipoEvento;
+	}
+	public double getPrecio() {
+		return precio;
+	}
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+	public String getDirector() {
+		return director;
+	}
+	public void setDirector(String director) {
+		this.director = director;
+	}
+	public String getInterpretes() {
+		return interpretes;
+	}
+	public void setInterpretes(String interpretes) {
+		this.interpretes = interpretes;
+	}
 	public int getIdEvento() {
 		return idEvento;
 	}
