@@ -14,7 +14,10 @@ idLocal 	int(11)	No
 idTipoEventoint(11)	No 		
 Precio 		double 	No 	0 	
 Director 	text 	No 		
-Interpretes text 	Sí 	NULL*/
+Interpretes text 	Sí 	NULL
+El campo media es la media de las puntuaciones para ese evento
+*/
+
 
 public class Evento {
 	private int idEvento=0;
@@ -27,7 +30,14 @@ public class Evento {
 	private double precio=0;
 	private String director="";
 	private String interpretes="";
+	private double media=0; 
 	
+	public double getMedia() {
+		return media;
+	}
+	public void setMedia(double media) {
+		this.media = media;
+	}
 	public int getIdTipoEvento() {
 		return idTipoEvento;
 	}
