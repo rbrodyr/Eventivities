@@ -62,10 +62,10 @@ public class Conexion {
 	* @return      la lista eventos
 	* @see         Conexion
 	*/
-	public static ListaEventos obtenerEventosLocal(String idLocal) throws ExcepcionAplicacion
+	public static ListaEventos obtenerEventosLocal(int idLocal) throws ExcepcionAplicacion
 	{
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-		pairs.add(new BasicNameValuePair("idLocal", idLocal));	
+		pairs.add(new BasicNameValuePair("idLocal", String.valueOf(idLocal)));	
 		JSONObject json;
 		ListaEventos respuesta = null;
 		try {
