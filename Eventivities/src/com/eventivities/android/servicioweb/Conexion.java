@@ -48,6 +48,8 @@ public class Conexion {
 	private final static String url="http://www.eventivitiesadm.eshost.es/servicioweb/";
 	//private final static String url="http://10.0.2.2/www/";	
 	
+	
+	
 	/**
 	 * Devuelve un listado de eventos de un local
 	* <p>
@@ -198,7 +200,7 @@ public class Conexion {
 		JSONObject json;
 		ListaLocales respuesta = null;
 		try {
-			json = obtenerJsonDelServicio(pairs,"service.obtenercomentariosevento.php");
+			json = obtenerJsonDelServicio(pairs,"service.obtenerlocalesciudad.php");
 			int exito=1;
 			if(json!=null)
 			{			
