@@ -37,11 +37,12 @@ public class LocalesActivity extends SherlockActivity {
 
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
-			int localId = locales.get(arg2).getIdLocal();
+			Local local = locales.get(arg2);
 
 			Intent i = new Intent(LocalesActivity.this, EventosActivity.class);
 			Bundle b = new Bundle();
-			b.putInt(Param.LOCAL_ID.toString(), localId);
+			b.putInt(Param.LOCAL_ID.toString(), local.getIdLocal());
+			b.putString(Param.LOCAL_NOMBRE.toString(), local.getNombreLocal());
 			i.putExtras(b);
 
 			startActivity(i);

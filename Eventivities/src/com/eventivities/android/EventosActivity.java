@@ -37,6 +37,7 @@ public class EventosActivity extends SherlockListActivity {
 		if(extras != null)
 		{
 			localId = extras.getInt(Param.LOCAL_ID.toString());
+			setTitle(extras.getString(Param.LOCAL_NOMBRE.toString()));
 		}
 		
 		new EventosAsyncTask().execute();
