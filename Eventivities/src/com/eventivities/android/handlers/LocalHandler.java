@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.widget.Toast;
 
+import com.eventivities.android.domain.ListaLocales;
+import com.eventivities.android.domain.Local;
 import com.eventivities.android.domain.Producto;
+import com.eventivities.android.excepciones.ExcepcionAplicacion;
+import com.eventivities.android.servicioweb.Conexion;
 
 public class LocalHandler {
 
@@ -24,8 +29,14 @@ public class LocalHandler {
 		this.context = context;
 	}
 	
-	public List<Producto> obtenerTodos () {
+	/*public List<Producto> obtenerTodos () {
 		return locales;
+	}*/
+	
+	public List<Local> obtenerTodos() throws ExcepcionAplicacion {		
+		ListaLocales listaLocales;
+		listaLocales = Conexion.obtenerLocalesCiudad("Valencia");
+		return listaLocales.getLocales();
 	}
 	
 	public Producto obtenerLocal(int localId) {

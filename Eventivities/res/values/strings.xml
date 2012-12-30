@@ -26,5 +26,10 @@
     <string name="title_activity_vewr_fotos_de">VewrFotosDe</string>
     <string name="title_activity_compartir_con">CompartirCon</string>
     <string name="title_activity_detalle_evento">DetalleEvento</string>
+    <string name="error_conexion">Connection error. Click the refresh button to retry.</string>
+    <string name="formato_rango_fecha">From %1$s to %2$s</string>
+    <string name="formato_precio">%.2f €</string>
+    <string name="formato_director">Directed by %s</string>
+    <string name="formato_interpretes">Interpreted by %s</string>
 
 </resources>

@@ -10,11 +10,25 @@
         android:layout_height="wrap_content"
         android:padding="3dp" >
 
-        <ImageView
-            android:id="@+id/imageViewProducto"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@drawable/masks" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/imageViewProducto"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/masks" />
+
+            <TextView
+                android:id="@+id/textViewPuntuacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="☆☆☆☆☆"
+                android:textColor="#FFD700" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -28,7 +42,7 @@
                 android:id="@+id/textViewNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre"
+                android:text="_Nombre"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textStyle="bold" />
 
@@ -36,25 +50,18 @@
                 android:id="@+id/textViewFecha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fecha"
+                android:text="_Fecha"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
                 android:id="@+id/textViewPrecio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Precio"
+                android:text="_Precio"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
         </LinearLayout>
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textViewPuntEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="★★★☆☆"
-        android:textColor="#FFD700" />
 
 </LinearLayout>
