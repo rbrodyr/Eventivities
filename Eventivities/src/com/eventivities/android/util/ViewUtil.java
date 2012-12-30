@@ -10,11 +10,8 @@ public class ViewUtil {
 	
 	public static final String FORMATO_FECHA = "%1$te/%1$tm/%1$tY";
 	
-	public static String fechaConFormato(Date fecha) {
-		return String.format(FORMATO_FECHA, fecha);
-	}
-	
-	public static String rangoFecha(String formatoRango, Date inicio, Date fin) {
+	public static String rangoFecha(String formatoRango, Date inicio, Date fin)
+	{
 		String fechaInicio = String.format(FORMATO_FECHA, inicio);
 		String fechaFin = String.format(FORMATO_FECHA, fin);
 		
