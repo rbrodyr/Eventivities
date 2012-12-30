@@ -32,7 +32,7 @@ public class ViewUtil {
 	 * @param puntuacion
 	 * @return Cadena de texto con las estrellas rellenadas.
 	 */
-	public static String obtenerEstrellas(Double puntuacion)
+	public static String obtenerEstrellas(double puntuacion)
 	{
 		int estrellas = (int) Math.round(puntuacion);
 		
