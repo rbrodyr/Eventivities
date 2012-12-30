@@ -52,7 +52,9 @@ public class LocalesActivity extends SherlockActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater menuInflater = getSupportMenuInflater();
-		menuInflater.inflate(R.menu.activity_locales, menu);
+		menuInflater.inflate(R.menu.general, menu);
+		menu.findItem(R.id.menu_refresh).setVisible(true);
+		menu.findItem(R.id.menu_tmp_main).setVisible(true);
 		return true;
 	}
 
@@ -61,6 +63,9 @@ public class LocalesActivity extends SherlockActivity {
 		switch (item.getItemId()) {
 		case R.id.menu_login:
 			startActivity(new Intent(LocalesActivity.this, MiPerfilActivity.class));
+			break;
+		case R.id.menu_refresh:
+			new LocalesAsyncTask().execute();
 			break;
 		case R.id.menu_tmp_main:
 			startActivity(new Intent(LocalesActivity.this, MainActivity.class));

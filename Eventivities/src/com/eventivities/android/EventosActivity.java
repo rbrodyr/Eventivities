@@ -47,6 +47,7 @@ public class EventosActivity extends SherlockListActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.general, menu);
+		menu.findItem(R.id.menu_refresh).setVisible(true);
 		return true;
 	}
 
@@ -58,6 +59,9 @@ public class EventosActivity extends SherlockListActivity {
 			break;
 		case R.id.menu_login:
 			startActivity(new Intent(EventosActivity.this, MiPerfilActivity.class));
+			break;
+		case R.id.menu_refresh:
+			new EventosAsyncTask().execute();
 			break;
 		}
 		
