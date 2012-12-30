@@ -20,9 +20,18 @@ public class ViewUtil {
 		
 		return String.format(formatoRango, fechaInicio, fechaFin);
 	}
-	
-	// TODO lógica del método. Puntuaciones 1 - 5.
-	public static String obtenerEstrellas(Double puntuacion) {
-		return "★★★☆☆";
+
+	public static String obtenerEstrellas(Double puntuacion)
+	{
+		int estrellas = (int) Math.round(puntuacion);
+		
+		switch (estrellas) {
+		case 1: return "★☆☆☆☆";
+		case 2: return "★★☆☆☆";
+		case 3: return "★★★☆☆";
+		case 4: return "★★★★☆";
+		case 5: return "★★★★★";
+		default: return "☆☆☆☆☆";
+		}
 	}
 }
