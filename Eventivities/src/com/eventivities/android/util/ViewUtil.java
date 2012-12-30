@@ -10,6 +10,14 @@ public class ViewUtil {
 	
 	public static final String FORMATO_FECHA = "%1$te/%1$tm/%1$tY";
 	
+	/**
+	 * Formatea un rango de fechas a partir de dos fechas y el formato escogido.
+	 * 
+	 * @param formatoRango
+	 * @param inicio
+	 * @param fin
+	 * @return
+	 */
 	public static String rangoFecha(String formatoRango, Date inicio, Date fin)
 	{
 		String fechaInicio = String.format(FORMATO_FECHA, inicio);
@@ -18,6 +26,12 @@ public class ViewUtil {
 		return String.format(formatoRango, fechaInicio, fechaFin);
 	}
 
+	/**
+	 * Genera una cadena con 5 estrellas a partir del valor de la puntuación. 
+	 * 
+	 * @param puntuacion
+	 * @return
+	 */
 	public static String obtenerEstrellas(Double puntuacion)
 	{
 		int estrellas = (int) Math.round(puntuacion);
