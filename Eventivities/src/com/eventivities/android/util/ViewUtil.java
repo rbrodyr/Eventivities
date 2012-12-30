@@ -16,7 +16,7 @@ public class ViewUtil {
 	 * @param formatoRango
 	 * @param inicio
 	 * @param fin
-	 * @return
+	 * @return Cadena de texto con el rango de fechas.
 	 */
 	public static String rangoFecha(String formatoRango, Date inicio, Date fin)
 	{
@@ -30,7 +30,7 @@ public class ViewUtil {
 	 * Genera una cadena con 5 estrellas a partir del valor de la puntuación. 
 	 * 
 	 * @param puntuacion
-	 * @return
+	 * @return Cadena de texto con las estrellas rellenadas.
 	 */
 	public static String obtenerEstrellas(Double puntuacion)
 	{
