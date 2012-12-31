@@ -26,5 +26,10 @@
     <string name="title_activity_vewr_fotos_de">VewrFotosDe</string>
     <string name="title_activity_compartir_con">CompartirCon</string>
     <string name="title_activity_detalle_evento">DetalleEvento</string>
+    <string name="error_conexion">No se pudo establecer la conexión con el servidor. Pulse el botón de actualizar para volver a intentarlo.</string>
+    <string name="formato_rango_fecha">Del %1$s al %2$s</string>
+    <string name="formato_precio">%.2f €</string>
+    <string name="formato_director">Dirigida por %s</string>
+    <string name="formato_interpretes">Interpretada por %s</string>
 
 </resources>

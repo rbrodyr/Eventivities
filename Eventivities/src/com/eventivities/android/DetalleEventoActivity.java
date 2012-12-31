@@ -8,12 +8,12 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.eventivities.android.domain.Producto;
-import com.eventivities.android.handlers.EventoHandler;
+import com.eventivities.android.domain.Evento;
+import com.eventivities.android.util.ViewUtil;
 
 public class DetalleEventoActivity extends SherlockActivity {
 	
-	private int eventoId;
+	private Evento evento;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,15 +24,47 @@ public class DetalleEventoActivity extends SherlockActivity {
         Bundle extras = getIntent().getExtras();
 		if(extras != null)
 		{
-			eventoId = extras.getInt(Param.EVENTO_ID.toString());
-			
-			EventoHandler eventoHandler = new EventoHandler(this);
-			Producto evento = eventoHandler.obtenerEvento(eventoId);
-
+			evento = (Evento) extras.getSerializable(Param.EVENTO.toString());
+	
 			if (evento != null) {
 				TextView textViewNombre = (TextView) findViewById(R.id.textViewNombreEvento);
 				if (textViewNombre != null)
 					textViewNombre.setText(evento.getNombre());
+				
+				TextView textViewFecha = (TextView)findViewById(R.id.textViewFechaEvento);
+				if (textViewFecha != null) {
+					String formatoRango = getString(R.string.formato_rango_fecha);
+					String rangoFecha = ViewUtil.rangoFecha(formatoRango, evento.getFechaInicio(), evento.getFechaFin());
+					textViewFecha.setText(rangoFecha);
+				}
+				
+				TextView textViewPrecio = (TextView)findViewById(R.id.textViewPrecioEvento);
+				if (textViewFecha != null) {
+					String format = getString(R.string.formato_precio);
+					textViewPrecio.setText(String.format(format, evento.getPrecio()));
+				}
+				
+				TextView textViewPuntEvento = (TextView)findViewById(R.id.textViewPuntEvento);
+				if (textViewPuntEvento != null) {
+					textViewPuntEvento.setText(ViewUtil.obtenerEstrellas(evento.getMedia()));
+				}
+				
+				TextView textViewDirector = (TextView)findViewById(R.id.textViewInterpretes);
+				if (textViewDirector != null) {
+					String format = getString(R.string.formato_director);
+					textViewDirector.setText(String.format(format, evento.getDirector()));
+				}
+				
+				TextView textViewInterpretes = (TextView)findViewById(R.id.textViewInterpretes);
+				if (textViewInterpretes != null) {
+					String format = getString(R.string.formato_interpretes);
+					textViewInterpretes.setText(String.format(format, evento.getInterpretes()));
+				}
+				
+				TextView textViewDescripcion = (TextView)findViewById(R.id.textViewDescripcion);
+				if (textViewDescripcion != null) {
+					textViewDescripcion.setText(evento.getDescripcion());
+				}
 				
 				setTitle(evento.getNombre());
 			}
