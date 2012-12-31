@@ -10,12 +10,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:paddingRight="20dp"
-            android:src="@drawable/masks" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:paddingRight="20dp"
+                android:src="@drawable/masks" />
+
+            <TextView
+                android:id="@+id/textViewPuntEvento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="★★★☆☆"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#FFD700" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -26,17 +41,17 @@
                 android:id="@+id/textViewNombreEvento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre"
+                android:text="_Nombre"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewFecha"
+                android:id="@+id/textViewFechaEvento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fecha" />
+                android:text="_Fecha" />
 
             <TextView
-                android:id="@+id/textViewPrecio"
+                android:id="@+id/textViewPrecioEvento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Precio" />
@@ -45,18 +60,35 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewPuntEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="★★★☆☆"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#FFD700" />
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-    <TextView
-        android:id="@+id/textViewDescripcion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Descripción" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textViewDirector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="_Director" />
+
+            <TextView
+                android:id="@+id/textViewInterpretes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="_Intérpretes" />
+
+            <TextView
+                android:id="@+id/textViewDescripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="_Descripción" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

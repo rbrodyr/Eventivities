@@ -1,5 +1,6 @@
 package com.eventivities.android.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /*Tabla: Evento
@@ -18,8 +19,11 @@ Interpretes text 	Sí 	NULL
 El campo media es la media de las puntuaciones para ese evento
 */
 
-
-public class Evento {
+public class Evento implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8444706501016450603L;
 	private int idEvento=0;
 	private String nombre="";
 	private String descripcion="";
