@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
@@ -28,7 +30,6 @@ public class LocalesActivity extends SherlockActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-		setContentView(R.layout.activity_locales);
 		
 		new LocalesAsyncTask().execute();
 	}
@@ -97,6 +98,13 @@ public class LocalesActivity extends SherlockActivity {
 		@Override
 		protected void onPostExecute(List<Local> result) {
 			if (result != null) {
+				setContentView(R.layout.activity_locales);		        
+		        Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+				ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(LocalesActivity.this,
+						R.array.tipo_local, android.R.layout.simple_spinner_item);
+				arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+				spinner.setAdapter(arrayAdapter);
+				
 				GridView gridView = (GridView) findViewById(R.id.GridViewLocales);
 				LocalesAdapter adapter = new LocalesAdapter(getApplicationContext(), R.layout.item_local, result);
 				gridView.setAdapter(adapter);
