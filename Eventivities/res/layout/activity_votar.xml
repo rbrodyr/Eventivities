@@ -4,11 +4,115 @@
     android:layout_height="match_parent"
     tools:context=".Votar" >
 
-    <TextView
+    <RatingBar
+        android:id="@+id/votar_ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="votar" />
+        android:layout_marginTop="156dp"
+        android:numStars="5"
+        android:stepSize="1.0" />
+
+    <EditText
+        android:id="@+id/votar_comentario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/votar_ratingBar"
+        android:layout_alignRight="@+id/votar_ratingBar"
+        android:layout_below="@+id/votar_ratingBar"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
+        android:lines="4"
+        android:maxLines="4" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/votar_teHaGustado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/votar_ratingBar"
+        android:layout_alignLeft="@+id/votar_ratingBar"
+        android:layout_marginBottom="58dp"
+        android:text="@string/votar_puntuacion"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/votar_ratingBar"
+        android:layout_below="@+id/votar_ratingBar"
+        android:text="@string/votar_miOpinion"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/votar_cuantasLetrasQuedan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/votar_ratingBar"
+        android:layout_below="@+id/votar_ratingBar"
+        android:text="TextView"
+        android:textColor="@color/gris_medio" />
+
+    <Button
+        android:id="@+id/votar_botonVotar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:maxWidth="120dp"
+        android:minWidth="120dip"
+        android:onClick="accionVotar"
+        android:text="@string/votar_botonVotar" />
+
+    <Button
+        android:id="@+id/votar_botonCompartir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:maxWidth="120dp"
+        android:minWidth="120dip"
+        android:onClick="accionCompartir"
+        android:text="@string/compartir" />
+
+    <ImageView
+        android:id="@+id/votar_imagenEvento"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:paddingRight="20dp"
+        android:src="@drawable/masks" />
+
+    <TextView
+        android:id="@+id/votar_nombreTeatro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="22dp"
+        android:layout_toRightOf="@+id/votar_botonCompartir"
+        android:maxLines="2"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/votar_nombreEvento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/votar_nombreTeatro"
+        android:layout_marginTop="18dp"
+        android:layout_toRightOf="@+id/votar_botonCompartir"
+        android:maxLines="2"
+        android:text="Nombre Evento"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold" />
 
 </RelativeLayout>

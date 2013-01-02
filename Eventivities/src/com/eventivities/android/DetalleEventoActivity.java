@@ -2,6 +2,7 @@ package com.eventivities.android;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -9,11 +10,14 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.eventivities.android.domain.Evento;
+import com.eventivities.android.domain.Local;
+import com.eventivities.android.util.TnUtil;
 import com.eventivities.android.util.ViewUtil;
 
 public class DetalleEventoActivity extends SherlockActivity {
 	
 	private Evento evento;
+	private String nombreLocal;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,7 @@ public class DetalleEventoActivity extends SherlockActivity {
 		if(extras != null)
 		{
 			evento = (Evento) extras.getSerializable(Param.EVENTO.toString());
+			nombreLocal=(String) extras.getSerializable(Param.LOCAL_NOMBRE.toString());
 	
 			if (evento != null) {
 				TextView textViewNombre = (TextView) findViewById(R.id.textViewNombreEvento);
@@ -61,6 +66,7 @@ public class DetalleEventoActivity extends SherlockActivity {
 					textViewInterpretes.setText(String.format(format, evento.getInterpretes()));
 				}
 				
+				
 				TextView textViewDescripcion = (TextView)findViewById(R.id.textViewDescripcion);
 				if (textViewDescripcion != null) {
 					textViewDescripcion.setText(evento.getDescripcion());
@@ -76,6 +82,30 @@ public class DetalleEventoActivity extends SherlockActivity {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.general, menu);
 		return true;
+	}
+	
+	public void verComentarios(View v){
+    	TnUtil.vibrar(this);
+    	/* 
+    	 * **PASAR_a_COMENTARIOS**   o ¿ YA ESTAN EN evento. ? ¿ como se pasa ?
+    	 * Supongo que aqui se pondra lo de pasar los parametros a la actividad
+    	 *     - la imagen del evento ( asi no hay que buscarla ) <--ESTO NO 
+         *	   - el nombre del evento
+         *     - el id del evento
+    	 */
+    	
+
+
+		//startActivity(new Intent(DetalleEventoActivity.this, VerComentariosActivity.class));
+		
+		Intent i = new Intent(DetalleEventoActivity.this, VerComentariosActivity.class);
+		Bundle b = new Bundle();
+		b.putSerializable(Param.EVENTO.toString(), evento);
+		b.putString(Param.LOCAL_NOMBRE.toString(), nombreLocal);
+		i.putExtras(b);
+		startActivity(i);    	
+    	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
+    		
 	}
 
 	@Override

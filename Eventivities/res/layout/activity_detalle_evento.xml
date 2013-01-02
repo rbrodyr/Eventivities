@@ -26,6 +26,8 @@
                 android:id="@+id/textViewPuntEvento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="verComentarios"
                 android:text="★★★☆☆"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#FFD700" />

@@ -4,11 +4,70 @@
     android:layout_height="match_parent"
     tools:context=".VerComentarios" >
 
+    <ImageView
+        android:id="@+id/comentarios_imagenEvento"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:paddingRight="20dp"
+        android:src="@drawable/masks" />
+
     <TextView
+        android:id="@+id/comentarios_textViewPuntEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/comentarios_imagenEvento"
+        android:layout_below="@+id/comentarios_nombreEvento"
+        android:layout_marginTop="8dp"
+        android:onClick="verComentarios"
+        android:text="★★★☆☆"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFD700" />
+
+    <ListView
+        android:id="@+id/comentarios_listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/comentarios_votar"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/comentarios_imagenEvento"
+        android:footerDividersEnabled="true"
+        android:headerDividersEnabled="true" >
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/comentarios_nombreEvento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/comentarios_nombreTeatro"
+        android:layout_marginTop="12dp"
+        android:layout_toRightOf="@+id/comentarios_imagenEvento"
+        android:maxLines="2"
+        android:text="Nombre Evento"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/comentarios_nombreTeatro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/comentarios_imagenEvento"
+        android:maxLines="2"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/comentarios_votar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="ver comentarios" />
+        android:text="@string/comentarios_Votar" 
+        android:onClick="aVotar"
+        />
 
 </RelativeLayout>

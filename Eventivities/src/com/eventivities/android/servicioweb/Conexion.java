@@ -182,7 +182,7 @@ public class Conexion {
 	}	
 
 	/**
-	 * Devuelve un listado de puntuaciones de un evento
+	 * Devuelve un listado de LocalesCiudad
 	* <p>
 	* Si la búsqueda no produce ningún resultado, se devuelve una lista vacía  
 	* 
@@ -247,7 +247,7 @@ public class Conexion {
 	}
 	
 	/**
-	 * Devuelve un listado de obras de un teatro
+	 * Devuelve un listado de puntuaciones de un local
 	* <p>
 	* Si la búsqueda no produce ningún resultado, 
 	* 
@@ -312,7 +312,7 @@ public class Conexion {
 	}
 	
 	/**
-	 * Devuelve un listado de obras de un teatro
+	 * Devuelve un listado de comentarios de un evento
 	* <p>
 	* Si la búsqueda no produce ningún resultado, 
 	* 

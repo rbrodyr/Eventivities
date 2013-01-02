@@ -31,5 +31,23 @@
     <string name="formato_precio">%.2f €</string>
     <string name="formato_director">Directed by %s</string>
     <string name="formato_interpretes">Interpreted by %s</string>
+    
+    
+    
+    
+    
+
+    <!-- COMO YO lo traducire todo cuando todo este funcionando dejad mientras podais esto al final -->
+	    <string name="compartir">Share</string>
+	    <string name="comentarios_Votar">go Vote</string>
+	    <string name="comentarios_ErrorBD">BD missing \n please come back and try again</string>
+	    <string name="comentarios_NoHay">nobody write anything about\n going first</string>
+	    <string name="comentarios_NoHayComentarios">can\'t find information\n please come back and try again</string>
+	    <string name="votar_puntuacion">Do you Like it?</string>
+	    <string name="votar_miOpinion">Write a Comment</string>
+	    <string name="votar_botonVotar">Vote</string>
+    <!-- =========================================================================================== -->	    
+    
+    
 
 </resources>

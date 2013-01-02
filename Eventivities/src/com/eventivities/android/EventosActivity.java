@@ -23,6 +23,7 @@ public class EventosActivity extends SherlockListActivity {
 	
 	private List<Evento> eventos;
 	private int localId;
+	private String nombreLocal ;  // se necesita para pasarle el nombre a votar
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,9 @@ public class EventosActivity extends SherlockListActivity {
 		if(extras != null)
 		{
 			localId = extras.getInt(Param.LOCAL_ID.toString());
-			setTitle(extras.getString(Param.LOCAL_NOMBRE.toString()));
+			nombreLocal=extras.getString(Param.LOCAL_NOMBRE.toString());
+			setTitle(nombreLocal);
+			//ORIGINAL setTitle(extras.getString(Param.LOCAL_NOMBRE.toString()));
 		}
 		
 		new EventosAsyncTask().execute();
@@ -76,12 +79,19 @@ public class EventosActivity extends SherlockListActivity {
 
 			Intent i = new Intent(EventosActivity.this, DetalleEventoActivity.class);
 			Bundle b = new Bundle();
-			b.putSerializable(Param.EVENTO.toString(), evento);
+			b.putSerializable(Param.EVENTO.toString(), evento); 
+			b.putString(Param.LOCAL_NOMBRE.toString(), nombreLocal);
 			i.putExtras(b);
 
 			startActivity(i);
 		}
 	};
+	
+	private void abrirComentarios(View v){
+		// de momento solo en el detalle de obra.
+		
+	}
+	
 	
 	private class EventosAsyncTask extends AsyncTask<Void, Void, List<Evento>> {
 
