@@ -105,7 +105,7 @@ public class VotarActivity extends SherlockActivity {
 	        		break;
 
         	}        		
-
+            
         	txt=tRat+"He estado en \n["+mTeatro+":"+mObra+"]\n"+txt;
         	sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, txt);
         	startActivity(Intent.createChooser(sharingIntent,"Share using"));
