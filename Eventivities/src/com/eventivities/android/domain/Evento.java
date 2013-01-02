@@ -16,10 +16,13 @@ idTipoEventoint(11)	No
 Precio 		double 	No 	0 	
 Director 	text 	No 		
 Interpretes text 	Sí 	NULL
+Duracion 	int(11)	Sí  NULL 	
+HoraInicio 	time 	Sí 	NULL
 El campo media es la media de las puntuaciones para ese evento
 */
 
 public class Evento implements Serializable {
+	
 	/**
 	 * 
 	 */
@@ -35,6 +38,21 @@ public class Evento implements Serializable {
 	private String director="";
 	private String interpretes="";
 	private double media=0; 
+	private int duracion=0;
+	private String horaInicio=null;
+	
+	public int getDuracion() {
+		return duracion;
+	}
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
+	public String getHoraInicio() {
+		return horaInicio;
+	}
+	public void setHoraInicio(String horaInicio) {
+		this.horaInicio = horaInicio;
+	}
 	
 	public double getMedia() {
 		return media;
