@@ -19,20 +19,25 @@ import android.os.Bundle;
  *  
  * 
  *  @author vimopre
+ *  @param longActual y latActual
  *  
- * 
  */
 public class RutaActivity extends Activity {
 	
 	private LocationListener miLocationListener;
 	private double latActual;
 	private double lonActual;
-	private double latDestino = 39.48476339164133 ;
-	private double lonDestino = -0.3624132240661311;
+	private double latDestino;
+	private double lonDestino;
 	
 	
 	public void onCreate (Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		
+		//forma de pasar parámetros al hacer un new activity
+		Bundle bundle = getIntent().getExtras();
+		latActual = bundle.getDouble("latActual");
+		lonActual = bundle.getDouble("lonActual");
 		
 		
 		 LocationManager milocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);

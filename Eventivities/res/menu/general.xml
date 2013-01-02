@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item
+        android:id="@+id/menu_tmp_main"
+        android:showAsAction="always"
+        android:visible="false"
+        android:title="temp_main"/>
+    
+    <item android:id="@+id/menu_refresh"
+        android:showAsAction="always"
+        android:visible="false"
+        android:icon="@drawable/ic_menu_refresh_holo_light"/>
+    
+    <item
+        android:id="@+id/menu_login"
+        android:showAsAction="always"
+        android:title="@string/menu_login"/>
+
+</menu>

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import android.content.Context;
+
 import com.eventivities.android.dao.ProductoCache;
 import com.eventivities.android.domain.Producto;
-
-import android.content.Context;
 
 public class ProductoHandler {
 

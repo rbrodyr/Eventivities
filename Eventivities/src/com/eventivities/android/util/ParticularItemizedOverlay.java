@@ -50,9 +50,7 @@ public class ParticularItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 	 }
 
 	 
-	 public boolean onTap(GeoPoint p, MapView mapView) {
-		 
-			  	 
+	 public boolean onTap(GeoPoint p, MapView mapView) {  	 
 			return true;
 		 
 	 }

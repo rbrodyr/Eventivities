@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
     	 *  es eso de pasar parametros a las activities
     	 * 
     	 * */
-    	startActivity(new Intent(MainActivity.this, TodosLocalesActivity.class));
+    	startActivity(new Intent(MainActivity.this, LocalesActivity.class));
     	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
     }
     
