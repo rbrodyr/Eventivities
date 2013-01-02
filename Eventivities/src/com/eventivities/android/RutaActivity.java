@@ -1,4 +1,4 @@
-package com.eventivities.android.util;
+package com.eventivities.android;
 
 
 

@@ -1,4 +1,4 @@
-package com.eventivities.android.util;
+package com.eventivities.android;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.eventivities.android.R;
+import com.eventivities.android.util.ParticularItemizedOverlay;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;

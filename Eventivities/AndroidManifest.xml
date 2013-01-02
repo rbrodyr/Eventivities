@@ -82,11 +82,11 @@
             android:label="@string/title_activity_detalle_evento" >
         </activity>
         <activity
-            android:name="com.eventivities.android.util.MapsActivity"
+            android:name="com.eventivities.android.MapsActivity"
             android:label="@string/title_activity_maps" >
         </activity>
          <activity
-            android:name="com.eventivities.android.util.RutaActivity"
+            android:name="com.eventivities.android.RutaActivity"
             android:label="@string/title_activity_rutas" >
         </activity>
 		<uses-library android:name="com.google.android.maps"/>
