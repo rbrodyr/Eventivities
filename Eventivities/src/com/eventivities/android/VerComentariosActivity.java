@@ -3,50 +3,63 @@ package com.eventivities.android;
 import java.util.List;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 import com.eventivities.android.adapters.ComentariosAdapter;
+import com.eventivities.android.adapters.EventosAdapter;
 import com.eventivities.android.domain.Comentario;
 import com.eventivities.android.domain.Evento;
+import com.eventivities.android.domain.ListaComentarios;
 import com.eventivities.android.excepciones.ExcepcionAplicacion;
 import com.eventivities.android.servicioweb.Conexion;
 import com.eventivities.android.util.TnUtil;
 
-
-public class VerComentariosActivity extends SherlockActivity {
+public class VerComentariosActivity extends SherlockListActivity{
 
 	private Evento evento;
 	private String nombreLocal;
-	
-
-	//ListaComentarios comentarios=null;
+	ListView listaComentarios;
 	private List<Comentario> comentarios;	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_ver_comentarios);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		
 		getSupportActionBar().setHomeButtonEnabled(true);
 		
-        Bundle extras = getIntent().getExtras();
-        
-		if(extras != null || true){
+        Bundle extras = getIntent().getExtras();        
+		if(extras != null ){
 			evento = (Evento) extras.getSerializable(Param.EVENTO.toString());
 			nombreLocal = (String) extras.getString(Param.LOCAL_NOMBRE.toString());
+			listaComentarios=(ListView) findViewById(R.id.comentarios_listView);
+			
+			
 			TextView nomL=(TextView) findViewById(R.id.comentarios_nombreTeatro);
 			TextView nomE=(TextView) findViewById(R.id.comentarios_nombreEvento);
-			nomL.setText(nombreLocal);
-			nomE.setText(evento.getNombre());
+			
+			//ESTO NO ESCRIBE... explota
+			
+			
+			//nomL.setText(nombreLocal);
+			//nomE.setText(evento.getNombre());			
+			
 			if (evento != null) {
-				// new ComentariosAsyncTask().execute();
+				new ComentariosAsyncTask().execute();
 			}			
 		}
 		
@@ -59,17 +72,7 @@ public class VerComentariosActivity extends SherlockActivity {
 		return true;
 	}
 	
-	public void aVotar(View v){
 
-
-		Intent i = new Intent(VerComentariosActivity.this, VotarActivity.class);
-		Bundle b = new Bundle();
-		b.putSerializable(Param.EVENTO.toString(), evento); 
-		b.putString(Param.LOCAL_NOMBRE.toString(), nombreLocal);
-		i.putExtras(b);
-		startActivity(i);
-		
-	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -85,6 +88,24 @@ public class VerComentariosActivity extends SherlockActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+    private OnItemClickListener itemClickListener = new OnItemClickListener() {
+
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+			/*POR TENERLO IGUAL
+			Evento evento = eventos.get(arg2);
+
+			Intent i = new Intent(EventosActivity.this, DetalleEventoActivity.class);
+			Bundle b = new Bundle();
+			b.putSerializable(Param.EVENTO.toString(), evento); 
+			b.putString(Param.LOCAL_NOMBRE.toString(), nombreLocal);
+			i.putExtras(b);
+
+			startActivity(i);
+			*/
+		}
+	};
+	
 	private class ComentariosAsyncTask extends AsyncTask<Void, Void, List<Comentario>> {
 
 		@Override
@@ -95,36 +116,32 @@ public class VerComentariosActivity extends SherlockActivity {
 
 		@Override
 		protected List<Comentario> doInBackground(Void... params) {
-			comentarios= null;
+			comentarios = null;
 			try {
-				comentarios =  (List<Comentario>) Conexion.obtenerComentariosEvento(String.valueOf(evento.getIdEvento()));
+				String n=String.valueOf(evento.getIdEvento());
+				comentarios = Conexion.obtenerComentariosEvento(n).getComentarios();
 			} catch (ExcepcionAplicacion e) {
-				TnUtil.escribeLog("ERROR al obtener lista de comentarios");
+				e.printStackTrace();
 			}
-			return comentarios;
+			return comentarios ;
 		}
 
-		
+		@Override
 		protected void onPostExecute(List<Comentario> result) {
-			if (result == null || result.size()==0){
-				Comentario mC=new Comentario();
-				if (result.size()==0)
-				   mC.setComentario(findViewById(R.string.comentarios_NoHayComentarios).toString());
-				else
-				   mC.setComentario(findViewById(R.string.comentarios_ErrorBD).toString());
-				comentarios.add(mC);
-			}else{
+			if (result != null) {
 				ComentariosAdapter adapter = new ComentariosAdapter(getApplicationContext(), R.layout.item_comentario, comentarios);
-				//PORQUE ME DA ERROR la linea del setListAdapter, sera una chorrada pero llevo ya 3 horas dandole vueltas
-				//TNI+XXXX, l
-				//setListAdapter(adapter);
+				setListAdapter(adapter);
+			} else {
+				setContentView(R.layout.error_conexion);
 			}
 			
+			
+		     
 			getSherlock().setProgressBarIndeterminateVisibility(false);
 			
 			super.onPostExecute(result);
 		}
-
+		
 	}
 
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -49,8 +50,15 @@ public class DetalleEventoActivity extends SherlockActivity {
 					String format = getString(R.string.formato_precio);
 					textViewPrecio.setText(String.format(format, evento.getPrecio()));
 				}
+
+				Button botonVerComentarios=(Button) findViewById(R.id.detalleEvento_BotonComentario);
+				//TextView textViewPuntEvento = (TextView)findViewById(R.id.textViewPuntEvento);
+				if (botonVerComentarios != null) {
+					//textViewPuntEvento.setText(ViewUtil.obtenerEstrellas(evento.getMedia()));
+					botonVerComentarios.setText( getString(R.string.detalle_eventoBotonComentarios));
+				}
 				
-				Button botonVerPuntos=(Button) findViewById(R.id.detalleEvento_botonComentarios);
+				Button botonVerPuntos=(Button) findViewById(R.id.detalleEvento_botonVotar);
 				//TextView textViewPuntEvento = (TextView)findViewById(R.id.textViewPuntEvento);
 				if (botonVerPuntos != null) {
 					//textViewPuntEvento.setText(ViewUtil.obtenerEstrellas(evento.getMedia()));
@@ -88,29 +96,36 @@ public class DetalleEventoActivity extends SherlockActivity {
 	}
 	
 	public void verComentarios(View v){
-    	TnUtil.vibrar(this);
-    	/* 
-    	 * **PASAR_a_COMENTARIOS**   o ¿ YA ESTAN EN evento. ? ¿ como se pasa ?
-    	 * Supongo que aqui se pondra lo de pasar los parametros a la actividad
-    	 *     - la imagen del evento ( asi no hay que buscarla ) <--ESTO NO 
-         *	   - el nombre del evento
-         *     - el id del evento
-    	 */
-    	
 
-
-		//startActivity(new Intent(DetalleEventoActivity.this, VerComentariosActivity.class));
-		
+		TnUtil.vibrar(this);
 		Intent i = new Intent(DetalleEventoActivity.this, VerComentariosActivity.class);
 		Bundle b = new Bundle();
 		b.putSerializable(Param.EVENTO.toString(), evento);
 		b.putString(Param.LOCAL_NOMBRE.toString(), nombreLocal);
-		i.putExtras(b);
-		startActivity(i);    	
-    	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
+		try{
+		  i.putExtras(b);
+		  startActivity(i);
+		  overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
+		}catch(Exception e){
+			TnUtil.escribeLog("¿ Una Excepcionnn ?!! \n"+e.getCause());
+			Toast.makeText(this , "\n No se ha podido presentar los Comentarios \n\n",Toast.LENGTH_SHORT).show();
+		}
+    	//
     		
 	}
 
+	public void aVotar(View v){
+
+
+		Intent i = new Intent(DetalleEventoActivity.this, VotarActivity.class);
+		Bundle b = new Bundle();
+		b.putSerializable(Param.EVENTO.toString(), evento); 
+		b.putString(Param.LOCAL_NOMBRE.toString(), nombreLocal);
+		i.putExtras(b);
+		startActivity(i);
+		
+	}
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {

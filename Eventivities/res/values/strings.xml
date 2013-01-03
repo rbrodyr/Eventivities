@@ -49,7 +49,8 @@
 	    <string name="votar_compartir_cuatroEstrella">and it\'s very good</string>
 	    <string name="votar_compartir_cincoEstrella">and it\'s excellent</string>
 	    <string name="votar_compartir_sinComentario"> - no comment -</string>
-    <!-- =========================================================================================== -->	    
+    <!-- =========================================================================================== -->
+	    <string name="detalle_eventoBotonComentarios">ver comentarios</string>	    
     
     
 

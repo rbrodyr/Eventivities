@@ -40,7 +40,7 @@ public class ComentariosAdapter extends ArrayAdapter<Comentario> {
 
 		if (comentario != null) {			
 			TextView tComentario = (TextView)view.findViewById(R.id.comentario_item_comentario);
-			String tDato=String.valueOf(comentario.getIdUsuario());
+			String tDato=String.valueOf(comentario.getComentario());
 			if (tDato != null)
 				tComentario.setText(tDato);
 			else
