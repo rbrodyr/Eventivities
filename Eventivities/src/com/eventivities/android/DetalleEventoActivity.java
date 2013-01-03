@@ -30,7 +30,7 @@ public class DetalleEventoActivity extends SherlockActivity {
 		if(extras != null)
 		{
 			evento = (Evento) extras.getSerializable(Param.EVENTO.toString());
-			nombreLocal=(String) extras.getSerializable(Param.LOCAL_NOMBRE.toString());
+			nombreLocal=extras.getString(Param.LOCAL_NOMBRE.toString());
 	
 			if (evento != null) {
 				TextView textViewNombre = (TextView) findViewById(R.id.textViewNombreEvento);
