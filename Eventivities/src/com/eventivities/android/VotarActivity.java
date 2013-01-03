@@ -1,5 +1,6 @@
 package com.eventivities.android;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +13,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.eventivities.android.domain.Evento;
-import com.eventivities.android.domain.Local;
 import com.eventivities.android.util.TnUtil;
 
 
@@ -70,14 +70,14 @@ public class VotarActivity extends SherlockActivity {
 	
 	public void accionCompartir(View v){
     	Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-    	Boolean compartirTexto =true;
+    	
 
         	sharingIntent.setType("text/plain");
 
         	EditText mTxt=(EditText) findViewById(R.id.votar_comentario);
         	String txt=mTxt.getText().toString();
         	if ( txt.trim().equals(""))
-        		txt="- sin comentario -";
+        		txt=getString(R.string.votar_compartir_sinComentario);
         	
         	RatingBar mRat=(RatingBar) findViewById(R.id.votar_ratingBar);
         	
@@ -86,27 +86,39 @@ public class VotarActivity extends SherlockActivity {
         	
         	//valor por defecto=3 estrellas
         	String tRat="★★★☆☆";
+        	String tRatTxt=getString(R.string.votar_compartir_tresEstrella);
+        	
         	int i=(int) mRat.getRating();
         	switch (i){
         		case 0: 
         			tRat="☆☆☆☆☆";
+        			tRatTxt=getString(R.string.votar_compartir_ceroEstrella);
         			break;
     	        case 1:
     	        	tRat="★☆☆☆☆";
+    	        	tRatTxt=getString(R.string.votar_compartir_unaEstrella);
     	        	break;
         		case 2:
+        			tRatTxt=getString(R.string.votar_compartir_dosEstrella);
         			tRat="★★☆☆☆";
         			break;
         		case 4:
+        			tRatTxt=getString(R.string.votar_compartir_cuatroEstrella);
 	        		tRat="★★★★☆";
 	        		break;
         		case 5:
+        			tRatTxt=getString(R.string.votar_compartir_cincoEstrella);
 	        		tRat="★★★★★";
 	        		break;
 
         	}        		
-            
-        	txt=tRat+"He estado en \n["+mTeatro+":"+mObra+"]\n"+txt;
+        	//tRat+
+        	
+        	
+        	txt=getString(R.string.votar_compartir_heEstado)+" \n" +
+        			"["+mTeatro+"] "+getString(R.string.votar_compartir_viendo)+ " \"" +
+        			   mObra+"\"\n  "+
+        			   tRatTxt+" ("+tRat+") : " +txt;
         	sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, txt);
         	startActivity(Intent.createChooser(sharingIntent,"Share using"));
         	sharingIntent = new Intent(Intent.ACTION_SEND);

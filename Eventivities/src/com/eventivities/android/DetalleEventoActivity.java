@@ -3,6 +3,7 @@ package com.eventivities.android;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -49,9 +50,11 @@ public class DetalleEventoActivity extends SherlockActivity {
 					textViewPrecio.setText(String.format(format, evento.getPrecio()));
 				}
 				
-				TextView textViewPuntEvento = (TextView)findViewById(R.id.textViewPuntEvento);
-				if (textViewPuntEvento != null) {
-					textViewPuntEvento.setText(ViewUtil.obtenerEstrellas(evento.getMedia()));
+				Button botonVerPuntos=(Button) findViewById(R.id.detalleEvento_botonComentarios);
+				//TextView textViewPuntEvento = (TextView)findViewById(R.id.textViewPuntEvento);
+				if (botonVerPuntos != null) {
+					//textViewPuntEvento.setText(ViewUtil.obtenerEstrellas(evento.getMedia()));
+					botonVerPuntos.setText(ViewUtil.obtenerEstrellas(evento.getMedia()));
 				}
 				
 				TextView textViewDirector = (TextView)findViewById(R.id.textViewInterpretes);

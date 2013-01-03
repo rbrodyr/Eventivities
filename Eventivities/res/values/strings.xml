@@ -46,6 +46,17 @@
 	    <string name="votar_puntuacion">Do you Like it?</string>
 	    <string name="votar_miOpinion">Write a Comment</string>
 	    <string name="votar_botonVotar">Vote</string>
+	    <string name="votar_compartir_heEstado">I was in </string>
+	    <string name="votar_compartir_viendo">looking at</string>
+	    <string name="votar_compartir_ceroEstrella">and do not like</string>
+	    <string name="votar_compartir_unaEstrella">and something can be seen</string>
+	    <string name="votar_compartir_dosEstrella">and it\'s almost fine</string>
+	    <string name="votar_compartir_tresEstrella">and it\'s good</string>
+	    <string name="votar_compartir_cuatroEstrella">and it\'s very good</string>
+	    <string name="votar_compartir_cincoEstrella">and it\'s excellent</string>
+	    <string name="votar_compartir_sinComentario"> - no comment -</string>
+	    
+	    
     <!-- =========================================================================================== -->	    
     
     

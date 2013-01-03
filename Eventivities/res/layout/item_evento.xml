@@ -25,9 +25,9 @@
                 android:id="@+id/textViewPuntuacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="☆☆☆☆☆"
                 android:onClick="abrirComentarios"
-                android:textColor="#FFD700" />
+                android:text="☆☆☆☆☆"
+                android:textColor="@color/estrella_puntuaciones" />
 
         </LinearLayout>
 
