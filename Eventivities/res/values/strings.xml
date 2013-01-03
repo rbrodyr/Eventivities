@@ -31,13 +31,7 @@
     <string name="formato_precio">%.2f €</string>
     <string name="formato_director">Directed by %s</string>
     <string name="formato_interpretes">Interpreted by %s</string>
-    
-    
-    
-    
-    
-
-    <!-- COMO YO lo traducire todo cuando todo este funcionando dejad mientras podais esto al final -->
+    <!-- COMO YO lo traducire todo cuando todo este funcionando dejadlos agrupados si podeis-->
 	    <string name="compartir">Share</string>
 	    <string name="comentarios_Votar">go Vote</string>
 	    <string name="comentarios_ErrorBD">BD missing \n please come back and try again</string>
@@ -55,8 +49,6 @@
 	    <string name="votar_compartir_cuatroEstrella">and it\'s very good</string>
 	    <string name="votar_compartir_cincoEstrella">and it\'s excellent</string>
 	    <string name="votar_compartir_sinComentario"> - no comment -</string>
-	    
-	    
     <!-- =========================================================================================== -->	    
     
     
