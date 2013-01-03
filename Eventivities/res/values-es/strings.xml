@@ -41,7 +41,9 @@
     <string name="mensaje_dialogo_gps_btn_cancelar">Cancelar</string>
     <string name="mensaje_dialogo_gps_btn_aceptar">Aceptar</string>
      
-      <!-- Strings para la clase Maps diálogo -->
-	<string name="dialogoErrorConexion_error">Error</string>           
+    <!-- Strings para la clase Maps diálogo -->
+	<string name="dialogoErrorConexion_error">Error</string>
+	<string name="dialogoErrorConexion_mensaje">No se ha podido realizar la conexión</string>  
+	         
 
 </resources>

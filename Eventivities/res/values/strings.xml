@@ -41,5 +41,9 @@
      <string name="mensaje_dialogo_gps">Go to the GPS options?</string>
      <string name="mensaje_dialogo_gps_btn_cancelar">Cancel</string>
      <string name="mensaje_dialogo_gps_btn_aceptar">Acept</string>
+     
+    <!-- Strings para la clase Maps diálogo -->
+	<string name="dialogoErrorConexion_error">Error</string>
+	<string name="dialogoErrorConexion_mensaje">Could not connect</string>   
 
 </resources>
