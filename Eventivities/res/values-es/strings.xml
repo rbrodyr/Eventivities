@@ -35,10 +35,13 @@
     <string name="title_activity_rutas">Rutas</string>
     
     <!-- Strings para la clase GPS diálogo -->
-	 <string name="gps_signal_not_found">Señal Gps no encontrada</string>	
-     <string name="Titulo_dialogo_gps">Señal Gps no encontrada</string>
-     <string name="mensaje_dialogo_gps">¿Ir a las opciones del Gps?</string>
-     <string name="mensaje_dialogo_gps_btn_cancelar">Cancelar</string>
-     <string name="mensaje_dialogo_gps_btn_aceptar">Aceptar</string>
+	<string name="gps_signal_not_found">Señal Gps no encontrada</string>	
+    <string name="Titulo_dialogo_gps">Señal Gps no encontrada</string>
+    <string name="mensaje_dialogo_gps">¿Ir a las opciones del Gps?</string>
+    <string name="mensaje_dialogo_gps_btn_cancelar">Cancelar</string>
+    <string name="mensaje_dialogo_gps_btn_aceptar">Aceptar</string>
+     
+      <!-- Strings para la clase Maps diálogo -->
+	<string name="dialogoErrorConexion_error">Error</string>           
 
 </resources>

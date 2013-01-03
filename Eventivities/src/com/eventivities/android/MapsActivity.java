@@ -192,7 +192,7 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
 				}
 				else{
 					AlertDialog.Builder dialogoErrorConexion = new AlertDialog.Builder(getBaseContext());
-					dialogoErrorConexion.setTitle("Error");
+					dialogoErrorConexion.setTitle(R.string.dialogoErrorConexion_error);
 					dialogoErrorConexion.setMessage("No se ha podido realizar la conexión");
 					dialogoErrorConexion.setCancelable(false);
 				    
