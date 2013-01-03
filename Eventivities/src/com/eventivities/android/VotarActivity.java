@@ -14,6 +14,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.eventivities.android.domain.Evento;
 import com.eventivities.android.util.TnUtil;
+import com.eventivities.android.util.ViewUtil;
 
 
 public class VotarActivity extends SherlockActivity {
@@ -70,55 +71,55 @@ public class VotarActivity extends SherlockActivity {
 	
 	public void accionCompartir(View v){
     	Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-    	
 
+    	    //definimos el tipo de dato que vamos a compartir
         	sharingIntent.setType("text/plain");
-
+        	
+            //obtenemos el nombre del Local y el Nombre del Evento
+        	String mTeatro=nombreLocal;       //"Espacio Inestable";
+        	String mObra=evento.getNombre();  //"Yo nunca sere una estrella del Rock";
+        	
+        	//recopilamos la información para el comentario
         	EditText mTxt=(EditText) findViewById(R.id.votar_comentario);
         	String txt=mTxt.getText().toString();
         	if ( txt.trim().equals(""))
         		txt=getString(R.string.votar_compartir_sinComentario);
         	
+            //obtenemos el voto y seleccionamos una frase
         	RatingBar mRat=(RatingBar) findViewById(R.id.votar_ratingBar);
         	
-        	String mTeatro=nombreLocal;       //"Espacio Inestable";
-        	String mObra=evento.getNombre();  //"Yo nunca sere una estrella del Rock";
-        	
-        	//valor por defecto=3 estrellas
-        	String tRat="★★★☆☆";
+        	String tRat="★★★☆☆";   //valor por defecto=3 estrellas
         	String tRatTxt=getString(R.string.votar_compartir_tresEstrella);
-        	
+
         	int i=(int) mRat.getRating();
+        	tRat=ViewUtil.obtenerEstrellas(i);
         	switch (i){
         		case 0: 
-        			tRat="☆☆☆☆☆";
         			tRatTxt=getString(R.string.votar_compartir_ceroEstrella);
         			break;
     	        case 1:
-    	        	tRat="★☆☆☆☆";
     	        	tRatTxt=getString(R.string.votar_compartir_unaEstrella);
     	        	break;
         		case 2:
         			tRatTxt=getString(R.string.votar_compartir_dosEstrella);
-        			tRat="★★☆☆☆";
         			break;
         		case 4:
         			tRatTxt=getString(R.string.votar_compartir_cuatroEstrella);
-	        		tRat="★★★★☆";
 	        		break;
         		case 5:
         			tRatTxt=getString(R.string.votar_compartir_cincoEstrella);
-	        		tRat="★★★★★";
 	        		break;
-
+                //no hay default ya que esta determinado como 3 antes del switch 
         	}        		
-        	//tRat+
+
         	
-        	
+        	//Componer el mensaje a compartir
         	txt=getString(R.string.votar_compartir_heEstado)+" \n" +
         			"["+mTeatro+"] "+getString(R.string.votar_compartir_viendo)+ " \"" +
         			   mObra+"\"\n  "+
         			   tRatTxt+" ("+tRat+") : " +txt;
+        	
+        	//continuamos la accion
         	sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, txt);
         	startActivity(Intent.createChooser(sharingIntent,"Share using"));
         	sharingIntent = new Intent(Intent.ACTION_SEND);
