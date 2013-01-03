@@ -1,5 +1,6 @@
 package com.eventivities.android;
 
+import java.util.Iterator;
 import java.util.List;
 
 import java.util.Locale;
@@ -14,10 +15,17 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
+
+import com.actionbarsherlock.app.SherlockActivity;
 import com.eventivities.android.R;
 import com.eventivities.android.util.ParticularItemizedOverlay;
+import com.eventivities.android.domain.ListaLocales;
+import com.eventivities.android.domain.Local;
+import com.eventivities.android.excepciones.ExcepcionAplicacion;
+import com.eventivities.android.servicioweb.Conexion;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
@@ -34,13 +42,15 @@ import com.google.android.maps.OverlayItem;
  * 
  */
 
-public class MapsActivity extends MapActivity {
+public class MapsActivity extends MapActivity/*SherlockActivity*/ {
 	
 	private MapView mapView;
     private MapController mc;
     private LocationListener miLocationListener;
     private ParticularItemizedOverlay itemizedoverlay;
+    private ParticularItemizedOverlay itemizedoverlayLocales;
     private Geocoder geoCoder;
+    private List<Local> locales;
     
     public void onCreate(Bundle savedInstanceState){
     	
@@ -89,6 +99,10 @@ public class MapsActivity extends MapActivity {
          
          Drawable drawable = this.getResources().getDrawable(R.drawable.marcador_google_maps);
          itemizedoverlay = new ParticularItemizedOverlay(drawable,this);
+         
+         Drawable drawableMuseos = this.getResources().getDrawable(R.drawable.icono_museo);
+         itemizedoverlayLocales = new ParticularItemizedOverlay(drawableMuseos,this);
+         
          geoCoder = new Geocoder(this, Locale.getDefault());
     }
 
@@ -132,8 +146,68 @@ public class MapsActivity extends MapActivity {
 			mapOverlays.add(itemizedoverlay);
 
 			mapView.postInvalidate();//actualizamos la capa y el mapa
-
+			
+			new LocalesAsyncTask().execute();
+			
         }
+        
+        private class LocalesAsyncTask extends AsyncTask<Void, Void, List<Local>> {
+
+        	protected void onPreExecute() {
+    			/*getSherlock().setProgressBarIndeterminateVisibility(true);*/
+    			super.onPreExecute();
+    		}
+
+        	
+			protected List<Local> doInBackground(Void... arg0) {
+				locales = null;
+				try {
+					locales = Conexion.obtenerLocalesCiudad("Valencia").getLocales();
+				} catch (ExcepcionAplicacion e) {
+					e.printStackTrace();
+				}
+				return locales;
+			}
+			
+			protected void onPostExecute(List<Local> result) {
+				if(result != null){
+					Iterator<Local> i = result.iterator();
+					
+					List<Overlay> mapOverlays = mapView.getOverlays();//añadimos la nueva capa
+					
+					
+					while (i.hasNext()){
+						Local loc = i.next();
+						
+						double lat = Double.valueOf(loc.getLatitud()) * 1E6;
+						double lon = Double.valueOf(loc.getLongitud())* 1E6;
+						GeoPoint point = new GeoPoint((int) (lat),(int) (lon));
+						
+						OverlayItem overlayitem = new OverlayItem(point, "", null);//creamos el punto
+						itemizedoverlayLocales.addOverlayEventos(overlayitem);//añadimos puntos a la capa
+					}
+					mapOverlays.add(itemizedoverlayLocales);//añadimos la capa
+    				mapView.postInvalidate();//redibujamos la capa
+					
+				}
+				else{
+					AlertDialog.Builder dialogoErrorConexion = new AlertDialog.Builder(getBaseContext());
+					dialogoErrorConexion.setTitle("Error");
+					dialogoErrorConexion.setMessage("No se ha podido realizar la conexión");
+					dialogoErrorConexion.setCancelable(false);
+				    
+					dialogoErrorConexion.setNegativeButton(R.string.error_conexion, new DialogInterface.OnClickListener() {  
+		 	            public void onClick(DialogInterface dialogoGps, int id) {  
+		 	                dialogoGps.dismiss();
+		 	            }  
+		 	        });     
+				}
+				
+				/*getSherlock().setProgressBarIndeterminateVisibility(false);*/
+				super.onPostExecute(result);	
+			}
+        	
+        }//de Asyntasck
         public void onProviderDisabled(String provider){
         
         }

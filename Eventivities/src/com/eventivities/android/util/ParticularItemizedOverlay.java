@@ -35,6 +35,12 @@ public class ParticularItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 		 mOverlays.add(overlay);
 		 populate();
 	 }
+	 
+	 public void addOverlayEventos(OverlayItem overlay){
+		 mOverlays.add(overlay);
+		 //Evento.add(est);
+		 populate();
+	 }
  
 	 protected OverlayItem createItem(int i) {
 		 return mOverlays.get(i);
