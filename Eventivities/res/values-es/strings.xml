@@ -23,7 +23,7 @@
     <string name="title_activity_eventos">Eventos</string>
     <string name="title_activity_votar">Votar</string>
     <string name="title_activity_donde_esta">Donde Esta</string>
-    <string name="title_activity_vewr_fotos_de">VewrFotosDe</string>
+    <string name="title_activity_ver_fotos_de">VewrFotosDe</string>
     <string name="title_activity_compartir_con">Compartir Con</string>
     <string name="title_activity_detalle_evento">Detalle Evento</string>
     <string name="error_conexion">No se pudo establecer la conexión con el servidor. Pulse el botón de actualizar para volver a intentarlo.</string>
