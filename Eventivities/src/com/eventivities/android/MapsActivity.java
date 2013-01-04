@@ -100,7 +100,7 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
          Drawable drawable = this.getResources().getDrawable(R.drawable.marcador_google_maps);
          itemizedoverlay = new ParticularItemizedOverlay(drawable,this);
          
-         Drawable drawableMuseos = this.getResources().getDrawable(R.drawable.icono_museo);
+         Drawable drawableMuseos = this.getResources().getDrawable(R.drawable.icono_museo); 
          itemizedoverlayLocales = new ParticularItemizedOverlay(drawableMuseos,this);
          
          geoCoder = new Geocoder(this, Locale.getDefault());
