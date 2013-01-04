@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockMapActivity;
 import com.eventivities.android.R;
 import com.eventivities.android.util.ParticularItemizedOverlay;
 import com.eventivities.android.domain.ListaLocales;
@@ -45,7 +46,7 @@ import com.google.android.maps.OverlayItem;
  * 
  */
 
-public class MapsActivity extends MapActivity/*SherlockActivity*/ {
+public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
 	
 	private MapView mapView;
     private MapController mc;
@@ -165,7 +166,7 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
         private class LocalesAsyncTask extends AsyncTask<Void, Void, List<Local>> {
 
         	protected void onPreExecute() {
-    			/*getSherlock().setProgressBarIndeterminateVisibility(true);*/
+    			getSherlock().setProgressBarIndeterminateVisibility(true);
     			super.onPreExecute();
     		}
 
@@ -215,7 +216,7 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
 		 	        });     
 				}
 				
-				/*getSherlock().setProgressBarIndeterminateVisibility(false);*/
+				getSherlock().setProgressBarIndeterminateVisibility(false);
 				super.onPostExecute(result);	
 			}
         	
