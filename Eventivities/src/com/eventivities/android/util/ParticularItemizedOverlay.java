@@ -63,7 +63,7 @@ public class ParticularItemizedOverlay extends ItemizedOverlay<OverlayItem> {
          AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
 
          dialog.setTitle(item.getNombreLocal());
-         dialog.setIcon(R.drawable.info);
+         dialog.setIcon(R.drawable.info); 
          dialog.setMessage(item.getDireccion()+" "+item.getTelefono());
          dialog.setPositiveButton(R.string.dialogoInfo_local_YES,  new OnClickListener(){
         	 
