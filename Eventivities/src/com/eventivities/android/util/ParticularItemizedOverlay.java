@@ -2,9 +2,15 @@ package com.eventivities.android.util;
 
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.graphics.drawable.Drawable;
+import android.widget.Toast;
 
+import com.eventivities.android.R;
+import com.eventivities.android.domain.Local;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapView;
@@ -23,6 +29,7 @@ import com.google.android.maps.OverlayItem;
 public class ParticularItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 	
 	 private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
+	 private ArrayList<Local> locales = new ArrayList<Local>();
 	 private Context mContext;
 	 
 	 public ParticularItemizedOverlay(Drawable defaultMarker, Context context) {
@@ -36,9 +43,9 @@ public class ParticularItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 		 populate();
 	 }
 	 
-	 public void addOverlayEventos(OverlayItem overlay){
+	 public void addOverlayEventos(OverlayItem overlay, Local loc){
 		 mOverlays.add(overlay);
-		 //Evento.add(est);
+		 locales.add(loc);
 		 populate();
 	 }
  
@@ -52,12 +59,31 @@ public class ParticularItemizedOverlay extends ItemizedOverlay<OverlayItem> {
  
 	 protected boolean onTap(int index) {
 		
-		 return true;
+		 Local item = locales.get(index);
+
+         AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
+
+         dialog.setTitle(item.getNombreLocal());
+         dialog.setMessage(item.getDireccion()+" "+item.getTelefono());
+         dialog.setPositiveButton(R.string.dialogoInfo_local_YES,  new OnClickListener(){
+        	 
+        	 public void onClick(DialogInterface dialog, int which) {
+                 dialog.dismiss();
+        	 }
+        	 
+         });
+         dialog.show();         
+         return true;
 	 }
 
 	 
-	 public boolean onTap(GeoPoint p, MapView mapView) {  	 
+	 public boolean onTap(GeoPoint p, MapView mapView) {  
+		 
+		 if(!super.onTap(p, mapView))
 			return true;
+		 return true;
+			  
+			
 		 
 	 }
 }

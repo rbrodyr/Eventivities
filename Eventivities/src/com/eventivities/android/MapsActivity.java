@@ -177,6 +177,7 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
 					
 					
 					while (i.hasNext()){
+						
 						Local loc = i.next();
 						
 						double lat = Double.valueOf(loc.getLatitud()) * 1E6;
@@ -184,7 +185,7 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
 						GeoPoint point = new GeoPoint((int) (lat),(int) (lon));
 						
 						OverlayItem overlayitem = new OverlayItem(point, "", null);//creamos el punto
-						itemizedoverlayLocales.addOverlayEventos(overlayitem);//añadimos puntos a la capa
+						itemizedoverlayLocales.addOverlayEventos(overlayitem, loc);//añadimos puntos a la capa
 					}
 					mapOverlays.add(itemizedoverlayLocales);//añadimos la capa
     				mapView.postInvalidate();//redibujamos la capa
