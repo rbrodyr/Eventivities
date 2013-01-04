@@ -55,6 +55,7 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
     private Geocoder geoCoder;
     private GeoPoint pointCentrar;
     private List<Local> locales;
+    private LocationManager milocManager;
     
     public void onCreate(Bundle savedInstanceState){
     	
@@ -64,7 +65,7 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
         
         //control del proveedor GPS
     	
-    	 LocationManager milocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+    	 milocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
     	 
     	 if (milocManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
  			miLocationListener = new MiLocationListener();
@@ -233,7 +234,7 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
 	 * 
 	 *  @author vimopre
 	 *  @param GeoPoint pointDir
-	 * 
+	 *  @return void
 	 */
 	
 	private void GeocoderLocal (GeoPoint pointDir){
@@ -264,4 +265,18 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
 		Toast.makeText(getBaseContext(),"No hay dirección cargada",Toast.LENGTH_LONG).show();
 	}
 
+
+	@Override
+	protected void onPause() {
+		if (miLocationListener == null){
+			super.onPause();
+		}
+		else{
+				super.onPause();
+				milocManager.removeUpdates(miLocationListener);
+		}
+	}
+	
+	
+	
 }
