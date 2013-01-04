@@ -31,5 +31,27 @@
     <string name="formato_precio">%.2f €</string>
     <string name="formato_director">Directed by %s</string>
     <string name="formato_interpretes">Interpreted by %s</string>
+    <!-- COMO YO lo traducire todo cuando todo este funcionando dejadlos agrupados si podeis-->
+	    <string name="compartir">Share</string>
+	    <string name="comentarios_Votar">go Vote</string>
+	    <string name="comentarios_ErrorBD">BD missing \n please come back and try again</string>
+	    <string name="comentarios_NoHay">nobody write anything about\n going first</string>
+	    <string name="comentarios_NoHayComentarios">can\'t find information\n please come back and try again</string>
+	    <string name="votar_puntuacion">Do you Like it?</string>
+	    <string name="votar_miOpinion">Write a Comment</string>
+	    <string name="votar_botonVotar">Vote</string>
+	    <string name="votar_compartir_heEstado">I was in </string>
+	    <string name="votar_compartir_viendo">looking at</string>
+	    <string name="votar_compartir_ceroEstrella">and do not like</string>
+	    <string name="votar_compartir_unaEstrella">and something can be seen</string>
+	    <string name="votar_compartir_dosEstrella">and it\'s almost fine</string>
+	    <string name="votar_compartir_tresEstrella">and it\'s good</string>
+	    <string name="votar_compartir_cuatroEstrella">and it\'s very good</string>
+	    <string name="votar_compartir_cincoEstrella">and it\'s excellent</string>
+	    <string name="votar_compartir_sinComentario"> - no comment -</string>
+    <!-- =========================================================================================== -->
+	    <string name="detalle_eventoBotonComentarios">ver comentarios</string>	    
+    
+    
 
 </resources>
