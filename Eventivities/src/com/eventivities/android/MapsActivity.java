@@ -1,5 +1,6 @@
 package com.eventivities.android;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
@@ -17,6 +19,7 @@ import android.location.LocationManager;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.Toast;
 
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -50,12 +53,14 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
     private ParticularItemizedOverlay itemizedoverlay;
     private ParticularItemizedOverlay itemizedoverlayLocales;
     private Geocoder geoCoder;
+    private GeoPoint pointCentrar;
     private List<Local> locales;
     
     public void onCreate(Bundle savedInstanceState){
     	
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.mapa); 
+        pointCentrar = null;
         
         //control del proveedor GPS
     	
@@ -103,7 +108,7 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
          Drawable drawableMuseos = this.getResources().getDrawable(R.drawable.icono_museo); 
          itemizedoverlayLocales = new ParticularItemizedOverlay(drawableMuseos,this);
          
-         geoCoder = new Geocoder(this, Locale.getDefault());
+         
     }
 
 
@@ -135,9 +140,14 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
 
 			//creamos un geoPunto necesario para dibujar en el mapa
 			GeoPoint point = new GeoPoint((int) (lat),(int) (lon));
+			GeoPoint pointDir = new GeoPoint((int) (lat),(int) (lon));
 			mc.animateTo(point);
 			mc.setZoom(17);
 			String address="";
+			
+			GeocoderLocal (pointDir);
+			
+			
 			
 			List<Overlay> mapOverlays = mapView.getOverlays();//añadimos la nueva capa
 			OverlayItem overlayitem = new OverlayItem(point, "", address);
@@ -217,5 +227,41 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
         }
         public void onStatusChanged(String provider, int status, Bundle extras){}
     }
+	
+	/**
+	 * Método que se encarga de localizar la dirección de la posición del usuario                                                      
+	 * 
+	 *  @author vimopre
+	 *  @param GeoPoint pointDir
+	 * 
+	 */
+	
+	private void GeocoderLocal (GeoPoint pointDir){
+		if (pointDir != null){
+		
+		Geocoder geoCoder = new Geocoder(
+                getBaseContext(), Locale.getDefault());
+            try {
+                List<Address> addresses = geoCoder.getFromLocation(
+                	pointDir.getLatitudeE6()  / 1E6, 
+                	pointDir.getLongitudeE6() / 1E6, 1);
+
+                String add = "";
+                if (addresses.size() > 0) 
+                {
+                    for (int i=0; i<addresses.get(0).getMaxAddressLineIndex(); 
+                         i++)
+                       add += addresses.get(0).getAddressLine(i) + "\n";
+                }
+
+                Toast.makeText(getBaseContext(), add, Toast.LENGTH_SHORT).show();
+            }
+            catch (IOException e) {                
+                e.printStackTrace();
+            }
+	}
+	else
+		Toast.makeText(getBaseContext(),"No hay dirección cargada",Toast.LENGTH_LONG).show();
+	}
 
 }
