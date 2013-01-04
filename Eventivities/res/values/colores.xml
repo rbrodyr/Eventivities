@@ -24,7 +24,10 @@
    <color name="azul_medio">#393970</color>
    <color name="azul_claro">#595990</color>
    <color name="azul_oscuro_trasparente">#CC191970</color>
-   
+
+   <color name="estrella_puntuaciones_PRUEBA">#F4D10B</color>
+   <color name="estrella_puntuaciones_ORIGINAL">#FFD700</color>
+   <color name="estrella_puntuaciones">#595990</color>
 
    
    <!-- 

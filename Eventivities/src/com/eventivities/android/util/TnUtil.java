@@ -7,7 +7,15 @@ import android.util.Log;
 public class TnUtil {
 
 	
-	public static int queNumero(String s){
+	/**
+    * Devuelve un entero desde un string
+	*
+	* @author Toni
+	* @
+	* @param  String a convertir a entero 
+	* @return un entero o cero si no se ha podido convertir
+	* @see    utilidades
+	*/	public static int queNumero(String s){
 		try{
 			return Integer.parseInt(s);
 		}catch( NumberFormatException e){
@@ -15,6 +23,15 @@ public class TnUtil {
 		}
 	}
 	
+	/**
+	    * Produce una vibracion corta
+		*
+		* @author Toni
+		* @
+		* @param  el contexto donde se va a utilizar 
+		* @return nada
+		* @see    utilidades
+	*/
 	public static void  vibrar(Context c){
 		
 		try{
@@ -25,6 +42,17 @@ public class TnUtil {
 		}
 	}
 	
+	/**
+	    * Produce un sonido corto
+		*
+		*<p> ahora solo vibra
+		*
+		* @author Toni
+		* @
+		* @param  el contexto donde se va a utilizar 
+		* @return nada
+		* @see    utilidades
+	*/
 	public static void  suena(Context c){
 		vibrar(c);
 		/*
@@ -39,6 +67,17 @@ public class TnUtil {
 		}
 		*/
 	}
+	
+	/**
+	    * Devuelve un boolean desde un string 
+		*
+		* @author Toni
+		* @
+		* @param  String a convertir a boolean 
+		* @return un boolean o false si no se ha podido convertir
+		* @see    utilidades
+	*/
+
 	public static boolean queBoolean(String s){
 		try{
 			return Boolean.parseBoolean(s);
@@ -46,11 +85,30 @@ public class TnUtil {
 			return false;
 		}
 	}
+	/**
+	    * Escribe en el Log.d 
+		*
+		* @author Toni
+		* @
+		* @param  Que: Etiqueta idef¡ntificativa, txt:texto a escribir 
+		* @return nada
+		* @see    utilidades
+     */	
 	
    public static void escribeLog(String Que,String txt){
 	   
 	   Log.d(Que,txt);
    }
+
+	/**
+    * Escribe en el Log.d, con etiqueta=Eventivities 
+	*
+	* @author Toni
+	* @
+	* @param  txt:texto a escribir 
+	* @return nada
+	* @see    utilidades
+   */	
    
    public static void escribeLog(String txt){
 	   
