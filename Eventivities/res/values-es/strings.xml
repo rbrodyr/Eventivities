@@ -44,6 +44,9 @@
     <!-- Strings para la clase Maps diálogo -->
 	<string name="dialogoErrorConexion_error">Error</string>
 	<string name="dialogoErrorConexion_mensaje">No se ha podido realizar la conexión</string>  
+	
+	<!-- Strings para la clase ParticularizedOverlay diálogo -->
+	<string name="dialogoInfo_local_YES">OK</string>
 	         
 
 </resources>
