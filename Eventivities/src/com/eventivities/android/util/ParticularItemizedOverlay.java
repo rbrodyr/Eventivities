@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.drawable.Drawable;
-import android.widget.Toast;
 
 import com.eventivities.android.R;
 import com.eventivities.android.domain.Local;
