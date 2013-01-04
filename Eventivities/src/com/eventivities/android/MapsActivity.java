@@ -69,12 +69,12 @@ public class MapsActivity extends MapActivity/*SherlockActivity*/ {
     	 
     	 if (milocManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
  			miLocationListener = new MiLocationListener();
- 			milocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, miLocationListener);
+ 			milocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 60000, 500, miLocationListener);
  						
  		}
     	 else if (milocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
  			miLocationListener = new MiLocationListener();
- 			milocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, miLocationListener);
+ 			milocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 500, miLocationListener);
  						
  		}
  		else{
