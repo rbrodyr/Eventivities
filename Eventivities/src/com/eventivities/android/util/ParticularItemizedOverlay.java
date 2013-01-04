@@ -64,8 +64,7 @@ public class ParticularItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 
          dialog.setTitle(item.getNombreLocal());
          dialog.setIcon(R.drawable.info); 
-         dialog.setMessage("Dirección: "+item.getDireccion());
-         dialog.setMessage("Teléfono: "+item.getTelefono());
+         dialog.setMessage("Dirección: "+item.getDireccion()+ "\n"+"Teléfono: "+item.getTelefono());
          dialog.setPositiveButton(R.string.dialogoInfo_local_YES,  new OnClickListener(){
         	 
         	 public void onClick(DialogInterface dialog, int which) {
