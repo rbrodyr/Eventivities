@@ -24,6 +24,8 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.app.SherlockMapActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.eventivities.android.R;
 import com.eventivities.android.util.ParticularItemizedOverlay;
 import com.eventivities.android.domain.ListaLocales;
@@ -276,6 +278,16 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
 				super.onPause();
 				milocManager.removeUpdates(miLocationListener);
 		}
+	}
+
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater menuInflater = getSupportMenuInflater();
+		menuInflater.inflate(R.menu.general, menu);
+		menu.findItem(R.id.menu_refresh).setVisible(false);
+		menu.findItem(R.id.menu_tmp_main).setVisible(false);
+		return true;
 	}
 	
 	
