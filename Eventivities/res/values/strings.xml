@@ -31,5 +31,12 @@
     <string name="formato_precio">%.2f €</string>
     <string name="formato_director">Directed by %s</string>
     <string name="formato_interpretes">Interpreted by %s</string>
+    
+    <!--Strings de activity_mi_perfil.xml  -->
+    <string name="textUserName">Username:</string>
+    <string name="textUserPassword">Password:</string>    
+    <string name="textButtonLogIn">Accept</string>
+    <string name="textButtonLogOut">Exit</string>
+    <string name="textButtonRegistrar">Sign up</string>
 
 </resources>

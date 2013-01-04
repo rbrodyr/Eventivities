@@ -46,7 +46,8 @@ public class Conexion {
 	 * registrarpuntuacionevento
 	 * registrarUsuario*/
 	private final static String url="http://www.eventivitiesadm.eshost.es/servicioweb/";
-	//private final static String url="http://10.0.2.2/www/";	
+	//private final static String url="http://10.0.2.2/www/";
+	
 	
 	
 	
@@ -376,9 +377,51 @@ public class Conexion {
 		return respuesta;
 	}
 	
+	/** 
+	 * Devuelve true si el usuario existe y su contraseña es correcta. 
+	 * En caso contrario devolverá false.
+	 * 
+	 *  @author emilio 
+	 *  @
+	 *  @param username, password
+	 *  @return boolean que indica si los datos introducidos son correctos
+	 *  @see Conexion
+	*/
 	
-	
-	
+	public static Boolean comprobarDatosLogIn(String username, String password)throws ExcepcionAplicacion{
+		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+		pairs.add(new BasicNameValuePair("username", username));
+		pairs.add(new BasicNameValuePair("password", password));
+		boolean respuesta = false;
+		JSONObject json;		
+		try {
+			json = obtenerJsonDelServicio(pairs, "service.comprobarDatosLogin.php");
+			int exito=1;
+			if(json != null){
+				if(json.has("exito") && json.getString("exito").equalsIgnoreCase("1")){
+					respuesta = true;
+				}else{
+					exito = 0;
+				}
+				if(exito==0){
+					throw new ExcepcionAplicacion("El usuario o la contraseña no son correctos.", ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR); //TODO modificar mensaje
+				}
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (Exception e){
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}		
+		return respuesta;
+	}
 	
 	private static JSONObject obtenerJsonDelServicio(List<NameValuePair> pairs, String servicio) throws ClientProtocolException, IOException, JSONException {
 		HttpClient client = new DefaultHttpClient();		
