@@ -26,8 +26,10 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.app.SherlockMapActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.eventivities.android.R;
 import com.eventivities.android.util.ParticularItemizedOverlay;
+//import com.eventivities.android.LocalesActivity.LocalesAsyncTask;
 import com.eventivities.android.domain.ListaLocales;
 import com.eventivities.android.domain.Local;
 import com.eventivities.android.excepciones.ExcepcionAplicacion;
@@ -290,6 +292,19 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
 		return true;
 	}
 	
-	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		switch (item.getItemId()) {
+		case R.id.menu_login:
+			startActivity(new Intent(MapsActivity.this, MiPerfilActivity.class));
+			break;
+		case R.id.menu_tmp_main:
+			startActivity(new Intent(MapsActivity.this, MainActivity.class));
+			break;
+		}
+		
+		return super.onOptionsItemSelected(item);
+	}
 	
 }
