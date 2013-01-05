@@ -182,7 +182,7 @@ public class Conexion {
 	}	
 
 	/**
-	 * Devuelve un listado de puntuaciones de un evento
+	 * Devuelve un listado de LocalesCiudad
 	* <p>
 	* Si la búsqueda no produce ningún resultado, se devuelve una lista vacía  
 	* 
@@ -247,7 +247,7 @@ public class Conexion {
 	}
 	
 	/**
-	 * Devuelve un listado de obras de un teatro
+	 * Devuelve un listado de puntuaciones de un local
 	* <p>
 	* Si la búsqueda no produce ningún resultado, 
 	* 
@@ -312,7 +312,7 @@ public class Conexion {
 	}
 	
 	/**
-	 * Devuelve un listado de obras de un teatro
+	 * Devuelve un listado de comentarios de un evento
 	* <p>
 	* Si la búsqueda no produce ningún resultado, 
 	* 
@@ -407,5 +407,82 @@ public class Conexion {
 		return json;
 	
 	}	
+	
+	/**
+	 * Trata de identificar a un usuario a través de su alias y su clave.
+	* <p>
+	* 
+	* 
+	*
+	* @author marcos
+	* @
+	* @param  usuario
+	* @param  clave
+	* @return Devuelve un booleano que determina si identificacion es correcta   
+	* @see         Conexion
+	*/
+	public static boolean identificarse(String usuario, String clave) throws ExcepcionAplicacion
+	{
+		usuario="al";
+		clave="pal";
+		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+		pairs.add(new BasicNameValuePair("username", usuario));	
+		pairs.add(new BasicNameValuePair("password", clave));
+		JSONObject json;
+		boolean respuesta=true;
+		try {
+			json = obtenerJsonDelServicio(pairs,"service.comprobarDatosLogin.php");
+			int exito=1;
+			if(json!=null)
+			{			
+				if (json.has("exito"))
+				{
+					if(json.getString("exito").equalsIgnoreCase("1"))
+					{
+						if (json.has("usuario"))
+						{
+							if(!json.getString("usuario").equalsIgnoreCase("1"))
+							{
+								respuesta=false;
+							}
+						}
+						else
+						{
+							exito=0;
+						}						
+					}
+					else
+					{
+						exito=0;
+					}
+				}
+				else
+				{
+					exito=0;
+				}
+				if (exito==0)
+					throw new ExcepcionAplicacion("El servicio web no ha respondido con éxito",ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+				
+			}	
+				
+		} catch (ClientProtocolException c)
+		{
+			throw new ExcepcionAplicacion(c.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		return respuesta;
+	}
 	
 }
