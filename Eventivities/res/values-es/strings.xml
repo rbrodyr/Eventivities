@@ -48,5 +48,13 @@
 	<!-- Strings para la clase ParticularizedOverlay diálogo -->
 	<string name="dialogoInfo_local_YES">OK</string>
 	         
-
+    <!--Strings de activity_mi_perfil.xml  -->
+    <string name="textUserName">Usuario:</string>
+    <string name="textUserPassword">Contraseña:</string>    
+    <string name="textButtonLogIn">Aceptar</string>
+    <string name="textButtonLogOut">Salir</string>
+    <string name="textButtonRegistrar">Registro</string> 
+    <string name="textLoginOk">Login realizado con éxito</string>
+    <string name="textLoginServerError">Login no realizado.\n\nCompruebe:\n -Los datos introducidos\n -Su conexión a internet</string>
+    <string name="textDatosErroneos">Datos incorrectos. Compruebe el nombre de usuario y la contraseña</string>
 </resources>

@@ -71,6 +71,13 @@
     <!-- =========================================================================================== -->
 	    <string name="detalle_eventoBotonComentarios">ver comentarios</string>	    
     
-    
-
+    <!--Strings de activity_mi_perfil.xml  -->
+    <string name="textUserName">Username:</string>
+    <string name="textUserPassword">Password:</string>    
+    <string name="textButtonLogIn">Accept</string>
+    <string name="textButtonLogOut">Exit</string>
+    <string name="textButtonRegistrar">Sign up</string>    
+	<string name="textLoginOk">Login succeed</string>
+	<string name="textLoginServerError">Login error.\n\nVerify:\n -The introduced information.\n -Your connection</string>
+	<string name="textDatosErroneos">Username or password isn\'t correct. Please verify these and try again</string>
 </resources>

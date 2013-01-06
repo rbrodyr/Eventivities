@@ -2,24 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="15dp"
     tools:context=".MiPerfil" >
 
     <EditText
         android:id="@+id/editTextUserName"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/textViewUserName"
         android:ems="8"
-        android:inputType="text">
-        </EditText>
+        android:inputType="text" >
+    </EditText>
 
     <EditText
         android:id="@+id/editTextUserPassword"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editTextUserName"
         android:layout_alignRight="@+id/editTextUserName"
@@ -27,7 +27,7 @@
         android:layout_marginTop="15dp"
         android:ems="10"
         android:inputType="textPassword" >
-        
+
     </EditText>
 
     <TextView
@@ -56,12 +56,11 @@
         android:id="@+id/relativeLayoutBotones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/editTextUserPassword"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp" >
+        android:layout_alignBottom="@+id/editTextUserPassword"
+        android:layout_alignTop="@+id/editTextUserName"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/editTextUserName"
+        android:gravity="right" >
 
         <Button
             android:id="@+id/buttonLogIn"
@@ -75,10 +74,10 @@
             android:id="@+id/buttonRegistro"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/buttonLogIn"
-            android:layout_marginTop="10dp"
             android:text="@string/textButtonRegistrar" />
+
     </RelativeLayout>
 
 </RelativeLayout>
