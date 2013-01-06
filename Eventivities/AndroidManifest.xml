@@ -30,18 +30,6 @@
             android:label="@string/title_activity_main" >
         </activity>
         <activity
-            android:name="com.eventivities.android.ListaProductosActivity"
-            android:label="@string/title_activity_productos" >
-        </activity>
-        <activity
-            android:name="com.eventivities.android.EjemploActivity"
-            android:label="@string/title_activity_ejemplo" >
-        </activity>
-        <activity
-            android:name="com.eventivities.android.DetalleProductoActivity"
-            android:label="@string/title_activity_detalle_producto" >
-        </activity>
-        <activity
             android:name="com.eventivities.android.QueTengoCercaActivity"
             android:label="@string/title_activity_que_tengo_cerca" >
         </activity>

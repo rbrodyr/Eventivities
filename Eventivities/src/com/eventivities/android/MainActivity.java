@@ -82,13 +82,6 @@ public class MainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
    	 switch (item.getItemId()){
-         case R.id.opcion_menu_ejemplo:
-        	 	//startActivity(new Intent(MainActivity.this,Creditos.class));
-        	 	//overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
-        	TnUtil.vibrar(this);
-        	startActivity(new Intent(MainActivity.this, EjemploActivity.class));
-        	overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);
-        	break;
          case R.id.opcion_menu_prueba1:
  	       	TnUtil.vibrar(this);
  	    	Toast.makeText(this,"opcion para probar",Toast.LENGTH_SHORT).show();
