@@ -19,6 +19,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.eventivities.android.domain.ListaComentarios;
 import com.eventivities.android.domain.ListaEventos;
 import com.eventivities.android.domain.ListaLocales;
@@ -377,7 +379,8 @@ public class Conexion {
 		return respuesta;
 	}
 	
-	/** 
+	/** TODO
+	 * SE PUEDE ELIMINAR. NO LO ELIMINO PARA EVITAR CONFLICTOS.
 	 * Devuelve true si el usuario existe y su contraseña es correcta. 
 	 * En caso contrario devolverá false.
 	 * 
@@ -466,8 +469,7 @@ public class Conexion {
 	*/
 	public static boolean identificarse(String usuario, String clave) throws ExcepcionAplicacion
 	{
-		//usuario="al";
-		//clave="pal";
+
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		pairs.add(new BasicNameValuePair("username", usuario));	
 		pairs.add(new BasicNameValuePair("password", clave));
@@ -503,8 +505,10 @@ public class Conexion {
 				{
 					exito=0;
 				}
-				if (exito==0)
-					throw new ExcepcionAplicacion("El servicio web no ha respondido con éxito",ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+				if (exito==0){
+					throw new ExcepcionAplicacion("El servicio web no ha respondido con éxito",ExcepcionAplicacion.EXCEPCION_DATOS_ERRONEOS);
+					
+				}
 				
 			}	
 				

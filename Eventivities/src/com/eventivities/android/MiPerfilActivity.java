@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -26,7 +28,7 @@ public class MiPerfilActivity extends SherlockActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.activity_mi_perfil);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		
@@ -38,16 +40,14 @@ public class MiPerfilActivity extends SherlockActivity {
 					TextView textUser = (TextView) findViewById(R.id.editTextUserName);
 					TextView textPass = (TextView) findViewById(R.id.editTextUserPassword);
 					String user = textUser.getText().toString();
-					String pass = textPass.getText().toString();
-					
-					/*Falta realizar comprobaciones de campos vacíos*/
+					String pass = textPass.getText().toString();										
 					
 					LogInAsyncTask task = new LogInAsyncTask();
 					task.setUser(user);
 					task.setPassword(pass);
 					task.setContext(MiPerfilActivity.this);
 					task.execute();
-				}else{
+				}else{					
 					guardarPreferenciasLogOut();
 					String textoBoton = getResources().getString(R.string.textButtonLogIn);
 					actualizarTextoBotonLogIn(textoBoton);
@@ -55,12 +55,67 @@ public class MiPerfilActivity extends SherlockActivity {
 				}
 			}	
 		});
+		btnAceptar.setEnabled(false);
 		
 		Button btnRegistrar = (Button) findViewById(R.id.buttonRegistro);
 		btnRegistrar.setOnClickListener(new OnClickListener(){
 			public void onClick(View v){
 				
 			}
+		});
+		
+		EditText editTextUser = (EditText) findViewById(R.id.editTextUserName);
+		editTextUser.addTextChangedListener(new TextWatcher(){
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count){
+				Button btnAceptar = (Button) findViewById(R.id.buttonLogIn); 
+				boolean camposCompletos = comprobarCamposCompletos();
+				if(camposCompletos)
+					btnAceptar.setEnabled(true);
+				else
+					btnAceptar.setEnabled(false);					
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+		});
+		
+		EditText editTextPass = (EditText) findViewById(R.id.editTextUserPassword);
+		editTextPass.addTextChangedListener(new TextWatcher(){
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count){
+				Button btnAceptar = (Button) findViewById(R.id.buttonLogIn); 
+				boolean camposCompletos = comprobarCamposCompletos();
+				if(camposCompletos)
+					btnAceptar.setEnabled(true);
+				else
+					btnAceptar.setEnabled(false);					
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
 		});
 	}
 	
@@ -186,10 +241,13 @@ public class MiPerfilActivity extends SherlockActivity {
 	 * @see
 	 * */
 	public void actualizarElementosInterfaz(Boolean nuevoEstado){
-		EditText eT = (EditText) findViewById(R.id.editTextUserName);
-		eT.setEnabled(nuevoEstado);
-		eT = (EditText) findViewById(R.id.editTextUserPassword);
-		eT.setEnabled(nuevoEstado);
+		EditText eTextUser = (EditText) findViewById(R.id.editTextUserName);
+		eTextUser.setEnabled(nuevoEstado);
+		eTextUser.clearFocus();
+		EditText eTextPass = (EditText) findViewById(R.id.editTextUserPassword);
+		eTextPass.setEnabled(nuevoEstado);
+		eTextPass.clearFocus();
+		
 	}
 	
 	/**
@@ -204,6 +262,27 @@ public class MiPerfilActivity extends SherlockActivity {
 		SharedPreferences prefs = getSharedPreferences("LogInPreferences", Context.MODE_PRIVATE);
 		Boolean logueado = prefs.getBoolean("logIn", false);
 		return logueado;
+	}
+	
+	/**
+	 * 
+	 * Método que comprueba si los campos Usuario y Contraseña de la interfaz tienen texto.
+	 * Si ambos campos tienen texto se habilitará el botón Aceptar. En caso contrario permanecerá deshabilitado.
+	 *
+	 * @author emilio
+	 * @param No necesita parámetros.
+	 * @return True si ambos campos de texto están completos. False en caso contrario
+	 * 
+	 * */
+	public boolean comprobarCamposCompletos(){
+		boolean completos;
+		EditText editTextUser = (EditText) findViewById(R.id.editTextUserName);
+		EditText editTextPass = (EditText) findViewById(R.id.editTextUserPassword);
+		if(editTextUser.getText().toString().equals("") || editTextPass.getText().toString().equals(""))
+			completos = false;
+		else 
+			completos = true;
+		return completos;
 	}
 	
 	/**
@@ -224,7 +303,7 @@ public class MiPerfilActivity extends SherlockActivity {
 		@Override
 		protected void onPreExecute(){
 			getSherlock().setProgressBarIndeterminateVisibility(true);
-			Toast.makeText(context, "Conectando con el servidor", Toast.LENGTH_LONG).show(); //TODO provisional
+			//Toast.makeText(context, "Conectando con el servidor", Toast.LENGTH_LONG).show(); //TODO provisional
 			super.onPreExecute();
 		}
 		
@@ -237,9 +316,9 @@ public class MiPerfilActivity extends SherlockActivity {
 				String textoBoton = getResources().getString(R.string.textButtonLogOut);
 				actualizarTextoBotonLogIn(textoBoton);
 				actualizarElementosInterfaz(false);
-				Toast.makeText(context, "Login realizado con éxito", Toast.LENGTH_LONG).show(); //TODO provisional. Coger el texto de @strings
+				Toast.makeText(context, context.getString(R.string.textLoginOk), Toast.LENGTH_LONG).show();
 			}else{
-				Toast.makeText(context, "Se ha producido un error. Compruebe si los datos introducidos son correctos", Toast.LENGTH_LONG).show(); //TODO provisional.
+				Toast.makeText(context, context.getString(R.string.textLoginServerError), Toast.LENGTH_LONG).show();
 			}
 			super.onPostExecute(result);
 		}
@@ -249,13 +328,13 @@ public class MiPerfilActivity extends SherlockActivity {
 			// TODO Auto-generated method stub
 			boolean existe = false;
 			try{
-				existe = Conexion.identificarse(user, pass);				
+				existe = Conexion.identificarse(user, pass);
 			} catch (ExcepcionAplicacion e){
-				e.printStackTrace();
+				e.printStackTrace();			
 			}
 			return existe;
 		}
-	
+		
 		/*Atributos necesarios para conectar con el servidor*/
 		public void setContext(Context context){
 			this.context = context;
