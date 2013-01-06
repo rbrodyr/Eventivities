@@ -466,8 +466,8 @@ public class Conexion {
 	*/
 	public static boolean identificarse(String usuario, String clave) throws ExcepcionAplicacion
 	{
-		usuario="al";
-		clave="pal";
+		//usuario="al";
+		//clave="pal";
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		pairs.add(new BasicNameValuePair("username", usuario));	
 		pairs.add(new BasicNameValuePair("password", clave));

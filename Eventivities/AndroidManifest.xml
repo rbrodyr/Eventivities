@@ -4,11 +4,13 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-permission android:name="android.permission.INTERNET" />
-        
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="15" />
+        android:targetSdkVersion="15" />    
+   	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/><!-- GPS  satelital-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/><!-- GPS por RED-->
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/><!-- GPS para DEBUG-->
+	<uses-permission android:name="android.permission.INTERNET" /> <!-- Acceso a Internet -->
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -79,6 +81,16 @@
             android:name="com.eventivities.android.DetalleEventoActivity"
             android:label="@string/title_activity_detalle_evento" >
         </activity>
+        <activity
+            android:name="com.eventivities.android.MapsActivity"
+            android:label="@string/title_activity_maps" >
+        </activity>
+         <activity
+            android:name="com.eventivities.android.RutaActivity"
+            android:label="@string/title_activity_rutas" >
+        </activity>
+		<uses-library android:name="com.google.android.maps"/>
+		 
     </application>
 
 </manifest>

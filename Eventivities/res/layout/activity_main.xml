@@ -56,6 +56,30 @@
             android:layout_alignParentTop="false"
             
             />
+        
+          <Button
+            android:id="@+id/botonPruebaGPS"
+            style="@style/st_pPrincipal_boton"
+            android:onClick="accion5"
+            android:text="pruebaGPS" 
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="false"
+            
+            /> 
+         
+     <!--     <Button
+            android:id="@+id/botonPruebaRuta"
+            style="@style/st_pPrincipal_boton"
+            android:onClick="accion6"
+            android:text="pruebaRuta" 
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="false"
+            
+            />-->
 
     </RelativeLayout>
 

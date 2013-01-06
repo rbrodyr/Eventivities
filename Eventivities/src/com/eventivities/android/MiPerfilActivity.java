@@ -249,7 +249,7 @@ public class MiPerfilActivity extends SherlockActivity {
 			// TODO Auto-generated method stub
 			boolean existe = false;
 			try{
-				existe = Conexion.comprobarDatosLogIn(user, pass);				
+				existe = Conexion.identificarse(user, pass);				
 			} catch (ExcepcionAplicacion e){
 				e.printStackTrace();
 			}
