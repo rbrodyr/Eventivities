@@ -58,10 +58,12 @@ public class EventosActivity extends SherlockListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			startActivity(new Intent(EventosActivity.this, LocalesActivity.class));
+			startActivity(new Intent(EventosActivity.this, LocalesActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			break;
 		case R.id.menu_login:
-			startActivity(new Intent(EventosActivity.this, MiPerfilActivity.class));
+			startActivity(new Intent(EventosActivity.this, MiPerfilActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
 		case R.id.menu_refresh:
 			new EventosAsyncTask().execute();

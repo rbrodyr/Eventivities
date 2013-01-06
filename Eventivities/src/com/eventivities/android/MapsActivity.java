@@ -43,7 +43,7 @@ import com.google.android.maps.OverlayItem;
 
 /**
  * Clase que se encarga de  crear el mapa, conectar con el gps, obtener la coordenadas, formatearlas
- * y dibujar en el mapa la posición
+ * y dibujar en el mapa la posiciï¿½n
  *  
  * 
  *  @author vimopre
@@ -66,6 +66,7 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
     	
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.mapa); 
+		getSupportActionBar().setHomeButtonEnabled(true);
         pointCentrar = null;
         
         //control del proveedor GPS
@@ -124,7 +125,7 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
 	
 	
 	/**
-	 * Clase que se encarga hacer la conexion con el gps y escucha las actualizciones de poscición
+	 * Clase que se encarga hacer la conexion con el gps y escucha las actualizciones de posciciï¿½n
 	 * 
 	 *  @author vimopre
 	 */
@@ -132,7 +133,7 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
 	private class MiLocationListener implements LocationListener{
 		
 		/**
-		 * método que escucha el GPS
+		 * mï¿½todo que escucha el GPS
 		 * 
 		 *  @author vimopre
 		 *  @param loc variable done la clase deja las coordenadas gps
@@ -155,7 +156,7 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
 			
 			
 			
-			List<Overlay> mapOverlays = mapView.getOverlays();//añadimos la nueva capa
+			List<Overlay> mapOverlays = mapView.getOverlays();//aï¿½adimos la nueva capa
 			OverlayItem overlayitem = new OverlayItem(point, "", address);
 			itemizedoverlay.addOverlay(overlayitem);
 			 
@@ -189,7 +190,7 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
 				if(result != null){
 					Iterator<Local> i = result.iterator();
 					
-					List<Overlay> mapOverlays = mapView.getOverlays();//añadimos la nueva capa
+					List<Overlay> mapOverlays = mapView.getOverlays();//aï¿½adimos la nueva capa
 					
 					
 					while (i.hasNext()){
@@ -201,9 +202,9 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
 						GeoPoint point = new GeoPoint((int) (lat),(int) (lon));
 						
 						OverlayItem overlayitem = new OverlayItem(point, "", null);//creamos el punto
-						itemizedoverlayLocales.addOverlayEventos(overlayitem, loc);//añadimos puntos a la capa
+						itemizedoverlayLocales.addOverlayEventos(overlayitem, loc);//aï¿½adimos puntos a la capa
 					}
-					mapOverlays.add(itemizedoverlayLocales);//añadimos la capa
+					mapOverlays.add(itemizedoverlayLocales);//aï¿½adimos la capa
     				mapView.postInvalidate();//redibujamos la capa
 					
 				}
@@ -235,7 +236,7 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
     }
 	
 	/**
-	 * Método que se encarga de localizar la dirección de la posición del usuario                                                      
+	 * Mï¿½todo que se encarga de localizar la direcciï¿½n de la posiciï¿½n del usuario                                                      
 	 * 
 	 *  @author vimopre
 	 *  @param GeoPoint pointDir
@@ -267,7 +268,7 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
             }
 	}
 	else
-		Toast.makeText(getBaseContext(),"No hay dirección cargada",Toast.LENGTH_LONG).show();
+		Toast.makeText(getBaseContext(),"No hay direcciï¿½n cargada",Toast.LENGTH_LONG).show();
 	}
 
 
@@ -287,8 +288,6 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.general, menu);
-		menu.findItem(R.id.menu_refresh).setVisible(false);
-		menu.findItem(R.id.menu_tmp_main).setVisible(false);
 		return true;
 	}
 	
@@ -296,11 +295,13 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
 		switch (item.getItemId()) {
-		case R.id.menu_login:
-			startActivity(new Intent(MapsActivity.this, MiPerfilActivity.class));
+		case android.R.id.home:
+			startActivity(new Intent(MapsActivity.this, LocalesActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			break;
-		case R.id.menu_tmp_main:
-			startActivity(new Intent(MapsActivity.this, MainActivity.class));
+		case R.id.menu_login:
+			startActivity(new Intent(MapsActivity.this, MiPerfilActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
 		}
 		
