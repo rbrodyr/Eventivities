@@ -30,6 +30,8 @@ public class LocalesActivity extends SherlockActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        
+        // TODO Obtener del fichero de preferencias
         setTitle("Valencia");
 		
 		new LocalesAsyncTask().execute();
