@@ -1,6 +1,8 @@
 package com.eventivities.android;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -31,7 +33,8 @@ public class MiPerfilActivity extends SherlockActivity {
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.activity_mi_perfil);
 		getSupportActionBar().setHomeButtonEnabled(true);
-		getSherlock().setProgressBarIndeterminateVisibility(false);		
+		getSherlock().setProgressBarIndeterminateVisibility(false);
+		
 		Button btnAceptar = (Button) findViewById(R.id.buttonLogIn);
 		btnAceptar.setOnClickListener(new OnClickListener(){
 			public void onClick(View v){
@@ -52,17 +55,51 @@ public class MiPerfilActivity extends SherlockActivity {
 					String textoBoton = getResources().getString(R.string.textButtonLogIn);
 					actualizarTextoBotonLogIn(textoBoton);
 					actualizarElementosInterfaz(true);
+					
+					invalidateOptionsMenu();
 				}
 			}	
 		});
 		btnAceptar.setEnabled(false);
 		
-		Button btnRegistrar = (Button) findViewById(R.id.buttonRegistro);
+		final Button btnRegistrar = (Button) findViewById(R.id.buttonRegistro);
 		btnRegistrar.setOnClickListener(new OnClickListener(){
 			public void onClick(View v){
+				TextView textUser = (TextView) findViewById(R.id.editTextUserName);
+				TextView textPass = (TextView) findViewById(R.id.editTextUserPassword);
 				
-			}
+				final String user = textUser.getText().toString();
+				final String pass = textPass.getText().toString();
+				
+				Context context = (Context) MiPerfilActivity.this;
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle(getResources().getString(R.string.textoCabeceraDialogo));
+				
+				String mensaje = getResources().getString(R.string.textoMensajeDialogo);				
+				mensaje += getResources().getString(R.string.textUserName)+" "+user;
+				mensaje += "\n";
+				mensaje += getResources().getString(R.string.textUserPassword)+" "+pass;
+				
+				builder.setMessage(mensaje);
+				builder.setPositiveButton(R.string.textoBotonContinuar, new DialogInterface.OnClickListener(){
+					public void onClick(DialogInterface dialog, int id){
+						RegistroAsyncTask task = new RegistroAsyncTask();
+						task.setContext(MiPerfilActivity.this);
+						task.setUser(user);
+						task.setPassword(pass);
+						task.execute();
+					}
+				});
+				
+				builder.setNegativeButton(R.string.textoBotonCancelar, new DialogInterface.OnClickListener(){
+					public void  onClick(DialogInterface dialog, int id){
+						
+					}					
+				});				
+				builder.show();
+			}			
 		});
+		btnRegistrar.setEnabled(false);
 		
 		EditText editTextUser = (EditText) findViewById(R.id.editTextUserName);
 		editTextUser.addTextChangedListener(new TextWatcher(){
@@ -70,10 +107,14 @@ public class MiPerfilActivity extends SherlockActivity {
 			public void onTextChanged(CharSequence s, int start, int before, int count){
 				Button btnAceptar = (Button) findViewById(R.id.buttonLogIn); 
 				boolean camposCompletos = comprobarCamposCompletos();
-				if(camposCompletos)
+				if(camposCompletos){
 					btnAceptar.setEnabled(true);
-				else
-					btnAceptar.setEnabled(false);					
+					btnRegistrar.setEnabled(true);
+				}
+				else{
+					btnAceptar.setEnabled(false);
+					btnRegistrar.setEnabled(false);
+				}
 			}
 
 			@Override
@@ -97,10 +138,14 @@ public class MiPerfilActivity extends SherlockActivity {
 			public void onTextChanged(CharSequence s, int start, int before, int count){
 				Button btnAceptar = (Button) findViewById(R.id.buttonLogIn); 
 				boolean camposCompletos = comprobarCamposCompletos();
-				if(camposCompletos)
+				if(camposCompletos){
 					btnAceptar.setEnabled(true);
-				else
-					btnAceptar.setEnabled(false);					
+					btnRegistrar.setEnabled(true);
+				}
+				else{
+					btnAceptar.setEnabled(false);
+					btnRegistrar.setEnabled(false);
+				}
 			}
 
 			@Override
@@ -123,6 +168,13 @@ public class MiPerfilActivity extends SherlockActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.general, menu);
+		
+		SharedPreferences prefs = getSharedPreferences("LogInPreferences", Context.MODE_PRIVATE);
+		boolean login = prefs.getBoolean("logIn", false);
+		if(login)
+			menu.findItem(R.id.menu_login).setTitle(prefs.getString("usuarioActual", getString(R.string.menu_login).toUpperCase()));
+		else 
+			menu.findItem(R.id.menu_login).setTitle(getString(R.string.menu_login));
 		return true;
 	}
 
@@ -247,7 +299,8 @@ public class MiPerfilActivity extends SherlockActivity {
 		EditText eTextPass = (EditText) findViewById(R.id.editTextUserPassword);
 		eTextPass.setEnabled(nuevoEstado);
 		eTextPass.clearFocus();
-		
+		Button btnRegistrar = (Button) findViewById(R.id.buttonRegistro);
+		btnRegistrar.setEnabled(nuevoEstado);
 	}
 	
 	/**
@@ -316,6 +369,7 @@ public class MiPerfilActivity extends SherlockActivity {
 				String textoBoton = getResources().getString(R.string.textButtonLogOut);
 				actualizarTextoBotonLogIn(textoBoton);
 				actualizarElementosInterfaz(false);
+				invalidateOptionsMenu();
 				Toast.makeText(context, context.getString(R.string.textLoginOk), Toast.LENGTH_LONG).show();
 			}else{
 				Toast.makeText(context, context.getString(R.string.textLoginServerError), Toast.LENGTH_LONG).show();
@@ -344,6 +398,66 @@ public class MiPerfilActivity extends SherlockActivity {
 		}
 		public void setPassword(String pass){
 			this.pass = pass;
+		}
+	}
+	
+	/**
+	 * Clase que representa la tarea asíncrona que se utilizará para realizar el registro del usuario cuando 
+	 * éste complete los campos necesarios y pulse el botón Registro.
+	 * 
+	 * @author emilio
+	 * @param Los parámetros que necesita los recibe a través de los métodos set.
+	 * @return No retorna ningún valor. En caso de que no se haya podido realizar el registro se mostrará un mensaje
+	 * para informar al usuario.
+	 * @see 
+	 * */
+	private class RegistroAsyncTask extends AsyncTask <Void, Void, Boolean>{
+		
+		private String user, pass;
+		private Context context;
+		
+		@Override
+		protected Boolean doInBackground(Void... params){
+			boolean registrado = false;
+			try{
+				registrado = Conexion.identificarse(user, pass); 	//TODO Aquí irá el método que se cree en conexión
+				registrado = true; 									//TODO De momento se queda así. Podría invocarse Conexion.registrarse(user, pass)				
+			}catch(ExcepcionAplicacion e){
+				e.printStackTrace();
+			}
+			registrado = true; //Esta línea se eliminará
+			return registrado;
+		}
+		
+		@Override
+		protected void onPreExecute(){
+			getSherlock().setProgressBarIndeterminateVisibility(true);
+			super.onPreExecute();
+		}
+		
+		@Override
+		protected void onPostExecute(Boolean result){
+			getSherlock().setProgressBarIndeterminateVisibility(false);
+			String mensaje = "";
+			if(result){
+				mensaje = context.getString(R.string.textRegistroOk);
+			}else{
+				mensaje = context.getString(R.string.textErrorRegistro);
+			}
+			Toast.makeText(context, mensaje, Toast.LENGTH_LONG).show();
+			super.onPostExecute(result);
+		}
+		
+		public void setUser(String user){
+			this.user = user;
+		}
+		
+		public void setPassword(String pass){
+			this.pass = pass;
+		}
+		
+		public void setContext(Context context){
+			this.context = context;
 		}
 	}
 }

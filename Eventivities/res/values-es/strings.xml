@@ -57,4 +57,10 @@
     <string name="textLoginOk">Login realizado con éxito</string>
     <string name="textLoginServerError">Login no realizado.\n\nCompruebe:\n -Los datos introducidos\n -Su conexión a internet</string>
     <string name="textDatosErroneos">Datos incorrectos. Compruebe el nombre de usuario y la contraseña</string>
+    <string name="textErrorRegistro">Registro no realizado.\n\nSugerencias:\n -Escoja otro usuario\n -Compruebe su conexión</string>
+    <string name="textRegistroOk">Registro realizado con éxito</string>
+    <string name="textoCabeceraDialogo">¿Continuar?</string>
+    <string name="textoMensajeDialogo">Se realizará el registro con los datos:\n\n</string>
+    <string name="textoBotonContinuar">Aceptar</string>
+    <string name="textoBotonCancelar">Cancelar</string>
 </resources>
