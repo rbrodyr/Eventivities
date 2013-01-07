@@ -62,6 +62,10 @@ public class VotarActivity extends SherlockActivity {
 			startActivity(new Intent(VotarActivity.this, MiPerfilActivity.class)
 			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
+		case R.id.menu_location:
+			startActivity(new Intent(VotarActivity.this, UbicacionActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+			break;
 		}
 		
 		return super.onOptionsItemSelected(item);

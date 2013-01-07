@@ -52,6 +52,10 @@ public class UbicacionActivity extends SherlockActivity {
 			startActivity(new Intent(UbicacionActivity.this, MiPerfilActivity.class)
 			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
+		case R.id.menu_location:
+			startActivity(new Intent(UbicacionActivity.this, UbicacionActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+			break;
 		}
 		
 		return super.onOptionsItemSelected(item);

@@ -68,6 +68,10 @@ public class EventosActivity extends SherlockListActivity {
 		case R.id.menu_refresh:
 			new EventosAsyncTask().execute();
 			break;
+		case R.id.menu_location:
+			startActivity(new Intent(EventosActivity.this, UbicacionActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+			break;
 		}
 		
 		return super.onOptionsItemSelected(item);

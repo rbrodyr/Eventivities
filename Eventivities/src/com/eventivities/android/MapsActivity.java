@@ -303,6 +303,10 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
 			startActivity(new Intent(MapsActivity.this, MiPerfilActivity.class)
 			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
+		case R.id.menu_location:
+			startActivity(new Intent(MapsActivity.this, UbicacionActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+			break;
 		}
 		
 		return super.onOptionsItemSelected(item);

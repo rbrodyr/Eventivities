@@ -85,6 +85,10 @@ public class VerComentariosActivity extends SherlockListActivity{
 			startActivity(new Intent(VerComentariosActivity.this, MiPerfilActivity.class)
 			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
+		case R.id.menu_location:
+			startActivity(new Intent(VerComentariosActivity.this, UbicacionActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+			break;
 		}
 		
 		return super.onOptionsItemSelected(item);
