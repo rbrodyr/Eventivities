@@ -2,31 +2,25 @@ package com.eventivities.android;
 
 import java.util.List;
 
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
-import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 import com.eventivities.android.adapters.ComentariosAdapter;
-import com.eventivities.android.adapters.EventosAdapter;
 import com.eventivities.android.domain.Comentario;
 import com.eventivities.android.domain.Evento;
-import com.eventivities.android.domain.ListaComentarios;
 import com.eventivities.android.excepciones.ExcepcionAplicacion;
 import com.eventivities.android.servicioweb.Conexion;
-import com.eventivities.android.util.TnUtil;
 
 public class VerComentariosActivity extends SherlockListActivity{
 
@@ -69,6 +63,7 @@ public class VerComentariosActivity extends SherlockListActivity{
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.general, menu);
+		menu.findItem(R.id.menu_refresh).setVisible(true);
 		return true;
 	}
 	
@@ -84,6 +79,9 @@ public class VerComentariosActivity extends SherlockListActivity{
 		case R.id.menu_login:
 			startActivity(new Intent(VerComentariosActivity.this, MiPerfilActivity.class)
 			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+			break;
+		case R.id.menu_refresh:
+			new ComentariosAsyncTask().execute();
 			break;
 		case R.id.menu_location:
 			startActivity(new Intent(VerComentariosActivity.this, UbicacionActivity.class)
