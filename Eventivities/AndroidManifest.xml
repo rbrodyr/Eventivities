@@ -51,7 +51,7 @@
         </activity>
         <activity
             android:name="com.eventivities.android.VerFotosDeActivity"
-            android:label="@string/title_activity_vewr_fotos_de" >
+            android:label="@string/title_activity_ver_fotos_de" >
         </activity>
         <activity
             android:name="com.eventivities.android.DetalleEventoActivity"
