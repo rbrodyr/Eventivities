@@ -55,7 +55,7 @@ public class LocalesActivity extends SherlockActivity {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.general, menu);
 		menu.findItem(R.id.menu_refresh).setVisible(true);
-		menu.findItem(R.id.menu_tmp_main).setVisible(true);
+		menu.findItem(R.id.menu_location).setVisible(true);
 		return true;
 	}
 
@@ -69,8 +69,9 @@ public class LocalesActivity extends SherlockActivity {
 		case R.id.menu_refresh:
 			new LocalesAsyncTask().execute();
 			break;
-		case R.id.menu_tmp_main:
-			startActivity(new Intent(LocalesActivity.this, MainActivity.class));
+		case R.id.menu_location:
+			startActivity(new Intent(LocalesActivity.this, MapsActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
 		}
 		

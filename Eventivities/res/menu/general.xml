@@ -1,10 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     
     <item
-        android:id="@+id/menu_tmp_main"
+        android:id="@+id/menu_location"
         android:showAsAction="always"
         android:visible="false"
-        android:title="temp_main"/>
+        android:icon="@drawable/location"/>
     
     <item android:id="@+id/menu_refresh"
         android:showAsAction="always"
