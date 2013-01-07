@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TabHost;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
@@ -30,6 +31,9 @@ public class LocalesActivity extends SherlockActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        
+        // TODO Obtener del fichero de preferencias
+        setTitle("Valencia");
 		
 		new LocalesAsyncTask().execute();
 	}
@@ -55,7 +59,6 @@ public class LocalesActivity extends SherlockActivity {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.general, menu);
 		menu.findItem(R.id.menu_refresh).setVisible(true);
-		menu.findItem(R.id.menu_tmp_main).setVisible(true);
 		return true;
 	}
 
@@ -63,13 +66,15 @@ public class LocalesActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_login:
-			startActivity(new Intent(LocalesActivity.this, MiPerfilActivity.class));
+			startActivity(new Intent(LocalesActivity.this, MiPerfilActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
 		case R.id.menu_refresh:
 			new LocalesAsyncTask().execute();
 			break;
-		case R.id.menu_tmp_main:
-			startActivity(new Intent(LocalesActivity.this, MainActivity.class));
+		case R.id.menu_location:
+			startActivity(new Intent(LocalesActivity.this, UbicacionActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
 		}
 		

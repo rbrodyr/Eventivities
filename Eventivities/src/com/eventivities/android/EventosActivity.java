@@ -7,9 +7,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -19,7 +20,7 @@ import com.eventivities.android.domain.Evento;
 import com.eventivities.android.excepciones.ExcepcionAplicacion;
 import com.eventivities.android.servicioweb.Conexion;
 
-public class EventosActivity extends SherlockListActivity {
+public class EventosActivity extends SherlockActivity {
 	
 	private List<Evento> eventos;
 	private int localId;
@@ -29,10 +30,7 @@ public class EventosActivity extends SherlockListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-		//setContentView(R.layout.activity_eventos);
 		getSupportActionBar().setHomeButtonEnabled(true);
-
-        getListView().setOnItemClickListener(itemClickListener);
         
         Bundle extras = getIntent().getExtras();
 		if(extras != null)
@@ -58,13 +56,19 @@ public class EventosActivity extends SherlockListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			startActivity(new Intent(EventosActivity.this, LocalesActivity.class));
+			startActivity(new Intent(EventosActivity.this, LocalesActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			break;
 		case R.id.menu_login:
-			startActivity(new Intent(EventosActivity.this, MiPerfilActivity.class));
+			startActivity(new Intent(EventosActivity.this, MiPerfilActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
 		case R.id.menu_refresh:
 			new EventosAsyncTask().execute();
+			break;
+		case R.id.menu_location:
+			startActivity(new Intent(EventosActivity.this, UbicacionActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
 		}
 		
@@ -115,8 +119,13 @@ public class EventosActivity extends SherlockListActivity {
 		@Override
 		protected void onPostExecute(List<Evento> result) {
 			if (result != null) {
+				setContentView(R.layout.activity_eventos);
+				ListView listView = (ListView) findViewById(android.R.id.list);
+				listView.setOnItemClickListener(itemClickListener);
+		        //getListView().setOnItemClickListener(itemClickListener);
 				EventosAdapter adapter = new EventosAdapter(getApplicationContext(), R.layout.item_evento, eventos);
-				setListAdapter(adapter);
+				listView.setAdapter(adapter);
+				//setListAdapter(adapter);
 			} else {
 				setContentView(R.layout.error_conexion);
 			}

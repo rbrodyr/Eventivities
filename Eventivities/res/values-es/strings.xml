@@ -5,27 +5,15 @@
     <string name="hello_world">¡Hola mundo!</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_login">Iniciar sesión</string>
-    <string name="title_activity_main">Eventivities</string>
-    <string name="title_activity_productos">Products list</string>
-    <string name="title_activity_ejemplo">Ejemplos de Productos</string>
-    <string name="title_activity_detalle_producto">Detalle Producto Activity</string>
-    <string name="ejemplo_boton_insertar_productos">Insertar</string>
-    <string name="ejemplo_boton_mostrar_productos">Mostrar</string>
-    <string name="ejemplo_boton_eliminar_productos">Eliminar</string>
-    <string name="ejemplo_boton_renombrar_producto">Renombrar</string>
-    <string name="ejemplo_msg_insertados_productos">Nuevos productos instertados en la base de datos</string>
-    <string name="ejemplo_msg_eliminados_productos">Se han elimnados todos los productos de la base de datos</string>
-    <string name="title_activity_que_tengo_cerca">Que Tengo Cerca</string>
-    <string name="title_activity_locales">Locales</string>
-    <string name="title_activity_ver_comentarios">Ver Comentarios</string>
-    <string name="title_activity_mi_perfil">Mi Perfil</string>
+    <string name="title_activity_locales">Eventivities</string>
+    <string name="title_activity_ver_comentarios">Comentarios</string>
+    <string name="title_activity_mi_perfil">Mi perfil</string>
     <string name="title_activity_registrarse">Registrarse</string>
     <string name="title_activity_eventos">Eventos</string>
     <string name="title_activity_votar">Votar</string>
-    <string name="title_activity_donde_esta">Donde Esta</string>
-    <string name="title_activity_ver_fotos_de">VewrFotosDe</string>
-    <string name="title_activity_compartir_con">Compartir Con</string>
-    <string name="title_activity_detalle_evento">Detalle Evento</string>
+    <string name="title_activity_ubicacion">Ubicación</string>
+    <string name="title_activity_ver_fotos_de">Ver fotos</string>
+    <string name="title_activity_detalle_evento">Detalle del evento</string>
     <string name="error_conexion">No se pudo establecer la conexión con el servidor. Pulse el botón de actualizar para volver a intentarlo.</string>
     <string name="formato_rango_fecha">Del %1$s al %2$s</string>
     <string name="formato_precio">%.2f €</string>
@@ -33,6 +21,11 @@
     <string name="formato_interpretes">Interpretada por %s</string>
     <string name="title_activity_maps">Mapas</string>
     <string name="title_activity_rutas">Rutas</string>
+    <string name="ubicacion">Su ubicación actual está establecida como</string>
+    <string name="boton_cambiar">Cambiar ubicación&#8230;</string>
+    <string name="boton_maps">Mostrar lugares cercanos</string>
+    <string name="formato_hora_inicio">Hora de inicio: %s</string>
+    <string name="formato_duracion">Duración: %s minutos</string>
     
     <!-- Strings para la clase GPS diálogo -->
 	<string name="gps_signal_not_found">Señal Gps no encontrada</string>	

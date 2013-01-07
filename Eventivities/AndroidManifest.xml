@@ -26,26 +26,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.eventivities.android.MainActivity"
-            android:label="@string/title_activity_main" >
-        </activity>
-        <activity
-            android:name="com.eventivities.android.ListaProductosActivity"
-            android:label="@string/title_activity_productos" >
-        </activity>
-        <activity
-            android:name="com.eventivities.android.EjemploActivity"
-            android:label="@string/title_activity_ejemplo" >
-        </activity>
-        <activity
-            android:name="com.eventivities.android.DetalleProductoActivity"
-            android:label="@string/title_activity_detalle_producto" >
-        </activity>
-        <activity
-            android:name="com.eventivities.android.QueTengoCercaActivity"
-            android:label="@string/title_activity_que_tengo_cerca" >
-        </activity>
-        <activity
             android:name="com.eventivities.android.VerComentariosActivity"
             android:label="@string/title_activity_ver_comentarios" >
         </activity>
@@ -66,16 +46,12 @@
             android:label="@string/title_activity_votar" >
         </activity>
         <activity
-            android:name="com.eventivities.android.DondeEstaActivity"
-            android:label="@string/title_activity_donde_esta" >
+            android:name="com.eventivities.android.UbicacionActivity"
+            android:label="@string/title_activity_ubicacion" >
         </activity>
         <activity
             android:name="com.eventivities.android.VerFotosDeActivity"
-            android:label="@string/title_activity_vewr_fotos_de" >
-        </activity>
-        <activity
-            android:name="com.eventivities.android.CompartirConActivity"
-            android:label="@string/title_activity_compartir_con" >
+            android:label="@string/title_activity_ver_fotos_de" >
         </activity>
         <activity
             android:name="com.eventivities.android.DetalleEventoActivity"

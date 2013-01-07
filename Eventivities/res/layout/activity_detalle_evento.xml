@@ -15,6 +15,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:paddingRight="20dp"
+                android:src="@drawable/masks" />
+
             <Button
                 android:id="@+id/detalleEvento_BotonComentario"
                 style="?android:attr/buttonStyleSmall"
@@ -23,24 +30,6 @@
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="verComentarios"
                 android:text="@string/detalle_eventoBotonComentarios" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="128dp"
-                android:layout_height="wrap_content"
-                android:paddingRight="20dp"
-                android:src="@drawable/masks" />
-<!--
-            <TextView
-                android:id="@+id/textViewPuntEvento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:onClick="verComentarios"
-                android:text="★★★☆☆"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#FFD700" />
--->
 
             <Button
                 android:id="@+id/detalleEvento_botonVotar"
@@ -60,7 +49,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:paddingLeft="10dp" >
 
             <TextView
                 android:id="@+id/textViewNombreEvento"
@@ -76,10 +66,23 @@
                 android:text="_Fecha" />
 
             <TextView
+                android:id="@+id/textViewHoraInicio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="_HoraInicio" />
+
+            <TextView
+                android:id="@+id/textViewDuracion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="_Duracion" />
+
+            <TextView
                 android:id="@+id/textViewPrecioEvento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Precio" />
+                android:text="_Precio"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
         </LinearLayout>
 

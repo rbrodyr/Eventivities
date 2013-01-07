@@ -65,7 +65,19 @@ public class DetalleEventoActivity extends SherlockActivity {
 					botonVerPuntos.setText(ViewUtil.obtenerEstrellas(evento.getMedia()));
 				}
 				
-				TextView textViewDirector = (TextView)findViewById(R.id.textViewInterpretes);
+				TextView textViewHoraInicio = (TextView) findViewById(R.id.textViewHoraInicio);
+				if (textViewHoraInicio != null) {
+					String format = getString(R.string.formato_hora_inicio);
+					textViewHoraInicio.setText(String.format(format, evento.getHoraInicio()));
+				}
+				
+				TextView textViewDuracion = (TextView) findViewById(R.id.textViewDuracion);
+				if (textViewDuracion != null) {
+					String format = getString(R.string.formato_duracion);
+					textViewDuracion.setText(String.format(format, String.valueOf(evento.getDuracion())));
+				}
+				
+				TextView textViewDirector = (TextView)findViewById(R.id.textViewDirector);
 				if (textViewDirector != null) {
 					String format = getString(R.string.formato_director);
 					textViewDirector.setText(String.format(format, evento.getDirector()));
@@ -130,10 +142,16 @@ public class DetalleEventoActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			startActivity(new Intent(DetalleEventoActivity.this, LocalesActivity.class));
+			startActivity(new Intent(DetalleEventoActivity.this, LocalesActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			break;
 		case R.id.menu_login:
-			startActivity(new Intent(DetalleEventoActivity.this, MiPerfilActivity.class));
+			startActivity(new Intent(DetalleEventoActivity.this, MiPerfilActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+			break;
+		case R.id.menu_location:
+			startActivity(new Intent(DetalleEventoActivity.this, UbicacionActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
 		}
 		

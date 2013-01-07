@@ -31,7 +31,7 @@ public class MiPerfilActivity extends SherlockActivity {
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.activity_mi_perfil);
 		getSupportActionBar().setHomeButtonEnabled(true);
-		
+		getSherlock().setProgressBarIndeterminateVisibility(false);		
 		Button btnAceptar = (Button) findViewById(R.id.buttonLogIn);
 		btnAceptar.setOnClickListener(new OnClickListener(){
 			public void onClick(View v){
@@ -143,10 +143,16 @@ public class MiPerfilActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			startActivity(new Intent(MiPerfilActivity.this, LocalesActivity.class));
+			startActivity(new Intent(MiPerfilActivity.this, LocalesActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			break;
 		case R.id.menu_login:
-			startActivity(new Intent(MiPerfilActivity.this, MiPerfilActivity.class));
+			startActivity(new Intent(MiPerfilActivity.this, MiPerfilActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+			break;
+		case R.id.menu_location:
+			startActivity(new Intent(MiPerfilActivity.this, UbicacionActivity.class)
+			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
 		}
 		
