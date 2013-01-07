@@ -58,7 +58,6 @@ public class LocalesActivity extends SherlockActivity {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.general, menu);
 		menu.findItem(R.id.menu_refresh).setVisible(true);
-		menu.findItem(R.id.menu_location).setVisible(true);
 		return true;
 	}
 
