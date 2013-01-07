@@ -8,12 +8,12 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
-public class DondeEstaActivity extends SherlockActivity {
+public class Ubicacion extends SherlockActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_donde_esta);
+		setContentView(R.layout.activity_ubicacion);
 		getSupportActionBar().setHomeButtonEnabled(true);
 	}
 	
@@ -28,11 +28,11 @@ public class DondeEstaActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			startActivity(new Intent(DondeEstaActivity.this, LocalesActivity.class)
+			startActivity(new Intent(Ubicacion.this, LocalesActivity.class)
 			.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			break;
 		case R.id.menu_login:
-			startActivity(new Intent(DondeEstaActivity.this, MiPerfilActivity.class)
+			startActivity(new Intent(Ubicacion.this, MiPerfilActivity.class)
 			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
 		}

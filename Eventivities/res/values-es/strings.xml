@@ -13,7 +13,7 @@
     <string name="title_activity_registrarse">Registrarse</string>
     <string name="title_activity_eventos">Eventos</string>
     <string name="title_activity_votar">Votar</string>
-    <string name="title_activity_donde_esta">Donde Esta</string>
+    <string name="title_activity_ubicacion">Ubicación</string>
     <string name="title_activity_ver_fotos_de">VewrFotosDe</string>
     <string name="title_activity_compartir_con">Compartir Con</string>
     <string name="title_activity_detalle_evento">Detalle Evento</string>

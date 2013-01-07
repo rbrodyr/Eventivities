@@ -50,8 +50,8 @@
             android:label="@string/title_activity_votar" >
         </activity>
         <activity
-            android:name="com.eventivities.android.DondeEstaActivity"
-            android:label="@string/title_activity_donde_esta" >
+            android:name="com.eventivities.android.Ubicacion"
+            android:label="@string/title_activity_ubicacion" >
         </activity>
         <activity
             android:name="com.eventivities.android.VerFotosDeActivity"
