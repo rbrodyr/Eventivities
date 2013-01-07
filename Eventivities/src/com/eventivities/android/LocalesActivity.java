@@ -70,7 +70,7 @@ public class LocalesActivity extends SherlockActivity {
 			new LocalesAsyncTask().execute();
 			break;
 		case R.id.menu_location:
-			startActivity(new Intent(LocalesActivity.this, MapsActivity.class)
+			startActivity(new Intent(LocalesActivity.this, UbicacionActivity.class)
 			.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			break;
 		}

@@ -22,9 +22,11 @@
     <string name="formato_precio">%.2f €</string>
     <string name="formato_director">Directed by %s</string>
     <string name="formato_interpretes">Interpreted by %s</string>
-
     <string name="title_activity_maps">Maps</string>
     <string name="title_activity_rutas">Routes</string>
+    <string name="ubicacion">Your current location is set as</string>
+    <string name="boton_cambiar">Change location&#8230;</string>
+    <string name="boton_maps">Show nearby places</string>
     
     
     <!-- Strings para la clase GPS diálogo -->

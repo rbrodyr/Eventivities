@@ -24,6 +24,9 @@
     <string name="formato_interpretes">Interpretada por %s</string>
     <string name="title_activity_maps">Mapas</string>
     <string name="title_activity_rutas">Rutas</string>
+    <string name="ubicacion">Su ubicación actual está establecida como</string>
+    <string name="boton_cambiar">Cambiar ubicación&#8230;</string>
+    <string name="boton_maps">Mostrar lugares cercanos</string>
     
     <!-- Strings para la clase GPS diálogo -->
 	<string name="gps_signal_not_found">Señal Gps no encontrada</string>	

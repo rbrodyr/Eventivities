@@ -2,6 +2,7 @@ package com.eventivities.android;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -18,13 +19,19 @@ public class UbicacionActivity extends SherlockActivity {
 		setContentView(R.layout.activity_ubicacion);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		
-		TextView textView = (TextView) findViewById(R.id.textViewUbicacion);
-		textView.setText("Su ubicación actual está establecida en <b>Valencia</b>.");
+		TextView textViewCiudad = (TextView) findViewById(R.id.textViewCiudad);
+		textViewCiudad.setText("Valencia");
 		Button buttonCambiar = (Button) findViewById(R.id.buttonCambiar);
-		buttonCambiar.setText("Cambiar ciudad...");
 		buttonCambiar.setEnabled(false);
-		Button buttonMaps = (Button) findViewById(R.id.buttonMaps);
-		buttonMaps.setText("Qué tengo cerca");
+		
+		final Button buttonMaps = (Button) findViewById(R.id.buttonMaps);		
+		buttonMaps.setOnClickListener(new View.OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(UbicacionActivity.this, MapsActivity.class)
+				.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));				
+			}
+		});
 	}
 	
 	@Override
