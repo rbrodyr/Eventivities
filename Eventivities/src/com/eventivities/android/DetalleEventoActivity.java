@@ -65,7 +65,7 @@ public class DetalleEventoActivity extends SherlockActivity {
 					botonVerPuntos.setText(ViewUtil.obtenerEstrellas(evento.getMedia()));
 				}
 				
-				TextView textViewDirector = (TextView)findViewById(R.id.textViewInterpretes);
+				TextView textViewDirector = (TextView)findViewById(R.id.textViewDirector);
 				if (textViewDirector != null) {
 					String format = getString(R.string.formato_director);
 					textViewDirector.setText(String.format(format, evento.getDirector()));
