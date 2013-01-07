@@ -31,7 +31,7 @@ public class MiPerfilActivity extends SherlockActivity {
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.activity_mi_perfil);
 		getSupportActionBar().setHomeButtonEnabled(true);
-		
+		getSherlock().setProgressBarIndeterminateVisibility(false);		
 		Button btnAceptar = (Button) findViewById(R.id.buttonLogIn);
 		btnAceptar.setOnClickListener(new OnClickListener(){
 			public void onClick(View v){
