@@ -24,6 +24,8 @@
     <string name="ubicacion">Your current location is set as</string>
     <string name="boton_cambiar">Change location&#8230;</string>
     <string name="boton_maps">Show nearby places</string>
+    <string name="formato_hora_inicio">Start time: %s</string>
+    <string name="formato_duracion">Length: %s minutes</string>
     
     
     <!-- Strings para la clase GPS diálogo -->

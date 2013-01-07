@@ -24,6 +24,8 @@
     <string name="ubicacion">Su ubicación actual está establecida como</string>
     <string name="boton_cambiar">Cambiar ubicación&#8230;</string>
     <string name="boton_maps">Mostrar lugares cercanos</string>
+    <string name="formato_hora_inicio">Hora de inicio: %s</string>
+    <string name="formato_duracion">Duración: %s minutos</string>
     
     <!-- Strings para la clase GPS diálogo -->
 	<string name="gps_signal_not_found">Señal Gps no encontrada</string>	

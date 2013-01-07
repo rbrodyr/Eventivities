@@ -49,7 +49,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:paddingLeft="10dp" >
 
             <TextView
                 android:id="@+id/textViewNombreEvento"
@@ -65,10 +66,23 @@
                 android:text="_Fecha" />
 
             <TextView
+                android:id="@+id/textViewHoraInicio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="_HoraInicio" />
+
+            <TextView
+                android:id="@+id/textViewDuracion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="_Duracion" />
+
+            <TextView
                 android:id="@+id/textViewPrecioEvento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Precio" />
+                android:text="_Precio"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
         </LinearLayout>
 

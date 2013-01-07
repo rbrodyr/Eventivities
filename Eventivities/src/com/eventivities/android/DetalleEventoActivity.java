@@ -65,6 +65,18 @@ public class DetalleEventoActivity extends SherlockActivity {
 					botonVerPuntos.setText(ViewUtil.obtenerEstrellas(evento.getMedia()));
 				}
 				
+				TextView textViewHoraInicio = (TextView) findViewById(R.id.textViewHoraInicio);
+				if (textViewHoraInicio != null) {
+					String format = getString(R.string.formato_hora_inicio);
+					textViewHoraInicio.setText(String.format(format, evento.getHoraInicio()));
+				}
+				
+				TextView textViewDuracion = (TextView) findViewById(R.id.textViewDuracion);
+				if (textViewDuracion != null) {
+					String format = getString(R.string.formato_duracion);
+					textViewDuracion.setText(String.format(format, String.valueOf(evento.getDuracion())));
+				}
+				
 				TextView textViewDirector = (TextView)findViewById(R.id.textViewDirector);
 				if (textViewDirector != null) {
 					String format = getString(R.string.formato_director);
