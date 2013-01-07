@@ -26,10 +26,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.eventivities.android.MainActivity"
-            android:label="@string/title_activity_main" >
-        </activity>
-        <activity
             android:name="com.eventivities.android.QueTengoCercaActivity"
             android:label="@string/title_activity_que_tengo_cerca" >
         </activity>
