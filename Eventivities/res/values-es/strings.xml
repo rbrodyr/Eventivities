@@ -5,7 +5,7 @@
     <string name="hello_world">¡Hola mundo!</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_login">Iniciar sesión</string>
-    <string name="title_activity_locales">Locales</string>
+    <string name="title_activity_locales">Eventivities</string>
     <string name="title_activity_ver_comentarios">Comentarios</string>
     <string name="title_activity_mi_perfil">Mi perfil</string>
     <string name="title_activity_registrarse">Registrarse</string>
