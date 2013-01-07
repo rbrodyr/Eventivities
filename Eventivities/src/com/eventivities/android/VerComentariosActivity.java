@@ -11,7 +11,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -22,7 +22,7 @@ import com.eventivities.android.domain.Evento;
 import com.eventivities.android.excepciones.ExcepcionAplicacion;
 import com.eventivities.android.servicioweb.Conexion;
 
-public class VerComentariosActivity extends SherlockListActivity{
+public class VerComentariosActivity extends SherlockActivity{
 
 	private Evento evento;
 	private String nombreLocal;
@@ -133,8 +133,10 @@ public class VerComentariosActivity extends SherlockListActivity{
 		@Override
 		protected void onPostExecute(List<Comentario> result) {
 			if (result != null) {
+				setContentView(R.layout.activity_eventos);
+				ListView listView = (ListView) findViewById(android.R.id.list);
 				ComentariosAdapter adapter = new ComentariosAdapter(getApplicationContext(), R.layout.item_comentario, comentarios);
-				setListAdapter(adapter);
+				listView.setAdapter(adapter);
 			} else {
 				setContentView(R.layout.error_conexion);
 			}
