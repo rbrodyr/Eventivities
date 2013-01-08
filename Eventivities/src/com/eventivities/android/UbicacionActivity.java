@@ -21,6 +21,7 @@ public class UbicacionActivity extends SherlockActivity {
 		
 		TextView textViewCiudad = (TextView) findViewById(R.id.textViewCiudad);
         // TODO Obtener del fichero de preferencias
+		//
 		textViewCiudad.setText("Valencia");
 		
 		Button buttonCambiar = (Button) findViewById(R.id.buttonCambiar);
