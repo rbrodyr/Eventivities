@@ -93,6 +93,7 @@ public class LocalesActivity extends SherlockActivity {
 		protected List<Local> doInBackground(Void... params) {
 			locales = null;
 			try {
+				//todo obtener de preferences
 				locales = Conexion.obtenerLocalesCiudad("Valencia").getLocales();
 			} catch (ExcepcionAplicacion e) {
 				e.printStackTrace();
