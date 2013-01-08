@@ -2,16 +2,17 @@ package com.eventivities.android;
 
 import java.util.List;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TabHost;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.Spinner;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -38,6 +39,12 @@ public class LocalesActivity extends SherlockActivity {
 		new LocalesAsyncTask().execute();
 	}
     
+	@Override
+	protected void onResume(){
+		invalidateOptionsMenu();
+		super.onResume();
+	}
+	
     private OnItemClickListener itemClickListener = new OnItemClickListener() {
 
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -59,6 +66,12 @@ public class LocalesActivity extends SherlockActivity {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.general, menu);
 		menu.findItem(R.id.menu_refresh).setVisible(true);
+		SharedPreferences prefs = getSharedPreferences("LogInPreferences", Context.MODE_PRIVATE);
+		boolean login = prefs.getBoolean("logIn", false);
+		if(login)
+			menu.findItem(R.id.menu_login).setTitle(prefs.getString("usuarioActual", getString(R.string.menu_login).toUpperCase()));
+		else 
+			menu.findItem(R.id.menu_login).setTitle(getString(R.string.menu_login));
 		return true;
 	}
 
