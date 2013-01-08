@@ -15,7 +15,7 @@
         android:layout_toRightOf="@+id/textViewUserName"
         android:ems="8"
         android:inputType="text"
-       	android:maxLength="5">
+       	android:maxLength="6">
         </EditText>
 
     <EditText
