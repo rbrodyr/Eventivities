@@ -37,6 +37,12 @@ public class UbicacionActivity extends SherlockActivity {
 	}
 	
 	@Override
+	protected void onResume() {
+		invalidateOptionsMenu();
+		super.onResume();
+	}
+	
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.general, menu);
