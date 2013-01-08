@@ -236,7 +236,7 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
     }
 	
 	/**
-	 * M�todo que se encarga de localizar la direcci�n de la posici�n del usuario                                                      
+	 * Metodo que se encarga de localizar la direcci�n de la posici�n del usuario                                                      
 	 * 
 	 *  @author vimopre
 	 *  @param GeoPoint pointDir
@@ -252,7 +252,9 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
                 List<Address> addresses = geoCoder.getFromLocation(
                 	pointDir.getLatitudeE6()  / 1E6, 
                 	pointDir.getLongitudeE6() / 1E6, 1);
-
+                
+                
+                
                 String add = "";
                 if (addresses.size() > 0) 
                 {
@@ -262,6 +264,7 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
                 }
 
                 Toast.makeText(getBaseContext(), add, Toast.LENGTH_SHORT).show();
+               
             }
             catch (IOException e) {                
                 e.printStackTrace();
