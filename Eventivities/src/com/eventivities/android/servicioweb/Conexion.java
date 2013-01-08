@@ -532,4 +532,83 @@ public class Conexion {
 		return respuesta;
 	}
 	
+	/**
+	 * Registra a un usuario a través de su alias y su clave.
+	* <p> 
+	* Se pueden dar tres situaciones:
+	* Que exista un error-> lanza una ExcepcionAplicacion
+	* Que el usuario se registre correctamente-> devuelve true
+	* Que ya exista ese usuario-> devuelve false
+	*
+	* @author marcos
+	* @
+	* @param  usuario
+	* @param  clave
+	* @return Devuelve true si el registro es correcto y false si el alias del usuario ya estaba registrado.   
+	* @see         Conexion
+	*/
+	public static boolean registrarUsuario(String usuario, String clave) throws ExcepcionAplicacion
+	{
+
+		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+		pairs.add(new BasicNameValuePair("username", usuario));	
+		pairs.add(new BasicNameValuePair("password", clave));
+		JSONObject json;
+		boolean insercionCorrecta=true;		
+		try {
+			json = obtenerJsonDelServicio(pairs,"service.registrarusuario.php");
+			boolean exito=true;
+			if(json!=null)
+			{			
+				if (json.has("exito"))
+				{
+					if(json.getString("exito").equalsIgnoreCase("1"))
+					{
+						if (json.has("duplicado"))
+						{
+							//Este caso se da si la entrada está duplicada
+							if(json.getString("duplicado").equalsIgnoreCase("1"))
+							{
+								insercionCorrecta=false;
+							}
+						}
+						else
+							exito=false;												
+					}
+					else
+						exito=false;
+				}
+				else
+					exito=false;											
+			}	
+			else
+				exito=false;
+			
+			if (!exito){
+				insercionCorrecta=false;
+				throw new ExcepcionAplicacion("El servicio web no ha respondido con éxito",ExcepcionAplicacion.EXCEPCION_DATOS_ERRONEOS);					
+			}			
+				
+		} catch (ClientProtocolException c)
+		{
+			throw new ExcepcionAplicacion(c.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		return insercionCorrecta;
+	}	
+	
+	
+	
 }
