@@ -28,14 +28,13 @@ import com.eventivities.android.servicioweb.Conexion;
 public class LocalesActivity extends SherlockActivity {
 
 	private List<Local> locales;
-	private String ciudad = "valencia";
+	private String ciudad;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         
-
         setTitle(ciudad);
 		
 		new LocalesAsyncTask().execute();
@@ -131,8 +130,10 @@ public class LocalesActivity extends SherlockActivity {
 	@Override
 	protected void onResume() {
 		SharedPreferences prefs = getSharedPreferences("UbicacionPreferences", Context.MODE_PRIVATE);
-		if(prefs != null)
-			prefs.getString("ubicacionActual", "Valencia");
+		if(prefs != null){
+			ciudad = prefs.getString("ubicacionActual", "Valencia");
+			setTitle(ciudad);
+		}
 		super.onResume();
 	}
 	
