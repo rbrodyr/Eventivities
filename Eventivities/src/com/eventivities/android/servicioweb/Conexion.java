@@ -19,8 +19,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-
 import com.eventivities.android.domain.ListaComentarios;
 import com.eventivities.android.domain.ListaEventos;
 import com.eventivities.android.domain.ListaLocales;
@@ -81,7 +79,7 @@ public class Conexion {
 					if(json.getString("exito").equalsIgnoreCase("1"))
 					{
 						GsonBuilder gsonBuilder = new GsonBuilder();
-						gsonBuilder.setDateFormat("yyyy-MM-dd");
+						gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss");
 						Gson gson = gsonBuilder.create();				
 						respuesta = gson.fromJson(json.toString(), ListaEventos.class);
 					}
@@ -187,8 +185,8 @@ public class Conexion {
 	/**
 	 * Devuelve un listado de LocalesCiudad
 	* <p>
-	* Si la búsqueda no produce ningún resultado, se devuelve una lista vacía  
-	* 
+	* Si la búsqueda no produce ningún resultado, se devuelve una lista vacía. En el caso de que   
+	* no tuviera una imagen asociada, la idimagen aparecería con un 0 y el nombre y la fecha a null
 	*
 	* @author marcos
 	* @
@@ -211,7 +209,9 @@ public class Conexion {
 				{
 					if(json.getString("exito").equalsIgnoreCase("1"))
 					{
-						GsonBuilder gsonBuilder = new GsonBuilder();						
+						
+						GsonBuilder gsonBuilder = new GsonBuilder();
+						gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss");
 						Gson gson = gsonBuilder.create();				
 						respuesta = gson.fromJson(json.toString(), ListaLocales.class);
 					}
