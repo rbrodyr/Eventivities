@@ -33,7 +33,7 @@ public class UbicacionActivity extends SherlockActivity {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		cuidades.setAdapter(adapter);
 
-		
+		//TODO insertar la cuidad en preferences
 		cuidades.setOnItemSelectedListener(
 		        new AdapterView.OnItemSelectedListener() {
 		        public void onItemSelected(AdapterView<?> parent,android.view.View v, int position, long id) {
