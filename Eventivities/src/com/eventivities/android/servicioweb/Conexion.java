@@ -19,8 +19,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-
 import com.eventivities.android.domain.ListaComentarios;
 import com.eventivities.android.domain.ListaEventos;
 import com.eventivities.android.domain.ListaLocales;
@@ -203,7 +201,7 @@ public class Conexion {
 		JSONObject json;
 		ListaLocales respuesta = null;
 		try {
-			json = obtenerJsonDelServicio(pairs,"service.obtenerlocalesciudad.php");
+			json = obtenerJsonDelServicio(pairs,"service.obtenerlocalesciudad2.php");
 			int exito=1;
 			if(json!=null)
 			{			
@@ -211,7 +209,9 @@ public class Conexion {
 				{
 					if(json.getString("exito").equalsIgnoreCase("1"))
 					{
-						GsonBuilder gsonBuilder = new GsonBuilder();						
+						
+						GsonBuilder gsonBuilder = new GsonBuilder();
+						gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss");
 						Gson gson = gsonBuilder.create();				
 						respuesta = gson.fromJson(json.toString(), ListaLocales.class);
 					}

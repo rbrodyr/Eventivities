@@ -1,5 +1,7 @@
 package com.eventivities.android.domain;
 
+import java.util.Date;
+
 /*Columna 	Tipo 	Nulo 	Predeterminado 	Comentarios
 idLocal 	int(11) 	No 		
 NombreLocal 	char(30) 	Sí 	NULL 	
@@ -10,7 +12,13 @@ idCategoria 	char(10) 	No
 Ciudad 	char(30) 	No 		
 Pais 	char(20) 	No 		
 Telefono 	char(9) 	No 
- * */
+Comentarios de la tabla: Imagen
+			
+Columna 	Tipo 	Nulo 	Predeterminado 	Comentarios
+idImagen 	int(11) 	No
+Nombre 	char(100) 	No
+FECHA 	timestamp 	No 	CURRENT_TIMESTAMP*/
+ 
 
 public class Local {
 	private int idLocal=0;
@@ -22,6 +30,9 @@ public class Local {
 	private String ciudad="";
 	private String pais="";
 	private String telefono="";
+	private int idImagen;
+	private String nombre;
+	private Date fecha;
 	
 	public int getIdLocal() {
 		return idLocal;
@@ -76,6 +87,24 @@ public class Local {
 	}
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+	public int getIdImagen() {
+		return idImagen;
+	}
+	public void setIdImagen(int idImagen) {
+		this.idImagen = idImagen;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public Date getFecha() {
+		return fecha;
+	}
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 	
 	
