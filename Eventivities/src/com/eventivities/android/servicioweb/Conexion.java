@@ -79,7 +79,7 @@ public class Conexion {
 					if(json.getString("exito").equalsIgnoreCase("1"))
 					{
 						GsonBuilder gsonBuilder = new GsonBuilder();
-						gsonBuilder.setDateFormat("yyyy-MM-dd");
+						gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss");
 						Gson gson = gsonBuilder.create();				
 						respuesta = gson.fromJson(json.toString(), ListaEventos.class);
 					}
@@ -185,8 +185,8 @@ public class Conexion {
 	/**
 	 * Devuelve un listado de LocalesCiudad
 	* <p>
-	* Si la búsqueda no produce ningún resultado, se devuelve una lista vacía  
-	* 
+	* Si la búsqueda no produce ningún resultado, se devuelve una lista vacía. En el caso de que   
+	* no tuviera una imagen asociada, la idimagen aparecería con un 0 y el nombre y la fecha a null
 	*
 	* @author marcos
 	* @
@@ -201,7 +201,7 @@ public class Conexion {
 		JSONObject json;
 		ListaLocales respuesta = null;
 		try {
-			json = obtenerJsonDelServicio(pairs,"service.obtenerlocalesciudad2.php");
+			json = obtenerJsonDelServicio(pairs,"service.obtenerlocalesciudad.php");
 			int exito=1;
 			if(json!=null)
 			{			

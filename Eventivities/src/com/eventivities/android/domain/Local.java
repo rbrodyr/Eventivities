@@ -16,9 +16,11 @@ Comentarios de la tabla: Imagen
 			
 Columna 	Tipo 	Nulo 	Predeterminado 	Comentarios
 idImagen 	int(11) 	No
-Nombre 	char(100) 	No
-FECHA 	timestamp 	No 	CURRENT_TIMESTAMP*/
- 
+NombreImg 	char(100) 	No
+FechaImg 	timestamp 	No 	CURRENT_TIMESTAMP*/
+
+
+
 
 public class Local {
 	private int idLocal=0;
@@ -31,8 +33,8 @@ public class Local {
 	private String pais="";
 	private String telefono="";
 	private int idImagen;
-	private String nombre;
-	private Date fecha;
+	private String nombreImg;
+	private Date fechaImg;
 	
 	public int getIdLocal() {
 		return idLocal;
@@ -94,19 +96,18 @@ public class Local {
 	public void setIdImagen(int idImagen) {
 		this.idImagen = idImagen;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getNombreImg() {
+		return nombreImg;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreImg(String nombreImg) {
+		this.nombreImg = nombreImg;
 	}
-	public Date getFecha() {
-		return fecha;
+	public Date getFechaImg() {
+		return fechaImg;
 	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setFechaImg(Date fechaImg) {
+		this.fechaImg = fechaImg;
 	}
-	
 	
 	
 }
