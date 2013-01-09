@@ -2,7 +2,9 @@ package com.eventivities.android;
 
 import java.util.List;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -26,14 +28,15 @@ import com.eventivities.android.servicioweb.Conexion;
 public class LocalesActivity extends SherlockActivity {
 
 	private List<Local> locales;
+	private String ciudad = "valencia";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         
-        // TODO Obtener del fichero de preferencias
-        setTitle("Valencia");
+
+        setTitle(ciudad);
 		
 		new LocalesAsyncTask().execute();
 	}
@@ -124,4 +127,13 @@ public class LocalesActivity extends SherlockActivity {
 			super.onPostExecute(result);
 		}
 	}
+
+	@Override
+	protected void onResume() {
+		SharedPreferences prefs = getSharedPreferences("UbicacionPreferences", Context.MODE_PRIVATE);
+		if(prefs != null)
+			prefs.getString("ubicacionActual", "Valencia");
+		super.onResume();
+	}
+	
 }
