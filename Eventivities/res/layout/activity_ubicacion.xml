@@ -20,8 +20,8 @@
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/buttonCambiar"
+    <Spinner
+        android:id="@+id/spinnerCambiar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/boton_cambiar"
