@@ -388,7 +388,8 @@ public class MiPerfilActivity extends SherlockActivity {
 			// TODO Auto-generated method stub
 			boolean existe = false;
 			try{
-				existe = Conexion.identificarse(user, pass);
+				String hashPass = String.valueOf(pass.hashCode());
+				existe = Conexion.identificarse(user, hashPass);
 			} catch (ExcepcionAplicacion e){
 				e.printStackTrace();			
 			}
@@ -426,7 +427,8 @@ public class MiPerfilActivity extends SherlockActivity {
 		protected Boolean doInBackground(Void... params){
 			boolean registrado = false;
 			try{
-				registrado = Conexion.registrarUsuario(user, pass); 				 													
+				String hashPass = String.valueOf(pass.hashCode());
+				registrado = Conexion.registrarUsuario(user, hashPass); 				 													
 			}catch(ExcepcionAplicacion e){
 				e.printStackTrace();
 			}
