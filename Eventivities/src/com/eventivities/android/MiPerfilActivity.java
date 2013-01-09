@@ -426,12 +426,10 @@ public class MiPerfilActivity extends SherlockActivity {
 		protected Boolean doInBackground(Void... params){
 			boolean registrado = false;
 			try{
-				registrado = Conexion.identificarse(user, pass); 	//TODO Aquí irá el método que se cree en conexión
-				registrado = true; 									//TODO De momento se queda así. Podría invocarse Conexion.registrarse(user, pass)				
+				registrado = Conexion.registrarUsuario(user, pass); 				 													
 			}catch(ExcepcionAplicacion e){
 				e.printStackTrace();
 			}
-			registrado = true; //Esta línea se eliminará
 			return registrado;
 		}
 		
