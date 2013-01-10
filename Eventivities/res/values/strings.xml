@@ -70,12 +70,13 @@
     <string name="textButtonLogOut">Exit</string>
     <string name="textButtonRegistrar">Sign up</string>    
 	<string name="textLoginOk">Login succeed</string>
-	<string name="textLoginServerError">Login error.\n\nVerify:\n -The introduced information.\n -Your connection</string>
+	<string name="textLoginServerError">Login error.Verify your connection</string>
 	<string name="textDatosErroneos">Username or password isn\'t correct. Please verify these and try again</string>
-	<string name="textErrorRegistro">Registration failed.\n\nSuggestions:\n -Select other username\n -Verify your connection</string>
+	<string name="textErrorRegistro">Registration failed. Verify your connection.</string>
 	<string name="textRegistroOk">Registration succed</string>
 	<string name="textoCabeceraDialogo">Continue?</string>
     <string name="textoMensajeDialogo">Registration will be done with:\n\n</string>
     <string name="textoBotonContinuar">Accept</string>
     <string name="textoBotonCancelar">Cancel</string>
+    <string name="textAliasDuplicado">Duplicate Community Nickname. Another user has already selected this nickname.\nPlease select another.</string>
 </resources>
