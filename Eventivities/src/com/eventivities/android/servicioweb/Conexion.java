@@ -37,7 +37,7 @@ import com.google.gson.GsonBuilder;
 */
 public class Conexion {
 	
-	
+	public static final String TODAS_CATEGORIAS = "0";
 	
 	/*obtenerlocalesciudad
 	 * obtenerpuntuacioneslocal
@@ -194,10 +194,11 @@ public class Conexion {
 	* @return      la lista de puntuaciones
 	* @see         Conexion
 	*/	
-	public static ListaLocales obtenerLocalesCiudad(String ciudad) throws ExcepcionAplicacion
+	public static ListaLocales obtenerLocalesCiudad(String ciudad, String categoria) throws ExcepcionAplicacion
 	{	
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-		pairs.add(new BasicNameValuePair("ciudad", ciudad));	
+		pairs.add(new BasicNameValuePair("ciudad", ciudad));
+		pairs.add(new BasicNameValuePair("categoria", categoria));
 		JSONObject json;
 		ListaLocales respuesta = null;
 		try {
@@ -247,6 +248,19 @@ public class Conexion {
 			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
 		}
 		return respuesta;
+	}
+	
+	
+	/**
+	 * Obtiene los locales de una ciudad para todas las categorías disponibles
+	 * 
+	 * @param ciudad
+	 * @return Lista de locales
+	 * @throws ExcepcionAplicacion
+	 */
+	public static ListaLocales obtenerLocalesCiudad(String ciudad) throws ExcepcionAplicacion
+	{
+		return obtenerLocalesCiudad(ciudad, TODAS_CATEGORIAS);
 	}
 	
 	/**
