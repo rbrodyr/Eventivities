@@ -4,4 +4,10 @@
         <item >Teatros</item>
     </string-array>
     
+    <string-array name="ciudades">
+        <item >Valencia</item>
+        <item >Madrid</item>
+        <item >Barcelona</item>
+    </string-array>
+    
 </resources>

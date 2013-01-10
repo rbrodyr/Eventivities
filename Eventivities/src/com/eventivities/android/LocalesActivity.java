@@ -9,6 +9,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TabHost;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
@@ -27,24 +30,19 @@ import com.eventivities.android.servicioweb.Conexion;
 public class LocalesActivity extends SherlockActivity {
 
 	private List<Local> locales;
+	private String ciudad;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         
-        // TODO Obtener del fichero de preferencias
-        setTitle("Valencia");
+        setTitle(ciudad);
 		
 		new LocalesAsyncTask().execute();
 	}
     
-	@Override
-	protected void onResume(){
-		invalidateOptionsMenu();
-		super.onResume();
-	}
-	
+
     private OnItemClickListener itemClickListener = new OnItemClickListener() {
 
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -106,6 +104,7 @@ public class LocalesActivity extends SherlockActivity {
 		protected List<Local> doInBackground(Void... params) {
 			locales = null;
 			try {
+				//todo obtener de preferences
 				locales = Conexion.obtenerLocalesCiudad("Valencia").getLocales();
 			} catch (ExcepcionAplicacion e) {
 				e.printStackTrace();
@@ -136,4 +135,16 @@ public class LocalesActivity extends SherlockActivity {
 			super.onPostExecute(result);
 		}
 	}
+
+	@Override
+	protected void onResume() {
+		SharedPreferences prefs = getSharedPreferences("UbicacionPreferences", Context.MODE_PRIVATE);
+		if(prefs != null){
+			ciudad = prefs.getString("ubicacionActual", "Valencia");
+			setTitle(ciudad);
+		}
+		invalidateOptionsMenu();
+		super.onResume();
+	}
+	
 }
