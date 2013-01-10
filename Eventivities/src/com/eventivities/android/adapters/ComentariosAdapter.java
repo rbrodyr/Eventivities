@@ -47,7 +47,7 @@ public class ComentariosAdapter extends ArrayAdapter<Comentario> {
 				tComentario.setText("¿ no hay comentario ?");
 				
 			TextView tUser= (TextView)view.findViewById(R.id.comentario_item_usuario);
-			tDato=String.valueOf(comentario.getIdUsuario());
+			tDato=String.valueOf(comentario.getAlias());
 			if (tDato != null)
 				tUser.setText(tDato);
 			else
