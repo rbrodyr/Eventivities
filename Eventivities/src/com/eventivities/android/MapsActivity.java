@@ -3,39 +3,32 @@ package com.eventivities.android;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
-
 import java.util.Locale;
-
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Toast;
 
-
-import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.app.SherlockMapActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.eventivities.android.R;
-import com.eventivities.android.util.ParticularItemizedOverlay;
-//import com.eventivities.android.LocalesActivity.LocalesAsyncTask;
-import com.eventivities.android.domain.ListaLocales;
 import com.eventivities.android.domain.Local;
 import com.eventivities.android.excepciones.ExcepcionAplicacion;
 import com.eventivities.android.servicioweb.Conexion;
+import com.eventivities.android.util.ParticularItemizedOverlay;
 import com.google.android.maps.GeoPoint;
-import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
@@ -286,11 +279,22 @@ public class MapsActivity extends /*MapActivity*/SherlockMapActivity{
 		}
 	}
 
-
+	@Override
+	protected void onResume(){
+		invalidateOptionsMenu();
+		super.onResume();
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater menuInflater = getSupportMenuInflater();
 		menuInflater.inflate(R.menu.general, menu);
+		SharedPreferences prefs = getSharedPreferences("LogInPreferences", Context.MODE_PRIVATE);
+		boolean login = prefs.getBoolean("logIn", false);
+		if(login)
+			menu.findItem(R.id.menu_login).setTitle(prefs.getString("usuarioActual", getString(R.string.menu_login).toUpperCase()));
+		else 
+			menu.findItem(R.id.menu_login).setTitle(getString(R.string.menu_login));
 		return true;
 	}
 	

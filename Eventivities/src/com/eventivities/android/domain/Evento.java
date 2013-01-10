@@ -9,8 +9,8 @@ Columna 	Tipo 	Nulo Predeterminado
 idEvento 	int(11) No 		
 Nombre 		text 	No 		
 Descripcion text 	No 		
-FechaInicio date 	No 		
-FechaFin 	date 	No 		
+FechaInicio timestamp 	No 		
+FechaFin 	timestamp 	No 		
 idLocal 	int(11)	No 		
 idTipoEventoint(11)	No 		
 Precio 		double 	No 	0 	
@@ -19,7 +19,12 @@ Interpretes text 	Sí 	NULL
 Duracion 	int(11)	Sí  NULL 	
 HoraInicio 	time 	Sí 	NULL
 El campo media es la media de las puntuaciones para ese evento
-*/
+
+Tabla Imagen
+Columna 	Tipo 	Nulo 	Predeterminado 	Comentarios
+idImagen 	int(11) 	No
+Nombre 	char(100) 	No
+FECHA 	timestamp 	No 	CURRENT_TIMESTAMP*/
 
 public class Evento implements Serializable {
 	
@@ -40,7 +45,28 @@ public class Evento implements Serializable {
 	private double media=0; 
 	private int duracion=0;
 	private String horaInicio=null;
+	private int idImagen;
+	private String nombreImg;
+	private Date fechaImg;
 	
+	public int getIdImagen() {
+		return idImagen;
+	}
+	public void setIdImagen(int idImagen) {
+		this.idImagen = idImagen;
+	}
+	public String getNombreImg() {
+		return nombreImg;
+	}
+	public void setNombreImg(String nombreImg) {
+		this.nombreImg = nombreImg;
+	}
+	public Date getFechaImg() {
+		return fechaImg;
+	}
+	public void setFechaImg(Date fechaImg) {
+		this.fechaImg = fechaImg;
+	}
 	public int getDuracion() {
 		return duracion;
 	}
