@@ -3,9 +3,13 @@ package com.eventivities.android;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -14,6 +18,9 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 public class UbicacionActivity extends SherlockActivity {
+	
+	private String ciudad;
+	private TextView textViewCiudad;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +28,27 @@ public class UbicacionActivity extends SherlockActivity {
 		setContentView(R.layout.activity_ubicacion);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		
-		TextView textViewCiudad = (TextView) findViewById(R.id.textViewCiudad);
-        // TODO Obtener del fichero de preferencias
-		textViewCiudad.setText("Valencia");
+		textViewCiudad = (TextView) findViewById(R.id.textViewCiudad);
 		
-		Button buttonCambiar = (Button) findViewById(R.id.buttonCambiar);
-		buttonCambiar.setEnabled(false);
+		Spinner cuidades = (Spinner) findViewById(R.id.spinnerCambiar);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.ciudades,android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		cuidades.setAdapter(adapter);
+
+		//TODO insertar la cuidad en preferences
+		cuidades.setOnItemSelectedListener(
+		        new AdapterView.OnItemSelectedListener() {
+		        public void onItemSelected(AdapterView<?> parent,android.view.View v, int position, long id) {
+		        		ciudad = (String) parent.getItemAtPosition(position);
+		                textViewCiudad.setText(ciudad);
+		        }
+		 
+		        public void onNothingSelected(AdapterView<?> parent) {
+		            
+		        }
+		});
+		
+
 		
 		final Button buttonMaps = (Button) findViewById(R.id.buttonMaps);		
 		buttonMaps.setOnClickListener(new View.OnClickListener() {			
@@ -40,7 +62,7 @@ public class UbicacionActivity extends SherlockActivity {
 	
 	@Override
 	protected void onResume() {
-		invalidateOptionsMenu();
+		invalidateOptionsMenu(); 
 		super.onResume();
 	}
 	
@@ -76,4 +98,15 @@ public class UbicacionActivity extends SherlockActivity {
 		
 		return super.onOptionsItemSelected(item);
 	}
+
+	@Override
+	protected void onPause() {
+		SharedPreferences prefs = getSharedPreferences("UbicacionPreferences", Context.MODE_PRIVATE);
+		Editor editor = prefs.edit();
+		editor.putString("ubicacionActual", ciudad); 
+		editor.commit();
+		super.onPause();
+	}
+	
+	
 }
