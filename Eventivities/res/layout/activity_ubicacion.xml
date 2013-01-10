@@ -13,17 +13,11 @@
         android:layout_height="wrap_content"
         android:text="@string/ubicacion" />
 
-    <TextView
-        android:id="@+id/textViewCiudad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <Spinner
         android:id="@+id/spinnerCambiar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minWidth="200dp"
         android:text="@string/boton_cambiar"
         android:width="200dp" />
 
