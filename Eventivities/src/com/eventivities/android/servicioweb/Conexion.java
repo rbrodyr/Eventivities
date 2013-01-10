@@ -624,7 +624,7 @@ public class Conexion {
 	* @param  idEvento
 	* @param  puntuacion
 	* @param  comentario
-	* @return Devuelve true si el registro es correcto y false el comentario o la puntuación están duplicadas.   
+	* @return Devuelve true si el registro es correcto y false si el comentario o la puntuación están duplicadas.   
 	* @see         Conexion
 	*/
 	public static boolean registrarComentarioYPuntuacion(int idUsuario, int idEvento,int puntuacion, String comentario) throws ExcepcionAplicacion
