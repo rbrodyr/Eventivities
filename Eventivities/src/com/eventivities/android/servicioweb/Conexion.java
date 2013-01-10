@@ -610,5 +610,85 @@ public class Conexion {
 	}	
 	
 	
+	/**
+	 * Registra un comentario y una puntuación de un usuario para un evento
+	* <p> 
+	* Se pueden dar tres situaciones:
+	* Que exista un error-> lanza una ExcepcionAplicacion
+	* Que los datos se registren correctamente-> devuelve true
+	* Que ya exista ese para ese usuario un comentario o una puntuación-> devuelve false
+	*
+	* @author marcos
+	* @
+	* @param  idUsuario
+	* @param  idEvento
+	* @param  puntuacion
+	* @param  comentario
+	* @return Devuelve true si el registro es correcto y false el comentario o la puntuación están duplicadas.   
+	* @see         Conexion
+	*/
+	public static boolean registrarComentarioYPuntuacion(int idUsuario, int idEvento,int puntuacion, String comentario) throws ExcepcionAplicacion
+	{
+		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+		pairs.add(new BasicNameValuePair("idUsuario", String.valueOf(idUsuario)));	
+		pairs.add(new BasicNameValuePair("idEvento", String.valueOf(idEvento)));
+		pairs.add(new BasicNameValuePair("puntuacion", String.valueOf(puntuacion)));	
+		pairs.add(new BasicNameValuePair("comentario", comentario));
+		JSONObject json;
+		boolean insercionCorrecta=true;		
+		try {
+			json = obtenerJsonDelServicio(pairs,"service.registrarcomentarioypuntuacion.php");
+			boolean exito=true;
+			if(json!=null)
+			{			
+				if (json.has("exito"))
+				{
+					if(json.getString("exito").equalsIgnoreCase("1"))
+					{
+						if (json.has("duplicado"))
+						{
+							//Este caso se da si la entrada está duplicada
+							if(json.getString("duplicado").equalsIgnoreCase("1"))
+							{
+								insercionCorrecta=false;
+							}
+						}
+						else
+							exito=false;												
+					}
+					else
+						exito=false;
+				}
+				else
+					exito=false;											
+			}	
+			else
+				exito=false;
+			
+			if (!exito){
+				insercionCorrecta=false;
+				throw new ExcepcionAplicacion("El servicio web no ha respondido con éxito",ExcepcionAplicacion.EXCEPCION_DATOS_ERRONEOS);					
+			}			
+				
+		} catch (ClientProtocolException c)
+		{
+			throw new ExcepcionAplicacion(c.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new ExcepcionAplicacion(e.getMessage(),ExcepcionAplicacion.EXCEPCION_CONEXION_SERVIDOR);
+		}
+		return insercionCorrecta;
+	}	
+	
 	
 }
