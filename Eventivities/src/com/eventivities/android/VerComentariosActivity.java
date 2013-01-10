@@ -29,7 +29,7 @@ public class VerComentariosActivity extends SherlockActivity{
 	private Evento evento;
 	private String nombreLocal;
 	ListView listaComentarios;
-	private List<Comentario> comentarios;	
+	private List<Comentario> comentarios = null;	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +135,6 @@ public class VerComentariosActivity extends SherlockActivity{
 
 		@Override
 		protected List<Comentario> doInBackground(Void... params) {
-			comentarios = null;
 			try {
 				String n=String.valueOf(evento.getIdEvento());
 				comentarios = Conexion.obtenerComentariosEvento(n).getComentarios();

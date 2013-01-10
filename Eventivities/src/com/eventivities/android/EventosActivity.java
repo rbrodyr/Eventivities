@@ -9,8 +9,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -24,7 +24,7 @@ import com.eventivities.android.servicioweb.Conexion;
 
 public class EventosActivity extends SherlockActivity {
 	
-	private List<Evento> eventos;
+	private List<Evento> eventos = null;
 	private int localId;
 	private String nombreLocal ;  // se necesita para pasarle el nombre a votar
 
@@ -121,7 +121,6 @@ public class EventosActivity extends SherlockActivity {
 
 		@Override
 		protected List<Evento> doInBackground(Void... params) {
-			eventos = null;
 			try {
 				eventos = Conexion.obtenerEventosLocal(localId).getEventos();
 			} catch (ExcepcionAplicacion e) {
@@ -136,10 +135,8 @@ public class EventosActivity extends SherlockActivity {
 				setContentView(R.layout.activity_eventos);
 				ListView listView = (ListView) findViewById(android.R.id.list);
 				listView.setOnItemClickListener(itemClickListener);
-		        //getListView().setOnItemClickListener(itemClickListener);
 				EventosAdapter adapter = new EventosAdapter(getApplicationContext(), R.layout.item_evento, eventos);
 				listView.setAdapter(adapter);
-				//setListAdapter(adapter);
 			} else {
 				setContentView(R.layout.error_conexion);
 			}

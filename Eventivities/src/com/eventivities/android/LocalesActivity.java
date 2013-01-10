@@ -26,7 +26,7 @@ import com.eventivities.android.servicioweb.Conexion;
 
 public class LocalesActivity extends SherlockActivity {
 
-	private List<Local> locales;
+	private List<Local> locales = null;
 	private String ciudad;
 
 	@Override
@@ -95,7 +95,6 @@ public class LocalesActivity extends SherlockActivity {
 
 		@Override
 		protected List<Local> doInBackground(Void... params) {
-			locales = null;
 			try {				
 				locales = Conexion.obtenerLocalesCiudad(ciudad).getLocales();
 			} catch (ExcepcionAplicacion e) {
