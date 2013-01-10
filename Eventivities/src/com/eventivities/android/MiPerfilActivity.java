@@ -354,7 +354,7 @@ public class MiPerfilActivity extends SherlockActivity {
 	 * 		   para actualizar el fichero de preferencias y la interfaz de la aplicación
 	 * @see 
 	 * */
-	private class LogInAsyncTask extends AsyncTask <Void, Void, Boolean>{
+	private class LogInAsyncTask extends AsyncTask <Void, Void, Integer>{
 
 		private String user, pass;
 		private Context context;
@@ -367,33 +367,42 @@ public class MiPerfilActivity extends SherlockActivity {
 		}
 		
 		@Override
-		protected void onPostExecute(Boolean result) {
+		protected void onPostExecute(Integer result) {
 			// TODO Auto-generated method stub
 			getSherlock().setProgressBarIndeterminateVisibility(false);
-			if(result){
+			String mensaje;
+			if(result==1){
 				guardarPreferenciasLogIn();
 				String textoBoton = getResources().getString(R.string.textButtonLogOut);
 				actualizarTextoBotonLogIn(textoBoton);
 				actualizarElementosInterfaz(false);
 				invalidateOptionsMenu();
-				Toast.makeText(context, context.getString(R.string.textLoginOk), Toast.LENGTH_LONG).show();
-			}else{
-				Toast.makeText(context, context.getString(R.string.textLoginServerError), Toast.LENGTH_LONG).show();
+				mensaje=context.getString(R.string.textLoginOk);
 			}
+			else			
+			{
+				if(result==0)
+					mensaje=context.getString(R.string.textDatosErroneos);
+				else
+					mensaje=context.getString(R.string.textLoginServerError);				
+			}
+			Toast.makeText(context, mensaje, Toast.LENGTH_LONG).show();
 			super.onPostExecute(result);
 		}
 
 		@Override
-		protected Boolean doInBackground(Void... arg0) {
+		protected Integer doInBackground(Void... arg0) {
 			// TODO Auto-generated method stub
-			boolean existe = false;
+			Integer resultado = 0;
 			try{
 				String hashPass = String.valueOf(pass.hashCode());
-				existe = Conexion.identificarse(user, hashPass);
+				if(Conexion.identificarse(user, hashPass))
+					resultado=1;
 			} catch (ExcepcionAplicacion e){
-				e.printStackTrace();			
+				e.printStackTrace();
+				resultado=3;
 			}
-			return existe;
+			return resultado;
 		}
 		
 		/*Atributos necesarios para conectar con el servidor*/
@@ -418,21 +427,23 @@ public class MiPerfilActivity extends SherlockActivity {
 	 * para informar al usuario.
 	 * @see 
 	 * */
-	private class RegistroAsyncTask extends AsyncTask <Void, Void, Boolean>{
+	private class RegistroAsyncTask extends AsyncTask <Void, Void, Integer>{
 		
 		private String user, pass;
 		private Context context;
 		
 		@Override
-		protected Boolean doInBackground(Void... params){
-			boolean registrado = false;
+		protected Integer doInBackground(Void... params){
+			Integer resultado=0;
 			try{
 				String hashPass = String.valueOf(pass.hashCode());
-				registrado = Conexion.registrarUsuario(user, hashPass); 				 													
+				if (Conexion.registrarUsuario(user, hashPass))
+						resultado=1;
 			}catch(ExcepcionAplicacion e){
 				e.printStackTrace();
+				resultado=3;
 			}
-			return registrado;
+			return resultado;
 		}
 		
 		@Override
@@ -442,13 +453,17 @@ public class MiPerfilActivity extends SherlockActivity {
 		}
 		
 		@Override
-		protected void onPostExecute(Boolean result){
+		protected void onPostExecute(Integer result){
 			getSherlock().setProgressBarIndeterminateVisibility(false);
 			String mensaje = "";
-			if(result){
+			if(result==1)
 				mensaje = context.getString(R.string.textRegistroOk);
-			}else{
-				mensaje = context.getString(R.string.textErrorRegistro);
+			else
+			{
+				if(result==0)
+					mensaje = context.getString(R.string.textAliasDuplicado);
+				else
+					mensaje = context.getString(R.string.textErrorRegistro);
 			}
 			Toast.makeText(context, mensaje, Toast.LENGTH_LONG).show();
 			super.onPostExecute(result);
