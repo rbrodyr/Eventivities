@@ -355,8 +355,9 @@ public class Conexion {
 				{
 					if(json.getString("exito").equalsIgnoreCase("1"))
 					{
-						GsonBuilder gsonBuilder = new GsonBuilder();						
-						Gson gson = gsonBuilder.create();				
+						GsonBuilder gsonBuilder = new GsonBuilder();
+						gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss");
+						Gson gson = gsonBuilder.create();
 						respuesta = gson.fromJson(json.toString(), ListaComentarios.class);
 					}
 					else
