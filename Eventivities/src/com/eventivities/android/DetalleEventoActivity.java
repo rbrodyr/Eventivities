@@ -3,9 +3,11 @@ package com.eventivities.android;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,8 +16,10 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.eventivities.android.domain.Evento;
+import com.eventivities.android.util.ImageAsyncHelper;
 import com.eventivities.android.util.TnUtil;
 import com.eventivities.android.util.ViewUtil;
+import com.eventivities.android.util.ImageAsyncHelper.ImageAsyncHelperCallBack;
 
 public class DetalleEventoActivity extends SherlockActivity {
 	
@@ -94,6 +98,24 @@ public class DetalleEventoActivity extends SherlockActivity {
 				TextView textViewDescripcion = (TextView)findViewById(R.id.textViewDescripcion);
 				if (textViewDescripcion != null) {
 					textViewDescripcion.setText(evento.getDescripcion());
+				}
+				
+				final ImageView imageViewEvento = (ImageView)findViewById(R.id.imageView);
+				
+				if (imageViewEvento != null) {
+					ImageAsyncHelper imageAsyncHelper = new ImageAsyncHelper();
+					
+					Bitmap img = imageAsyncHelper.getBitmap(evento.getNombreImg(),
+							new ImageAsyncHelperCallBack() {
+						
+						@Override
+						public void onImageSyn(Bitmap img) {
+							imageViewEvento.setImageBitmap(img);
+						}
+					}, null);
+					
+					if (img != null)
+						imageViewEvento.setImageBitmap(img);
 				}
 				
 				setTitle(evento.getNombre());

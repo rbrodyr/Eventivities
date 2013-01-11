@@ -3,14 +3,18 @@ package com.eventivities.android.adapters;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.eventivities.android.R;
 import com.eventivities.android.domain.Evento;
+import com.eventivities.android.util.ImageAsyncHelper;
+import com.eventivities.android.util.ImageAsyncHelper.ImageAsyncHelperCallBack;
 import com.eventivities.android.util.ViewUtil;
 
 public class EventosAdapter extends ArrayAdapter<Evento> {
@@ -55,6 +59,24 @@ public class EventosAdapter extends ArrayAdapter<Evento> {
 			TextView textViewPuntEvento = (TextView)view.findViewById(R.id.textViewPuntuacion);
 			if (textViewPuntEvento != null) {
 				textViewPuntEvento.setText(ViewUtil.obtenerEstrellas(evento.getMedia()));
+			}
+			
+			final ImageView imageViewEvento = (ImageView)view.findViewById(R.id.imageViewProducto);
+			
+			if (imageViewEvento != null) {
+				ImageAsyncHelper imageAsyncHelper = new ImageAsyncHelper();
+				
+				Bitmap img = imageAsyncHelper.getBitmap(evento.getNombreImg(),
+						new ImageAsyncHelperCallBack() {
+					
+					@Override
+					public void onImageSyn(Bitmap img) {
+						imageViewEvento.setImageBitmap(img);
+					}
+				}, null);
+				
+				if (img != null)
+					imageViewEvento.setImageBitmap(img);
 			}
 		}
 		
