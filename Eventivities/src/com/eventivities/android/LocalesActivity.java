@@ -98,6 +98,7 @@ public class LocalesActivity extends SherlockActivity {
 			try {				
 				locales = Conexion.obtenerLocalesCiudad(ciudad).getLocales();
 			} catch (ExcepcionAplicacion e) {
+				locales = null;
 				e.printStackTrace();
 			}
 			return locales;
