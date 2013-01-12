@@ -134,10 +134,12 @@ public class LocalesActivity extends SherlockActivity {
 		String [] ciudades = getResources().getStringArray(R.array.ciudades);
 		String ciudadPreferencias = ciudades[indice];
 		
-		if (!ciudadPreferencias.equals(ciudad))			
+		boolean ciudadCambiada = !ciudadPreferencias.equals(ciudad);		
+		ciudad = ciudadPreferencias;
+		
+		if (ciudadCambiada)			
 			new LocalesAsyncTask().execute();
 		
-		ciudad = ciudadPreferencias;
 		setTitle(ciudad);
 		
 		invalidateOptionsMenu();
