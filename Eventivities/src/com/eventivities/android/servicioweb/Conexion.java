@@ -396,31 +396,28 @@ public class Conexion {
 	
 	/** TODO
 	 * SE PUEDE ELIMINAR. NO LO ELIMINO PARA EVITAR CONFLICTOS.
-	 * Devuelve el idusuario si el usuario existe y su contraseña es correcta. 
-	 * En caso contrario devolverá -1.
+	 * Devuelve true si el usuario existe y su contraseña es correcta. 
+	 * En caso contrario devolverá false.
 	 * 
 	 *  @author emilio 
 	 *  @
 	 *  @param username, password
-	 *  @return int con el idUsuario si los datos introducidos son correctos y -1 si no lo son.
+	 *  @return boolean que indica si los datos introducidos son correctos
 	 *  @see Conexion
 	*/
 	
-	public static int comprobarDatosLogIn(String username, String password)throws ExcepcionAplicacion{
+	public static Boolean comprobarDatosLogIn(String username, String password)throws ExcepcionAplicacion{
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		pairs.add(new BasicNameValuePair("username", username));
 		pairs.add(new BasicNameValuePair("password", password));
-		int respuesta = -1;
+		boolean respuesta = false;
 		JSONObject json;		
 		try {
 			json = obtenerJsonDelServicio(pairs, "service.comprobarDatosLogin.php");
 			int exito=1;
 			if(json != null){
-				if(json.has("exito") && json.getString("exito").equalsIgnoreCase("1"))
-				{				
-					if(json.has("idUsuario"))
-						respuesta=Integer.parseInt(json.getString("idUsuario"));					
-				
+				if(json.has("exito") && json.getString("exito").equalsIgnoreCase("1")){
+					respuesta = true;
 				}else{
 					exito = 0;
 				}
@@ -482,17 +479,17 @@ public class Conexion {
 	* @
 	* @param  usuario
 	* @param  clave
-	* @return Devuelve el idusuario si es correcto o -1 en caso contrario   
+	* @return Devuelve un booleano que determina si identificacion es correcta   
 	* @see         Conexion
 	*/
-	public static int identificarse(String usuario, String clave) throws ExcepcionAplicacion
+	public static boolean identificarse(String usuario, String clave) throws ExcepcionAplicacion
 	{
 
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		pairs.add(new BasicNameValuePair("username", usuario));	
 		pairs.add(new BasicNameValuePair("password", clave));
 		JSONObject json;
-		int respuesta=-1;
+		boolean respuesta=true;
 		try {
 			json = obtenerJsonDelServicio(pairs,"service.comprobarDatosLogin.php");
 			int exito=1;
@@ -502,10 +499,17 @@ public class Conexion {
 				{
 					if(json.getString("exito").equalsIgnoreCase("1"))
 					{
-						if (json.has("idUsuario"))
-						{							
-								respuesta=Integer.parseInt(json.getString("idUsuario"));				
-						}											
+						if (json.has("usuario"))
+						{
+							if(!json.getString("usuario").equalsIgnoreCase("1"))
+							{
+								respuesta=false;
+							}
+						}
+						else
+						{
+							exito=0;
+						}						
 					}
 					else
 					{

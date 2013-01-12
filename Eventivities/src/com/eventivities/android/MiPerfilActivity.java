@@ -56,7 +56,7 @@ public class MiPerfilActivity extends SherlockActivity {
 					actualizarTextoBotonLogIn(textoBoton);
 					actualizarElementosInterfaz(true);
 					
-					supportInvalidateOptionsMenu();
+					invalidateOptionsMenu();
 				}
 			}	
 		});
@@ -213,15 +213,15 @@ public class MiPerfilActivity extends SherlockActivity {
 	
 	/**
 	 * Método que guarda las preferencias cuando un usuario hace LogIn
-	 * en la aplicación. Se encarga de guardar los datos 'username' y 'password' e iDusuario
+	 * en la aplicación. Se encarga de guardar los datos 'username' y 'password'
 	 * además de actualizar el campo 'logIn' a true.
 	 * 
-	 * @author emilio //Modificada por Marcos
-	 * @param idUsuario
+	 * @author emilio
+	 * @param No necesita parámetros de entrada
 	 * @return No retorna ningún valor. Se crea o actualiza el fichero de preferencias
 	 * @see SharedPreferences
 	 * */
-	public void guardarPreferenciasLogIn(int idUsuario){
+	public void guardarPreferenciasLogIn(){
 		SharedPreferences prefs = getSharedPreferences("LogInPreferences", Context.MODE_PRIVATE);
 		EditText userEditText = (EditText) findViewById(R.id.editTextUserName);
 		EditText passEditText = (EditText) findViewById(R.id.editTextUserPassword);
@@ -229,7 +229,6 @@ public class MiPerfilActivity extends SherlockActivity {
 		Editor editor = prefs.edit();
 		editor.putString("usuarioActual", userEditText.getText().toString());
 		editor.putString("passActual", passEditText.getText().toString());
-		editor.putString("idUsuario", String.valueOf(idUsuario));
 		editor.putBoolean("logIn", true);
 		editor.commit();
 	}
@@ -372,38 +371,36 @@ public class MiPerfilActivity extends SherlockActivity {
 			// TODO Auto-generated method stub
 			getSherlock().setProgressBarIndeterminateVisibility(false);
 			String mensaje;
-			//result vale -1 si la identificación es errónea, un -2 si hay un error con el servidor
-			//y el idusuario en el resto de casos
-			if(result!=-1 && result!=-2){
-				guardarPreferenciasLogIn(result);
+			if(result==1){
+				guardarPreferenciasLogIn();
 				String textoBoton = getResources().getString(R.string.textButtonLogOut);
 				actualizarTextoBotonLogIn(textoBoton);
 				actualizarElementosInterfaz(false);
-				supportInvalidateOptionsMenu();
-				mensaje=context.getString(R.string.textLoginOk);				
-				finish();
+				invalidateOptionsMenu();
+				mensaje=context.getString(R.string.textLoginOk);
 			}
 			else			
 			{
-				if(result==-1)
+				if(result==0)
 					mensaje=context.getString(R.string.textDatosErroneos);
-				else 
+				else
 					mensaje=context.getString(R.string.textLoginServerError);				
 			}
 			Toast.makeText(context, mensaje, Toast.LENGTH_LONG).show();
-			super.onPostExecute(result);			
+			super.onPostExecute(result);
 		}
 
 		@Override
 		protected Integer doInBackground(Void... arg0) {
 			// TODO Auto-generated method stub
-			Integer resultado = -1;
+			Integer resultado = 0;
 			try{
 				String hashPass = String.valueOf(pass.hashCode());
-				resultado=Conexion.identificarse(user, hashPass);				
+				if(Conexion.identificarse(user, hashPass))
+					resultado=1;
 			} catch (ExcepcionAplicacion e){
 				e.printStackTrace();
-				resultado=-2;
+				resultado=3;
 			}
 			return resultado;
 		}
